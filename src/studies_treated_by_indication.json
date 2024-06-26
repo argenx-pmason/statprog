@@ -1,0 +1,107 @@
+[
+  {
+    "product": "argx-113",
+    "indication": "mg",
+    "subjects": 715
+  },
+  {
+    "product": "argx-113",
+    "indication": "itp",
+    "subjects": 650
+  },
+  {
+    "product": "argx-113",
+    "indication": "cidp",
+    "subjects": 550
+  },
+  {
+    "product": "argx-113",
+    "indication": "hv-113",
+    "subjects": 530
+  },
+  {
+    "product": "argx-113",
+    "indication": "pemphigus",
+    "subjects": 405
+  },
+  {
+    "product": "argx-113",
+    "indication": "iim",
+    "subjects": 146
+  },
+  {
+    "product": "argx-117",
+    "indication": "hv-117",
+    "subjects": 133
+  },
+  {
+    "product": "argx-113",
+    "indication": "bp",
+    "subjects": 131
+  },
+  {
+    "product": "argx-119",
+    "indication": "hv-119",
+    "subjects": 112
+  },
+  {
+    "product": "argx-117",
+    "indication": "mmn",
+    "subjects": 107
+  },
+  {
+    "product": "argx-113",
+    "indication": "pots",
+    "subjects": 86
+  },
+  {
+    "product": "argx-113",
+    "indication": "sjogren",
+    "subjects": 58
+  },
+  {
+    "product": "argx-113",
+    "indication": "mn",
+    "subjects": 41
+  },
+  {
+    "product": "argx-113",
+    "indication": "ln",
+    "subjects": 37
+  },
+  {
+    "product": "argx-117",
+    "indication": "dgf",
+    "subjects": 5
+  },
+  {
+    "product": "argx-113",
+    "indication": "aav",
+    "subjects": 0
+  },
+  {
+    "product": "argx-119",
+    "indication": "als",
+    "subjects": 0
+  },
+  {
+    "product": "argx-119",
+    "indication": "cms",
+    "subjects": 0
+  },
+  {
+    "product": "argx-117",
+    "indication": "covid-19",
+    "subjects": 0
+  },
+  {
+    "product": "argx-117",
+    "indication": "dm",
+    "subjects": 0
+  },
+  {
+    "product": "argx-113",
+    "indication": "ted",
+    "subjects": 0
+  }
+]

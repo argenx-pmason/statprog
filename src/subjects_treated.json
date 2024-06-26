@@ -1,0 +1,867 @@
+[
+  {
+    "product": "argx-113",
+    "study": "argx-113-1501",
+    "No_of_subjects_treated": 62
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-1501",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-1501",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-1602",
+    "No_of_subjects_treated": 24
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-1602",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-1602",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-1603",
+    "No_of_subjects_treated": 38
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-1603",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-1603",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-1701",
+    "No_of_subjects_treated": 34
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-1701",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-1701",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-1702",
+    "No_of_subjects_treated": 40
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-1702",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-1702",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-1704",
+    "No_of_subjects_treated": 167
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-1704",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-1704",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-1705",
+    "No_of_subjects_treated": 145
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-1705",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-1705",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-1801",
+    "No_of_subjects_treated": 131
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-1801",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-1801",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-1802",
+    "No_of_subjects_treated": 322
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-1802",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-1802",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-1803",
+    "No_of_subjects_treated": 101
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-1803",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-1803",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-1901",
+    "No_of_subjects_treated": 33
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-1901",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-1901",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-1902",
+    "No_of_subjects_treated": 228
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-1902",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-1902",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-1904",
+    "No_of_subjects_treated": 222
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-1904",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-1904",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-1905",
+    "No_of_subjects_treated": 149
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-1905",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-1905",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-1907",
+    "No_of_subjects_treated": 54
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-1907",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-1907",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2001",
+    "No_of_subjects_treated": 110
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2001",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2001",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2002",
+    "No_of_subjects_treated": 180
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2002",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2002",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2003",
+    "No_of_subjects_treated": 69
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2003",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2003",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2004",
+    "No_of_subjects_treated": 207
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2004",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2004",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2005",
+    "No_of_subjects_treated": 173
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2005",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2005",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2006",
+    "No_of_subjects_treated": 12
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2006",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2006",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2007",
+    "No_of_subjects_treated": 102
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2007",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2007",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2008",
+    "No_of_subjects_treated": 8
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2008",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2008",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2009",
+    "No_of_subjects_treated": 98
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2009",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2009",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2010",
+    "No_of_subjects_treated": 33
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2010",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2010",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2011",
+    "No_of_subjects_treated": 44
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2011",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2011",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2101",
+    "No_of_subjects_treated": null
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2101",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2101",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2102",
+    "No_of_subjects_treated": 36
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2102",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2102",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2104",
+    "No_of_subjects_treated": 53
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2104",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2104",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2105",
+    "No_of_subjects_treated": 33
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2105",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2105",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2106",
+    "No_of_subjects_treated": 34
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2106",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2106",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2201",
+    "No_of_subjects_treated": 33
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2201",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2201",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2202",
+    "No_of_subjects_treated": 37
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2202",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2202",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2203",
+    "No_of_subjects_treated": 41
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2203",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2203",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2204",
+    "No_of_subjects_treated": 120
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2204",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2204",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2211",
+    "No_of_subjects_treated": 24
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2211",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2211",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2212",
+    "No_of_subjects_treated": null
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2212",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2212",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2213",
+    "No_of_subjects_treated": null
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2213",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2213",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2301",
+    "No_of_subjects_treated": null
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2301",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2301",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2303",
+    "No_of_subjects_treated": 48
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2303",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2303",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2308",
+    "No_of_subjects_treated": null
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2308",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2308",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2309",
+    "No_of_subjects_treated": null
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2309",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2309",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2310",
+    "No_of_subjects_treated": null
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2310",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2310",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2312",
+    "No_of_subjects_treated": 72
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2312",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2312",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-2315",
+    "No_of_subjects_treated": null
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-2315",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-2315",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-z005",
+    "No_of_subjects_treated": 16
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-z005",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-z005",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-113-z006",
+    "No_of_subjects_treated": 16
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-113-z006",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-113-z006",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-117-1901",
+    "No_of_subjects_treated": 109
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-117-1901",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-117-1901",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-117-2001",
+    "No_of_subjects_treated": null
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-117-2001",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-117-2001",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-117-2002",
+    "No_of_subjects_treated": 58
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-117-2002",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-117-2002",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-117-2003",
+    "No_of_subjects_treated": 49
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-117-2003",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-117-2003",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-117-2201",
+    "No_of_subjects_treated": 5
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-117-2201",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-117-2201",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-117-2202",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-117-2301",
+    "No_of_subjects_treated": null
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-117-2301",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-117-2301",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-117-2303",
+    "No_of_subjects_treated": 24
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-117-2303",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-117-2303",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-119-2201",
+    "No_of_subjects_treated": 112
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-119-2201",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-119-2201",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-119-2301",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-119-2302",
+    "No_of_subjects_treated": null
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-119-2302",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-119-2302",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-119",
+    "study": "argx-119-2303",
+    "No_of_subjects_treated": null
+  },
+  {
+    "product": "argx-113",
+    "study": "argx-119-2303",
+    "No_of_subjects_treated": 0
+  },
+  {
+    "product": "argx-117",
+    "study": "argx-119-2303",
+    "No_of_subjects_treated": 0
+  }
+]

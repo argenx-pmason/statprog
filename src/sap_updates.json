@@ -1,0 +1,359 @@
+[
+  {
+    "xlsx": "/clinical/argx-113/bp/argx-113-2009/biostat/staging/testrun1/documents/ARGX-113-2009_SAP_Final v1.2SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/bp/argx-113-2009/biostat/staging/testrun1/documents/ARGX-113-2009_SAP_Final v1.2.docx",
+    "date": "03NOV23",
+    "time": " 8:29:36",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/bp/argx-113-2009/biostat/staging/testrun1/documents/ARGX-113-2009_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/bp/argx-113-2009/biostat/staging/testrun1/documents/ARGX-113-2009_SAP_Final v1.2.docx",
+    "date": "03NOV23",
+    "time": " 9:09:00",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/cidp/argx-113-1802/biostat/staging/final/documents/1802_final_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/cidp/argx-113-1802/biostat/staging/final/documents/ARGX-113-1802 Statistical Analysis Plan_final v1.0.docx",
+    "date": "30APR24",
+    "time": "15:02:26",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/cidp/argx-113-1802/biostat/staging/ma2024/documents/1802_ma2024_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/cidp/argx-113-1802/biostat/staging/ma2024/documents/ARGX-113-1802_ma2024_post-hoc_SAP_and_mocks_v0.1.docx",
+    "date": "30APR24",
+    "time": "15:25:06",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/cidp/argx-113-1802/biostat/staging/testrun1/documents/argx-113-1802_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/cidp/argx-113-1802/biostat/staging/testrun1/documents/ARGX-113-1802 Statistical Analysis Plan_Draft_v0.6.docx",
+    "date": "28NOV23",
+    "time": " 4:02:47",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/cidp/argx-113-1802/biostat/staging/testrun2/documents/argx-113-1802_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/cidp/argx-113-1802/biostat/staging/testrun2/documents/ARGX-113-1802 Statistical Analysis Plan_Draft_v0.9.docx",
+    "date": "28NOV23",
+    "time": " 3:43:39",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/cidp/argx-113-1902/biostat/staging/ia2_final/documents/1902_ia2_final_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/cidp/argx-113-1902/biostat/staging/ia2_final/documents/ARGX-113-1902 Statistical Analysis Plan_IA_Final_v2.0.docx",
+    "date": "30APR24",
+    "time": "13:51:21",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/cidp/argx-113-1902/biostat/staging/ia_testrun_20220809/documents/argx-113-1902_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/cidp/argx-113-1902/biostat/staging/ia_testrun_20220809/documents/ARGX-113-1902 Statistical Analysis Plan_IA_Draft_v0.40.docx",
+    "date": "17NOV23",
+    "time": " 3:41:02",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/cidp/argx-113-1902/biostat/staging/ia_testrun_20230612/documents/argx-113-1902_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/cidp/argx-113-1902/biostat/staging/ia_testrun_20230612/documents/ARGX-113-1902 Statistical Analysis Plan_IA_Draft_v0.41.docx",
+    "date": "17NOV23",
+    "time": " 3:41:11",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/cidp/argx-113-1902/biostat/staging/substudy_ia1_final/documents/1902_ia1_final_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/cidp/argx-113-1902/biostat/staging/substudy_ia1_final/documents/ARGX-113-1902 Statistical Analysis Plan_Substudy_v1.0.docx",
+    "date": "01MAY24",
+    "time": " 9:51:19",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/cidp/argx-113-1902/biostat/staging/substudy_ia1_testrun1/documents/1902_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/cidp/argx-113-1902/biostat/staging/substudy_ia1_testrun1/documents/ARGX-113-1902 Statistical Analysis Plan_substudy_v0.4.docx",
+    "date": "30APR24",
+    "time": "13:16:14",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/cidp/argx-113-1902/biostat/staging/substudy_ia1_testrun1/documents/1902_substudy0.4_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/cidp/argx-113-1902/biostat/staging/substudy_ia1_testrun1/documents/ARGX-113-1902 Statistical Analysis Plan_substudy_v0.4.docx",
+    "date": "30APR24",
+    "time": "13:52:35",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/cidp/argx-113-9301/biostat/staging/testrun1/documents/argx-113-9301_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/cidp/argx-113-9301/biostat/staging/testrun1/documents/ARGX-113 CIDP ISS Statistical Analysis Plan v0.4.docx",
+    "date": "17NOV23",
+    "time": " 3:42:54",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/hv/argx-113-2204/biostat/staging/testrun/documents/2204_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/hv/argx-113-2204/biostat/staging/testrun/documents/ARGX-113-2204_SAP Final 1.0_23June2023_clean.docx",
+    "date": "30APR24",
+    "time": "13:17:17",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/hv/argx-113-2204/biostat/staging/testrun/documents/argx-113-2204_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/hv/argx-113-2204/biostat/staging/testrun/documents/argenx CA38870 SAP Final 1.0_23June2023_clean.docx",
+    "date": "04DEC23",
+    "time": "13:42:34",
+    "checked": "-"
+  },
+  {
+    "xlsx": "/clinical/argx-113/hv/argx-113-2303/biostat/staging/testrun1/documents/argx-113-2303_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/hv/argx-113-2303/biostat/staging/testrun1/documents/ARGX-113-2303-SAP_Final.docx",
+    "date": "28NOV23",
+    "time": "19:21:52",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/hv/argx-113-2312/biostat/staging/final/documents/2312_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/hv/argx-113-2312/biostat/staging/final/documents/ARGX-113-2312_SAP Final_16JAN2024.docx",
+    "date": "30APR24",
+    "time": "13:18:12",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/iim/argx-113-2007/biostat/staging/testrun1/documents/2007_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/iim/argx-113-2007/biostat/staging/testrun1/documents/Statistical Analysis Plan - IA and Final SAP - Main SAP - Phase 2 - 20 Mar 2024.docx",
+    "date": "30APR24",
+    "time": "13:20:22",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/iim/argx-113-2007/biostat/staging/testrun1/documents/2007_testrun1_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/iim/argx-113-2007/biostat/staging/testrun1/documents/Statistical Analysis Plan - IA and Final SAP - Main SAP - Phase 2 - 20 Mar 2024.docx",
+    "date": "30APR24",
+    "time": "15:37:01",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/itp/argx-113-1803/biostat/staging/ia1/documents/argx-113-1803_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/itp/argx-113-1803/biostat/staging/ia1/documents/ARGX-113-1803_IA SAP.docx",
+    "date": "28NOV23",
+    "time": " 3:47:07",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/itp/argx-113-1803/biostat/staging/ia2/documents/1803_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/itp/argx-113-1803/biostat/staging/ia2/documents/ARGX-113-1803_IA2 SAP_final 2_0_track changes.docx",
+    "date": "30APR24",
+    "time": "13:27:38",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/itp/argx-113-1803/biostat/staging/ia2/documents/argx-113-1803_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/itp/argx-113-1803/biostat/staging/ia2/documents/Statistical Analysis Plan - IA2 mock TLFs - 13 Jun 2023.docx",
+    "date": "28NOV23",
+    "time": " 9:29:04",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/itp/argx-113-1803/biostat/staging/testrun1/documents/argx-113-1803_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/itp/argx-113-1803/biostat/staging/testrun1/documents/Statistical Analysis Plan - SAP interim lock 0.5.docx",
+    "date": "28NOV23",
+    "time": " 3:48:20",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/itp/argx-113-2004/biostat/staging/final/documents/argx-113-2004_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/itp/argx-113-2004/biostat/staging/final/documents/Statistical Analysis Plan - Mock In-Text Tables and Figures - 09 Nov 2023.docx",
+    "date": "14NOV23",
+    "time": "12:08:36",
+    "checked": "-"
+  },
+  {
+    "xlsx": "/clinical/argx-113/itp/argx-113-2005/biostat/staging/ia1/documents/argx-113-2005_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/itp/argx-113-2005/biostat/staging/ia1/documents/Statistical Analysis Plan - IA1 SAP - 01 Dec 2023.docx",
+    "date": "23JAN24",
+    "time": "12:49:17",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/itp/argx-113-9111/biostat/staging/final/documents/argx-113-9111_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/itp/argx-113-9111/biostat/staging/final/documents/Statistical Analysis Plan - SAP EMA addendum - 10 Nov 2023.docx",
+    "date": "21JUN24",
+    "time": " 9:46:59",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/itp/argx-113-9111/biostat/staging/testrun1/documents/argx-113-9111_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/itp/argx-113-9111/biostat/staging/testrun1/documents/ARGX-113-ITP-ISS SAP_Draft 0.4.docx",
+    "date": "08NOV23",
+    "time": " 3:42:50",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/itp/argx-113-9112/biostat/staging/final/documents/9112_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/itp/argx-113-9112/biostat/staging/final/documents/Statistical Analysis Plan - SAP - 10 Nov 2023.docx",
+    "date": "30APR24",
+    "time": "14:06:20",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/itp/argx-113-9112/biostat/staging/final/documents/argx-113-9112_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/itp/argx-113-9112/biostat/staging/final/documents/Statistical Analysis Plan - in-text table and figure - 10 Nov 2023.docx",
+    "date": "15FEB24",
+    "time": "17:24:19",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/itp/argx-113-9113/biostat/staging/final/documents/argx-113-9113_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/itp/argx-113-9113/biostat/staging/final/documents/Statistical Analysis Plan - in-text table and figure - 10 Nov 2023.docx",
+    "date": "20JUN24",
+    "time": "16:38:40",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/itp/argx-113-9113/biostat/staging/testrun1/documents/argx-113-9113_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/itp/argx-113-9113/biostat/staging/testrun1/documents/ARGX-113-ITP ISI IV SC SAP v0.4.docx",
+    "date": "14NOV23",
+    "time": "11:25:05",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/mg/argx-113-2001/biostat/staging/final/documents/argx-113-2001_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/mg/argx-113-2001/biostat/staging/final/documents/ARGX-113-2001 Statistical Analysis Plan - final.docx",
+    "date": "03NOV23",
+    "time": "11:10:35",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/mg/argx-113-2003/biostat/staging/ia1/documents/argx-113-2003_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/mg/argx-113-2003/biostat/staging/ia1/documents/ARGX-113-2003_interim_SAP_final_v1.0.docx.pdf",
+    "date": "25JAN24",
+    "time": " 3:50:01",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/mg/argx-113-2003/biostat/staging/ia2_testrun1/documents/argx-113-2003_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/mg/argx-113-2003/biostat/staging/ia2_testrun1/documents/ARGX-113-2003_interim2_SAP_draft v0.3.docx",
+    "date": "05NOV23",
+    "time": " 9:39:29",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/pemphigus/argx-113-1904/biostat/staging/final/documents/argx-113-1904_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/pemphigus/argx-113-1904/biostat/staging/final/documents/ARGX-113-1904 SAP_final v1.3.docx",
+    "date": "22DEC23",
+    "time": " 8:03:57",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/pemphigus/argx-113-1905/biostat/staging/testrun1/documents/argx-113-1905_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/pemphigus/argx-113-1905/biostat/staging/testrun1/documents/ARGX-113-1905 IA SAP Draft_v0.6_clean.docx",
+    "date": "03JUN24",
+    "time": " 3:48:27",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/pemphigus/argx-113-1905/biostat/staging/testrun2/documents/argx-113-1905_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/pemphigus/argx-113-1905/biostat/staging/testrun2/documents/ARGX-113-1905 IA SAP Draft_v0.6_clean.docx",
+    "date": "14DEC23",
+    "time": "14:31:12",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/pemphigus/argx-113-1905/biostat/staging/testrun3/documents/1905_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/pemphigus/argx-113-1905/biostat/staging/testrun3/documents/ARGX-113-1905 IA SAP_Final v1.0.docx",
+    "date": "30APR24",
+    "time": "13:29:47",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/pemphigus/argx-113-1905/biostat/staging/testrun3/documents/ARGX-113-1905SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/pemphigus/argx-113-1905/biostat/staging/testrun3/documents/ARGX-113-1905 IA SAP_Final v1.0.docx",
+    "date": "26FEB24",
+    "time": "21:00:52",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-113/pemphigus/argx-113-1905/biostat/staging/testrun3/documents/argx-113-1905_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/pemphigus/argx-113-1905/biostat/staging/testrun3/documents/ARGX-113-1905_IA_SAP_Final_v1.0.docx.pdf",
+    "date": "07FEB24",
+    "time": "12:10:26",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/pemphigus/argx-113-1905/biostat/staging/testrun3/documents/test_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/pemphigus/argx-113-1905/biostat/staging/testrun3/documents/ARGX-113-1905 IA SAP_Final v1.0.docx",
+    "date": "26FEB24",
+    "time": "20:55:55",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-113/sjogren/argx-113-2106/biostat/staging/final/documents/2106_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-113/sjogren/argx-113-2106/biostat/staging/final/documents/ARGX-113-2106_SAP_V2.0_31JAN2024_CLEAN COPY.docx",
+    "date": "30APR24",
+    "time": "13:30:24",
+    "checked": "-"
+  },
+  {
+    "xlsx": "/clinical/argx-117/mmn/argx-117-2002/biostat/staging/ia_cohort1_lock/documents/argx-117-2002_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-117/mmn/argx-117-2002/biostat/staging/ia_cohort1_lock/documents/Statistical Analysis Plan - Interim analysis 1 Mock shells - 24 Nov 2023.docx",
+    "date": "05DEC23",
+    "time": "15:55:10",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-117/mmn/argx-117-2002/biostat/staging/ia_cohort1_lock_testrun2/documents/argx-117-2002_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-117/mmn/argx-117-2002/biostat/staging/ia_cohort1_lock_testrun2/documents/argenx_ARGX-117-2002_SAP_Statistical_Analysis_Plan_v1.0_17NOV2023.docx",
+    "date": "23NOV23",
+    "time": " 3:49:34",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-117/mmn/argx-117-2002/biostat/staging/ia_cohort2_lock_testrun1/documents/2002_testrun1_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-117/mmn/argx-117-2002/biostat/staging/ia_cohort2_lock_testrun1/documents/argx-117-2002 Statistical Analysis Plan - Interim analysis 2 SAP - 15 Mar 2024.docx",
+    "date": "30APR24",
+    "time": "13:31:16",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-117/mmn/argx-117-2002/biostat/staging/ia_cohort2_lock_testrun2/documents/2002_testrun2_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-117/mmn/argx-117-2002/biostat/staging/ia_cohort2_lock_testrun2/documents/argx-117-2002-Statistical Analysis Plan - Interim analysis 2 SAP - 15 Mar 2024.docx",
+    "date": "30APR24",
+    "time": "13:32:10",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-117/mmn/argx-117-2003/biostat/staging/ia1/documents/argx-117-2003_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-117/mmn/argx-117-2003/biostat/staging/ia1/documents/ARGX-117-2003-Statistical Analysis Plan - Snapshot 1 Mock shells - 24 Nov 2023.docx",
+    "date": "13DEC23",
+    "time": "13:45:46",
+    "checked": "0"
+  },
+  {
+    "xlsx": "/clinical/argx-117/mmn/argx-117-2003/biostat/staging/ia2_testrun1/documents/2003_testrun1_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-117/mmn/argx-117-2003/biostat/staging/ia2_testrun1/documents/argenx_ARGX-117-2003_SAP_Statistical Analysis Plan- Snapshot 2 SAP -v1.01_18JAN2024_tracked_changes.docx",
+    "date": "30APR24",
+    "time": "13:33:02",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-117/mmn/argx-117-2003/biostat/staging/ia2_testrun2/documents/2003_testrun2_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-117/mmn/argx-117-2003/biostat/staging/ia2_testrun2/documents/argenx_ARGX-117-2003-Statistical Analysis Plan - Snapshot 2 SAP - v1.03_21MAR2024.docx",
+    "date": "30APR24",
+    "time": "14:20:11",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-119/hv/argx-119-2201/biostat/staging/ia1/documents/2201_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-119/hv/argx-119-2201/biostat/staging/ia1/documents/ARGX-119-2201-SAP-V21NOV2023_final.docx",
+    "date": "30APR24",
+    "time": "13:37:28",
+    "checked": "1"
+  },
+  {
+    "xlsx": "/clinical/argx-119/hv/argx-119-2201/biostat/staging/testrun2/documents/argx-119-2201_SAP_LOT.xlsx",
+    "docx": "/clinical/argx-119/hv/argx-119-2201/biostat/staging/testrun2/documents/ARGX-119-2201-SAP-V21NOV2023_final.docx",
+    "date": "04DEC23",
+    "time": " 9:48:24",
+    "checked": "0"
+  }
+]

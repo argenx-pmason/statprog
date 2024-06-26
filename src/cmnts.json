@@ -1,0 +1,242 @@
+[
+  {
+    "reporting_event_path": "/clinical/argx-113/bp/argx-113-2009/biostat/staging/final_r_figures_part_a",
+    "dbnote": "status is final, but reldays (6) <30",
+    "nameLastModified": "argx-113-2009_final_figures_part_a.xlsx"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/cidp/argx-113-1802/biostat/staging/adhoc",
+    "dbnote": "status is final, but reldays (1) <30",
+    "nameLastModified": "SN PH20 dataset 2004 Labcorp SH.xlsx"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/cidp/argx-113-1802/biostat/staging/final_r_figures_ra_uspi_ccds",
+    "dbnote": "status is final, but reldays (16) <30",
+    "nameLastModified": "argx-113-1802_Figures_RA_USPI_CCDS.xlsx"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/cidp/argx-113-1902/biostat/staging/ia1_final/qc_tlf",
+    "dbnote": "status is final, but reldays (9) <30",
+    "nameLastModified": "t_eg_desc.sas"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-1801/biostat/staging/pmda",
+    "dbnote": "status is final, but reldays (7) <30",
+    "nameLastModified": "t_desc_stat_ethnic.html"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-1801/biostat/staging/posthoc",
+    "dbnote": "status is final, but reldays (7) <30",
+    "nameLastModified": "job_t_aesoc.mnf"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-1803/biostat/staging/ia1/qc_tlf",
+    "dbnote": "status is final, but reldays (2) <30",
+    "nameLastModified": "job_t_aesoc.mnf"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-1803/biostat/staging/ia2/qc_tlf",
+    "dbnote": "status is final, but reldays (14) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-1803/biostat/staging/posthoc",
+    "dbnote": "status is final, but reldays (28) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-1803/biostat/staging/testrun1/qc_adam",
+    "dbnote": "status is final, but reldays (5) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-1803/biostat/staging/testrun1/qc_tlf",
+    "dbnote": "status is final, but reldays (15) <30",
+    "nameLastModified": "job_t_ae.job"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-2004/biostat/staging/pmda",
+    "dbnote": "status is final, but reldays (1) <30",
+    "nameLastModified": "job_t_resp_cmh_cat.mnf"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-2005/biostat/staging/testrun1/qc_adam",
+    "dbnote": "status is final, but reldays (5) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-2005/biostat/staging/testrun1/qc_tlf",
+    "dbnote": "status is final, but reldays (22) <30",
+    "nameLastModified": "t_14.3.1.7_t_aesoc.lst"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9103/biostat/staging/testrun1/qc_tlf",
+    "dbnote": "status is final, but reldays (7) <30",
+    "nameLastModified": "job_t_ae_ada.mnf"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9111/biostat/staging/final/qc_adam_pb1",
+    "dbnote": "status is final, but reldays (2) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9111/biostat/staging/final/qc_tlf_pb1",
+    "dbnote": "status is final, but reldays (2) <30",
+    "nameLastModified": "t_aesoc_grd.sas"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9111/biostat/staging/final/qc_tlf_pb2",
+    "dbnote": "status is final, but reldays (5) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9111/biostat/staging/testrun1/qc_adam_pb1",
+    "dbnote": "status is final, but reldays (1) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9111/biostat/staging/testrun1/qc_adam_pb2",
+    "dbnote": "status is final, but reldays (1) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9111/biostat/staging/testrun1/qc_tlf_pb1",
+    "dbnote": "status is final, but reldays (2) <30",
+    "nameLastModified": "t_14.3.1.1.1.2_t_ae1_tfage.lst"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9111/biostat/staging/testrun1/qc_tlf_pb2",
+    "dbnote": "status is final, but reldays (6) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9112/biostat/staging/final/qc_adam_pb2",
+    "dbnote": "status is final, but reldays (2) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9112/biostat/staging/testrun1/qc_tlf_pb2",
+    "dbnote": "status is final, but reldays (5) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9113/biostat/staging/final/qc_adam_pb1",
+    "dbnote": "status is final, but reldays (21) <30",
+    "nameLastModified": "d_adpc.lst"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9113/biostat/staging/final/qc_adam_pb2",
+    "dbnote": "status is final, but reldays (2) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9113/biostat/staging/final/qc_tlf_pb1",
+    "dbnote": "status is final, but reldays (6) <30",
+    "nameLastModified": "job_t_count_ada.mnf"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9113/biostat/staging/final/qc_tlf_pb2",
+    "dbnote": "status is final, but reldays (6) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9113/biostat/staging/testrun1/qc_adam_pb1",
+    "dbnote": "status is final, but reldays (6) <30",
+    "nameLastModified": "job_d_adaper.mnf"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9113/biostat/staging/testrun1/qc_adam_pb2",
+    "dbnote": "status is final, but reldays (1) <30",
+    "nameLastModified": "job_d_adae.job"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9113/biostat/staging/testrun1/qc_tlf_pb1",
+    "dbnote": "status is final, but reldays (2) <30",
+    "nameLastModified": "job_t_ae_ada.mnf"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/itp/argx-113-9113/biostat/staging/testrun1/qc_tlf_pb2",
+    "dbnote": "status is final, but reldays (2) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/mg/argx-113-2002/biostat/staging/ma2024",
+    "dbnote": "status is final, but reldays (1) <30",
+    "nameLastModified": "dadae_qc.sas"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/mg/argx-113-2003/biostat/staging/ia2_posthoc",
+    "dbnote": "status is final, but reldays (9) <30",
+    "nameLastModified": "Rproject.zip"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/pemphigus/argx-113-0000/biostat/staging/narratives",
+    "dbnote": "status is final, but reldays (5) <30",
+    "nameLastModified": "job_narrstemplate.mnf"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/pemphigus/argx-113-1904/biostat/staging/csr_r_figures",
+    "dbnote": "status is final, but reldays (14) <30",
+    "nameLastModified": "argx-113-pv_Intext.xlsx"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/x-ind/argx-113-0000/biostat/staging/brc",
+    "dbnote": "status is final, but reldays (8) <30",
+    "nameLastModified": "job_study_sdtm_date.job"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/x-ind/argx-113-0000/biostat/staging/dsur",
+    "dbnote": "status is final, but reldays (8) <30",
+    "nameLastModified": "job_study_sdtm_date.job"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-113/x-ind/argx-113-0000/biostat/staging/psur",
+    "dbnote": "status is final, but reldays (1) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-117/mmn/argx-117-2002/biostat/staging/exploratory",
+    "dbnote": "status is final, but reldays (2) <30",
+    "nameLastModified": "gs-line-001-chg-0-ivmp.png"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-117/mmn/argx-117-2002/biostat/staging/ia2_r_figures",
+    "dbnote": "status is final, but reldays (1) <30",
+    "nameLastModified": "argx-117-2002_Figures_IA2_orig.xlsx"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-117/mmn/argx-117-2002/biostat/staging/ia_cohort1_lock_posthoc",
+    "dbnote": "status is final, but reldays (22) <30",
+    "nameLastModified": "repemeta_resolved.sas7bdat"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-117/mmn/argx-117-2002/biostat/staging/patient_profiles",
+    "dbnote": "status is final, but reldays (15) <30",
+    "nameLastModified": "job_d_runall.mnf"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-117/mmn/argx-117-2003/biostat/staging/ia2_r_figures",
+    "dbnote": "status is final, but reldays (21) <30",
+    "nameLastModified": "argx-117-2003_Figures_IA2_Draft_Specs_v0.3.xlsx"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-117/x-ind/argx-117-0000/biostat/staging/brc",
+    "dbnote": "status is final, but reldays (8) <30",
+    "nameLastModified": "job_study_sdtm_date.job"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-119/hv/argx-119-2201/biostat/staging/idmc",
+    "dbnote": "status is final, but reldays (5) <30",
+    "nameLastModified": "runall.log"
+  },
+  {
+    "reporting_event_path": "/clinical/argx-119/hv/argx-119-2201/biostat/staging/testrun2/qc_adam",
+    "dbnote": "status is final, but reldays (2) <30",
+    "nameLastModified": "define.xml"
+  },
+  {
+    "reporting_event_path": "/clinical/test/gadam-tests/test-0001/biostat/staging/final/qc_adam",
+    "dbnote": "status is final, but reldays (.) <30",
+    "nameLastModified": ""
+  }
+]
