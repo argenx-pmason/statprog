@@ -13,19 +13,41 @@ import {
   Chip,
   Slider,
   Typography,
+  Card,
+  CardContent,
+  CardHeader,
+  CardActions,
+  Button,
   Grid,
 } from "@mui/material";
-import { Info, Settings } from "@mui/icons-material";
+import {
+  Info,
+  Settings,
+  AccessAlarm,
+  AdbTwoTone,
+  AccessAlarmTwoTone,
+  HistoryTwoTone,
+  TvTwoTone,
+  LocalPizza,
+} from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import links from "./links.json";
 import l_gadam_jobs_info from "./gadam_jobs_info.json";
 import l_studies_info from "./studies_info.json";
 import l_metapluslink from "./metapluslink.json";
+import { usePapaParse } from "react-papaparse";
+import gadamCsv from "./gadam.csv";
 
 function App() {
   const { href, host } = window.location, // get the URL so we can work out where we are running
     mode = href.startsWith("http://localhost") ? "local" : "remote",
     webDavPrefix = "https://" + host + "/lsaf/webdav/repo", // prefix for webdav access to LSAF
+    fileDownloadPrefix = "https://" + host + "/lsaf/filedownload/sdd%3A//", // prefix for webdav access to LSAF
+    fileViewerPrefix =
+      webDavPrefix + "/general/biostat/tools/fileviewer/index.html?file=",
+    dashStudyPrefix =
+      fileDownloadPrefix + "/general/biostat/tools/dashstudy/index.html?file=",
+    { readString } = usePapaParse(),
     [openInfo, setOpenInfo] = useState(false),
     [openSettings, setOpenSettings] = useState(false),
     [gadamCounts, setGadamCounts] = useState({}),
@@ -37,6 +59,9 @@ function App() {
     r_studies_info = "/general/biostat/metadata/projects/studies_info.json",
     [metapluslink, setMetapluslink] = useState(null),
     r_metapluslink = "/general/biostat/metadata/projects/metapluslink.json",
+    [gadamRefresh, setGadamRefresh] = useState(null),
+    r_gadamRefresh =
+      "/general/biostat/gadam/documents/gadam_dshb/gadam_events/gadam.csv",
     [repEventCounts, setRepEventCounts] = useState([]),
     [title] = useState("Statistical Programming Dashboard"),
     [hours, setHours] = useState(12),
@@ -50,6 +75,28 @@ function App() {
       { value: 48, label: "48" },
       { value: 72, label: "72" },
     ]),
+    [daysRange] = useState([
+      { value: 1, label: "1" },
+      { value: 2, label: "2" },
+      { value: 3, label: "3" },
+      { value: 4, label: "4" },
+      { value: 5, label: "5" },
+      { value: 6, label: "6" },
+      { value: 7, label: "7" },
+    ]),
+    [weeksRange] = useState([
+      { value: 1, label: "1" },
+      { value: 4, label: "4" },
+      { value: 8, label: "8" },
+      { value: 12, label: "12" },
+      { value: 26, label: "26" },
+      { value: 52, label: "52" },
+    ]),
+    warningColor = "#ffffcc",
+    backgroundColor = "#dddddd",
+    errorColor = "#ffdddd",
+    okColor = "#ddffdd",
+    cardColor = "#f8f8f8",
     [anchorEl, setAnchorEl] = useState(null),
     handleClickMenu = (event) => {
       setAnchorEl(event.currentTarget);
@@ -59,7 +106,7 @@ function App() {
     },
     // process data used in the gADaM jobs screen
     processGadamData = (data, hours) => {
-      if (!data) return ;
+      if (!data) return;
       const subset = data.filter((d) => {
         const completedDate = new Date(d.completedDateSAS),
           now = new Date(),
@@ -86,7 +133,7 @@ function App() {
     },
     // process data used in the studies info screen (studies_info.json)
     processStudiesInfoData = (data, weeks, days) => {
-      if (!data) return ;
+      if (!data) return;
       console.log("data", data);
       const subset = data.filter((d) => {
           return (
@@ -102,6 +149,8 @@ function App() {
             days_since_last_adsl_refresh: d.days_since_last_adsl_refresh,
             days_since_last_ae_refresh: d.days_since_last_ae_refresh,
             days_between: d.days_between,
+            product: d.product,
+            indication: d.indication,
           };
         });
       // sdtm_ae_refresh_date
@@ -110,7 +159,7 @@ function App() {
     },
     // process reporting event data (metapluslink.json)
     processRepEventData = (data, weeks) => {
-      if (!data) return ;
+      if (!data) return;
       console.log("data", data);
       const subset = data.filter((d) => {
           return (
@@ -131,7 +180,51 @@ function App() {
       // sdtm_ae_refresh_date
       console.log("re", re);
       setRepEventCounts(re);
-    };
+    },
+    processCsv = (data) => {
+      console.log("data", data);
+      readString(data, {
+        worker: true,
+        header: true,
+        complete: (results) => {
+          // take papaparse results and transform them to fit DataGridPro
+          const keys = results.data[0],
+            tempRows = results.data;
+          console.log("processCsv", "keys", keys, "tempRows", tempRows);
+          setGadamRefresh(tempRows);
+        },
+        error: (error, file) => {
+          console.log("error", error, "file", file);
+        },
+      });
+    },
+    [warnings, setWarnings] = useState(null),
+    processGadamRefresh = (data, days) => {
+      const unique = [...new Set(data.map((item) => item.reas))],
+        recent = data.filter((item) => {
+          const date = new Date(item.date),
+            ageDays = (new Date() - date) / (24 * 60 * 60 * 1000);
+          // console.log('ageDays',ageDays)
+          return ageDays <= days && item.type === "ADAM";
+        }),
+        warningData = recent.filter((item) => item.warning === "Y"),
+        warningStudies = [...new Set(warningData.map((item) => item.study))],
+        updates = recent.filter((item) => item.reas === "OK");
+      setRefreshUpdates(updates);
+      setWarnings(warningStudies);
+      console.log(
+        "processGadamRefresh",
+        "recent",
+        recent,
+        "unique",
+        unique,
+        "warningStudies",
+        warningStudies,
+        "updates",
+        updates
+      );
+    },
+    [refreshUpdates, setRefreshUpdates] = useState(null);
 
   useEffect(() => {
     console.log("mode", mode, "href", href, "webDavPrefix", webDavPrefix);
@@ -140,11 +233,17 @@ function App() {
       setGadamJobsInfo(l_gadam_jobs_info);
       setMetapluslink(l_metapluslink);
       setStudiesInfo(l_studies_info);
+      fetch(gadamCsv)
+        .then((response) => response.text())
+        .then((text) => {
+          processCsv(text);
+        });
     } else {
       const Url1 = `${webDavPrefix}${r_gadam_jobs_info}`,
         Url2 = `${webDavPrefix}${r_studies_info}`,
-        Url3 = `${webDavPrefix}${r_metapluslink}`;
-      console.log("Url1", Url1, "Url2", Url2, "Url3", Url3);
+        Url3 = `${webDavPrefix}${r_metapluslink}`,
+        Url4 = `${webDavPrefix}${r_gadamRefresh}`;
+      console.log("Url1", Url1, "Url2", Url2, "Url3", Url3, "Url4", Url4);
       fetch(Url1)
         .then((response) => response.json())
         .then((data) => {
@@ -163,7 +262,13 @@ function App() {
           setStudiesInfo(data.data);
           processStudiesInfoData(data.data, weeks, days);
         });
+      fetch(Url4)
+        .then((response) => response.text())
+        .then((text) => {
+          processCsv(text);
+        });
     }
+    // eslint-disable-next-line
   }, [title, href, mode, webDavPrefix]);
 
   useEffect(() => {
@@ -184,10 +289,16 @@ function App() {
     }
   }, [days, weeks, metapluslink]);
 
+  useEffect(() => {
+    if (gadamRefresh && gadamRefresh.length > 0 && days) {
+      processGadamRefresh(gadamRefresh, days);
+    }
+  }, [days, gadamRefresh]);
+
   return (
     <div className="App">
       <AppBar position="fixed">
-        <Toolbar variant="dense" sx={{ backgroundColor: "#cccccc" }}>
+        <Toolbar variant="dense" sx={{ backgroundColor: backgroundColor }}>
           <Tooltip title="Menu">
             <IconButton
               edge="start"
@@ -240,46 +351,51 @@ function App() {
       </AppBar>
       <Grid container>
         <Grid item xs={6} sx={{ mt: 7 }}>
-          <Box
-            sx={{
-              mr: 7,
-              color: "blue",
-              // fontWeight: "bold",
-              fontSize: 18,
-            }}
-          >
-            Results from gADaM jobs run in the last <b>{hours}</b> hours
-          </Box>
-          <Box
-            sx={{
-              mb: 1,
-              color: "blue",
-              fontSize: 18,
-            }}
-          >
-            {" "}
-            using data updated at
-            {gadamJobsInfo
-              ? gadamJobsInfo.lastModified.replace("T", " at ").replace("Z", "")
-              : "?"}
-          </Box>
-          {/* <Box sx={{ backgroundColor: "#eee",  mb: 2 }}> */}
-          {Object.keys(gadamCounts)
-            .filter((k) => !["SUCCESSFUL", "SKIPPED"].includes(k))
-            .map((k) => (
-              <Chip
-                sx={{
-                  mr: 1,
-                  mt: 0.5,
-                  backgroundColor:
-                    k === "ERRORS"
-                      ? "#ffdddd"
-                      : k === "WARNINGS"
-                      ? "#ddffdd"
-                      : "lightyellow",
-                }}
-                label={`${gadamCounts[k]} x ${k}`}
-                key={"gac" + k}
+          <Card sx={{ m: 3, backgroundColor: cardColor }}>
+            <CardHeader
+              sx={{
+                color: "blue",
+                fontSize: 18,
+              }}
+              title={`Results from gADaM jobs run in the last ${hours} hours`}
+              subheader={`data updated at ${
+                gadamJobsInfo
+                  ? gadamJobsInfo.lastModified
+                      .replace("T", " at ")
+                      .replace("Z", "")
+                  : "?"
+              }`}
+            />
+            <CardContent>
+              {Object.keys(gadamCounts)
+                .filter((k) => !["SUCCESSFUL", "SKIPPED"].includes(k))
+                .map((k) => (
+                  <Chip
+                    sx={{
+                      mr: 1,
+                      mt: 0.5,
+                      backgroundColor:
+                        k === "ERRORS"
+                          ? errorColor
+                          : k === "WARNINGS"
+                          ? okColor
+                          : warningColor,
+                    }}
+                    label={`${gadamCounts[k]} x ${k}`}
+                    key={"gac" + k}
+                    onClick={() => {
+                      window
+                        .open(
+                          "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/gadam_jobs/jobs.html",
+                          "_blank"
+                        )
+                        .focus();
+                    }}
+                  />
+                ))}
+            </CardContent>
+            <CardActions>
+              <Button
                 onClick={() => {
                   window
                     .open(
@@ -288,152 +404,328 @@ function App() {
                     )
                     .focus();
                 }}
-              />
-            ))}
-          {/* </Box> */}
+                startIcon={<AccessAlarm />}
+              >
+                Jobs Chart
+              </Button>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/tools/view/index.html?lsaf=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json&meta=/general/biostat/tools/view/gadam_jobs_info-metadata.json&key=data&title=GADAM%20Jobs",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                startIcon={<AccessAlarmTwoTone />}
+              >
+                Jobs Table
+              </Button>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/gadam_events/gadam_dshb.html",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                startIcon={<HistoryTwoTone />}
+              >
+                Refresh
+              </Button>
+            </CardActions>
+          </Card>
         </Grid>
         <Grid item xs={6} sx={{ mt: 7 }}>
-          <Box
-            sx={{
-              // mt: 7,
-              mb: 1,
-              // backgroundColor: "#eee",
-              color: "blue",
-              // fontWeight: "bold",
-              fontSize: 18,
-            }}
-          >
-            Studies with data not updated in the last <b>{weeks}</b> weeks
-          </Box>
-          {/* <Box sx={{ backgroundColor: "#eee", }}> */}
-          {studyCounts.length > 0 &&
-            studyCounts
-              .filter(
-                (k) =>
-                  k.days_since_last_adsl_refresh > weeks * 7 ||
-                  k.days_since_last_ae_refresh > weeks * 7
-              )
-              .map((k) => (
-                <Tooltip
-                  key={k.study}
-                  title={
-                    k.days_since_last_adsl_refresh > weeks * 7 &&
-                    k.days_since_last_ae_refresh > weeks * 7
-                      ? `ADSL updated ${k.days_since_last_adsl_refresh} days ago and AE updated ${k.days_since_last_ae_refresh} days ago`
-                      : k.days_since_last_adsl_refresh > weeks * 7
-                      ? `ADSL updated ${k.days_since_last_adsl_refresh} days ago`
-                      : `AE updated ${k.days_since_last_ae_refresh} days ago`
-                  }
-                >
-                  <Chip
-                    sx={{
-                      mr: 1,
-                      mt: 0.5,
-                      mb: 1,
-                      backgroundColor:
+          <Card sx={{ m: 3, backgroundColor: cardColor }}>
+            <CardHeader
+              sx={{
+                color: "blue",
+                fontSize: 18,
+              }}
+              title={`Studies with data not updated in the last ${weeks} weeks`}
+              subheader={`click to open File Viewer`}
+            />
+            <CardContent>
+              {studyCounts.length > 0 &&
+                studyCounts
+                  .filter(
+                    (k) =>
+                      k.days_since_last_adsl_refresh > weeks * 7 ||
+                      k.days_since_last_ae_refresh > weeks * 7
+                  )
+                  .map((k) => (
+                    <Tooltip
+                      key={k.study}
+                      title={
                         k.days_since_last_adsl_refresh > weeks * 7 &&
                         k.days_since_last_ae_refresh > weeks * 7
-                          ? "#ffdddd"
+                          ? `ADSL updated ${k.days_since_last_adsl_refresh} days ago and AE updated ${k.days_since_last_ae_refresh} days ago`
                           : k.days_since_last_adsl_refresh > weeks * 7
-                          ? "#ffe0b3"
-                          : "#ffccff",
-                    }}
-                    label={`${k.study}`}
-                    onClick={() => {
-                      window
-                        .open(
-                          "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/study_info/studies_info.html",
-                          "_blank"
-                        )
-                        .focus();
-                    }}
-                  />
-                </Tooltip>
-              ))}
-          {/* </Box> */}
+                          ? `ADSL updated ${k.days_since_last_adsl_refresh} days ago`
+                          : `AE updated ${k.days_since_last_ae_refresh} days ago`
+                      }
+                    >
+                      <Chip
+                        sx={{
+                          mr: 1,
+                          mt: 0.5,
+                          mb: 1,
+                          backgroundColor:
+                            k.days_since_last_adsl_refresh > weeks * 7 &&
+                            k.days_since_last_ae_refresh > weeks * 7
+                              ? errorColor
+                              : k.days_since_last_adsl_refresh > weeks * 7
+                              ? "#ffe0b3"
+                              : "#ffccff",
+                        }}
+                        label={`${k.study}`}
+                        onClick={() => {
+                          console.log("k", k);
+                          window
+                            .open(
+                              fileViewerPrefix +
+                                "/clinical/" +
+                                k.product +
+                                "/" +
+                                k.indication +
+                                "/" +
+                                k.study.toLowerCase() +
+                                "/dm",
+                              "_blank"
+                            )
+                            .focus();
+                        }}
+                      />
+                    </Tooltip>
+                  ))}
+            </CardContent>
+            <CardActions>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/study_info/studies_info.html",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                startIcon={<AdbTwoTone />}
+              >
+                Studies Summary
+              </Button>
+            </CardActions>{" "}
+          </Card>
         </Grid>
         <Grid item xs={6}>
-          <Box
-            sx={{
-              // mt: 7,
-              mb: 1,
-              // backgroundColor: "#eee",
-              color: "blue",
-              // fontWeight: "bold",
-              fontSize: 18,
-            }}
-          >
-            Studies with more than <b>{days}</b> days between last SDTM and
-            gADaM refresh
-          </Box>
-          {studyCounts.length > 0 &&
-            studyCounts
-              .filter((k) => k.days_between >= days)
-              .map((k) => (
-                <Tooltip
-                  key={"days_between" + k.study}
-                  title={`${k.days_between} days between last SDTM and gADaM refresh`}
-                >
-                  <Chip
-                    sx={{
-                      mr: 1,
-                      mt: 0.5,
-                      mb: 1,
-                      backgroundColor: "yellow",
-                    }}
-                    label={`${k.study}`}
-                    onClick={() => {
-                      window
-                        .open(
-                          "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/study_info/studies_info.html",
-                          "_blank"
-                        )
-                        .focus();
-                    }}
-                  />
-                </Tooltip>
-              ))}
+          <Card sx={{ m: 3, backgroundColor: cardColor }}>
+            <CardHeader
+              sx={{
+                color: "blue",
+                fontSize: 18,
+              }}
+              title={`Studies with more than ${days} days between last SDTM and gADaM refresh`}
+              subheader={`click to open File Viewer`}
+            ></CardHeader>
+            <CardContent>
+              {studyCounts.length > 0 &&
+                studyCounts
+                  .filter((k) => k.days_between >= days)
+                  .map((k) => (
+                    <Tooltip
+                      key={"days_between" + k.study}
+                      title={`${k.days_between} days between last SDTM and gADaM refresh`}
+                    >
+                      <Chip
+                        sx={{
+                          mr: 1,
+                          mt: 0.5,
+                          mb: 1,
+                          backgroundColor: warningColor,
+                        }}
+                        label={`${k.study}`}
+                        onClick={() => {
+                          window
+                            .open(
+                              fileViewerPrefix +
+                                "/clinical/" +
+                                k.product +
+                                "/" +
+                                k.indication +
+                                "/" +
+                                k.study.toLowerCase() +
+                                "/dm",
+                              "_blank"
+                            )
+                            .focus();
+                        }}
+                      />
+                    </Tooltip>
+                  ))}
+            </CardContent>{" "}
+            <CardActions>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/study_info/studies_info.html",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                startIcon={<AdbTwoTone />}
+              >
+                Studies Summary
+              </Button>
+            </CardActions>
+          </Card>
         </Grid>
         <Grid item xs={6}>
-          <Box
-            sx={{
-              // mt: 7,
-              mb: 1,
-              // backgroundColor: "#eee",
-              color: "blue",
-              // fontWeight: "bold",
-              fontSize: 18,
-            }}
-          >
-            Reporting events not updated in more than <b>{weeks}</b> weeks
-          </Box>
-          {repEventCounts.length > 0 &&
-            repEventCounts
-              .filter((k) => k.reldays >= weeks * 7)
-              .map((k) => (
-                <Tooltip
-                  key={"repEvent-" + k.study + "-" + k.re}
-                  title={`${k.reldays} days since last update`}
-                >
-                  <Chip
-                    sx={{
-                      mr: 1,
-                      mt: 0.5,
-                      mb: 1,
-                      backgroundColor: "yellow",
-                    }}
-                    label={`${k.study}`}
-                    onClick={() => {
-                      window
-                        .open(
-                          "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/study_info/studies_info.html",
-                          "_blank"
-                        )
-                        .focus();
-                    }}
-                  />
-                </Tooltip>
-              ))}
+          <Card sx={{ m: 3, backgroundColor: cardColor }}>
+            <CardHeader
+              sx={{
+                color: "blue",
+                fontSize: 18,
+              }}
+              title={`Reporting events not updated in more than ${weeks} weeks`}
+              subheader={`click to open File Viewer, ctrl-click to open study dashboard`}
+            ></CardHeader>
+            <CardContent>
+              {repEventCounts.length > 0 &&
+                repEventCounts
+                  .filter((k) => k.reldays >= weeks * 7)
+                  .map((k) => (
+                    <Tooltip
+                      key={"repEvent-" + k.study + "-" + k.re}
+                      title={`${k.reldays} days since last update`}
+                    >
+                      <Chip
+                        sx={{
+                          mr: 1,
+                          mt: 0.5,
+                          mb: 1,
+                          backgroundColor: warningColor,
+                        }}
+                        label={`${k.study}, ${k.re}`}
+                        onClick={(e) => {
+                          console.log("e", e);
+                          if (e.ctrlKey) {
+                            window
+                              .open(
+                                dashStudyPrefix +
+                                  k.reporting_event_path +
+                                  "/documents/meta/dashstudy.json",
+                                "_blank"
+                              )
+                              .focus();
+                          } else {
+                            window
+                              .open(
+                                fileViewerPrefix + k.reporting_event_path,
+                                "_blank"
+                              )
+                              .focus();
+                          }
+                        }}
+                      />
+                    </Tooltip>
+                  ))}
+            </CardContent>{" "}
+            <CardActions>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/study_info/studies_info.html",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                startIcon={<AdbTwoTone />}
+              >
+                Studies Summary
+              </Button>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/tools/rep-events-dash/index.html",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                startIcon={<TvTwoTone />}
+              >
+                Reporting Events
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
+        <Grid item xs={6}>
+          <Card sx={{ m: 3, backgroundColor: cardColor }}>
+            <CardHeader
+              sx={{
+                color: "blue",
+                fontSize: 18,
+              }}
+              title={`GADAM Data Refresh Events in the last ${days} days`}
+              subheader={`Yellow have warnings, click to open File Viewer`}
+            ></CardHeader>
+            <CardContent>
+              {refreshUpdates &&
+                refreshUpdates.length > 0 &&
+                [...new Set(refreshUpdates.map((item) => item.study))].map(
+                  (study) => (
+                    <Chip
+                      sx={{
+                        mr: 1,
+                        mt: 0.5,
+                        mb: 1,
+                        backgroundColor: warnings.includes(study)
+                          ? warningColor
+                          : okColor,
+                      }}
+                      label={`${study}`}
+                      onClick={() => {
+                        const s = study.split("-"),
+                          product = s[0] + "-" + s[1],
+                          indication = s[2].slice(1, -1),
+                          stud = product + "-" + s[3];
+                        window
+                          .open(
+                            fileViewerPrefix +
+                              "/clinical/" +
+                              product +
+                              "/" +
+                              indication +
+                              "/" +
+                              stud +
+                              "/dm",
+                            "_blank"
+                          )
+                          .focus();
+                      }}
+                    />
+                  )
+                )}
+            </CardContent>
+            <CardActions>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/gadam_events/gadam_dshb.html",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                startIcon={<LocalPizza />}
+              >
+                GADAM Data Refresh Events
+              </Button>
+            </CardActions>
+          </Card>
         </Grid>
       </Grid>
       <Menu
@@ -502,7 +794,7 @@ function App() {
             min={1}
             max={52}
             valueLabelDisplay="auto"
-            // marks={hoursRange}
+            marks={weeksRange}
             sx={{ ml: 3, width: 800 }}
           />
           <Typography sx={{ ml: 5, fontWeight: "bold" }} gutterBottom>
@@ -518,7 +810,7 @@ function App() {
             min={1}
             max={7}
             valueLabelDisplay="auto"
-            // marks={hoursRange}
+            marks={daysRange}
             sx={{ ml: 3, width: 800 }}
           />
         </DialogContent>
