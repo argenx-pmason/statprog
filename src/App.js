@@ -27,6 +27,8 @@ import {
   AdbTwoTone,
   AccessAlarmTwoTone,
   HistoryTwoTone,
+  Add,
+  Remove,
   TvTwoTone,
   LocalPizza,
 } from "@mui/icons-material";
@@ -93,7 +95,7 @@ function App() {
       { value: 52, label: "52" },
     ]),
     warningColor = "#ffffcc",
-    backgroundColor = "#dddddd",
+    backgroundColor = "#f7f7f7",
     errorColor = "#ffdddd",
     okColor = "#ddffdd",
     cardColor = "#f8f8f8",
@@ -302,7 +304,7 @@ function App() {
           <Tooltip title="Menu">
             <IconButton
               edge="start"
-              color="success"
+              color="info"
               sx={{ mr: 2 }}
               onClick={handleClickMenu}
               aria-label="menu"
@@ -315,11 +317,14 @@ function App() {
           </Tooltip>
           <Box
             sx={{
-              backgroundColor: "#eeeeee",
-              color: "green",
+              border: 1,
+              borderRadius: 2,
+              color: "black",
               fontWeight: "bold",
               boxShadow: 3,
-              fontSize: 16,
+              fontSize: 14,
+              height: 23,
+              padding: 0.3,
             }}
           >
             &nbsp;&nbsp;{title}&nbsp;&nbsp;
@@ -434,6 +439,28 @@ function App() {
               >
                 Refresh
               </Button>
+              <Tooltip title="Reduce time period by 6 hours">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setHours(hours - 6);
+                  }}
+                >
+                  <Remove />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Expand time period by 6 hours">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setHours(hours + 6);
+                  }}
+                >
+                  <Add />
+                </IconButton>
+              </Tooltip>
             </CardActions>
           </Card>
         </Grid>
@@ -515,6 +542,28 @@ function App() {
               >
                 Studies Summary
               </Button>
+              <Tooltip title="Reduce time period by 1 week">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setWeeks(weeks - 1);
+                  }}
+                >
+                  <Remove />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Expand time period by 1 week">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setWeeks(weeks + 1);
+                  }}
+                >
+                  <Add />
+                </IconButton>
+              </Tooltip>
             </CardActions>{" "}
           </Card>
         </Grid>
@@ -578,6 +627,28 @@ function App() {
               >
                 Studies Summary
               </Button>
+              <Tooltip title="Reduce time period by 1 day">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setDays(days - 1);
+                  }}
+                >
+                  <Remove />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Expand time period by 1 day">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setDays(days + 1);
+                  }}
+                >
+                  <Add />
+                </IconButton>
+              </Tooltip>
             </CardActions>
           </Card>
         </Grid>
@@ -659,6 +730,28 @@ function App() {
               >
                 Reporting Events
               </Button>
+              <Tooltip title="Reduce time period by 1 week">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setWeeks(weeks - 1);
+                  }}
+                >
+                  <Remove />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Expand time period by 1 week">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setWeeks(weeks + 1);
+                  }}
+                >
+                  <Add />
+                </IconButton>
+              </Tooltip>
             </CardActions>
           </Card>
         </Grid>
@@ -724,6 +817,28 @@ function App() {
               >
                 GADAM Data Refresh Events
               </Button>
+              <Tooltip title="Reduce time period by 1 day">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setDays(days - 1);
+                  }}
+                >
+                  <Remove />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Expand time period by 1 day">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setDays(days + 1);
+                  }}
+                >
+                  <Add />
+                </IconButton>
+              </Tooltip>
             </CardActions>
           </Card>
         </Grid>
