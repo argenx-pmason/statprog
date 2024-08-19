@@ -482,7 +482,9 @@ function App() {
         });
       console.log("tempDays", tempDays);
       const sql =
-          "select  count(*)/12/24 as days,count(*)/12 as hours," +
+          "select  count(*)/12/24 as days," +
+          " count(*)/12 as hours," +
+          ` (${days}*24) - (count(*)/12) as down_time_hours,` +
           " min(cpu) as min_cpu, avg(cpu) as avg_cpu, max(cpu) as max_cpu," +
           " min(mem) as min_mem, avg(mem) as avg_mem, max(mem) as max_mem," +
           " min(swap) as min_swap, avg(swap) as avg_swap, max(swap) as max_swap," +
@@ -1074,10 +1076,12 @@ function App() {
               title={`LSAF Resource Usage in the last ${days} days`}
               subheader={
                 resources
-                  ? resources.days.toFixed(2) +
+                  ? resources?.days?.toFixed(2) +
                     " days (" +
-                    resources.hours.toFixed(1) +
-                    " hours) of data"
+                    resources?.hours?.toFixed(1) +
+                    " hours) of data - "+
+                    resources?.down_time_hours?.toFixed(1) +
+                    " hours of down time."
                   : null
               }
             ></CardHeader>
@@ -1115,13 +1119,13 @@ function App() {
                           CPU
                         </TableCell>
                         <TableCell align="right" sx={{ color: "#0288d1" }}>
-                          {resources.min_cpu}
+                          {resources?.min_cpu}
                         </TableCell>
                         <TableCell align="right" sx={{ color: "#0288d1" }}>
-                          {resources.avg_cpu.toFixed(1)}
+                          {resources?.avg_cpu?.toFixed(1)}
                         </TableCell>
                         <TableCell align="right" sx={{ color: "#0288d1" }}>
-                          {resources.max_cpu}
+                          {resources?.max_cpu}
                         </TableCell>
                       </TableRow>
                       <TableRow
@@ -1133,13 +1137,13 @@ function App() {
                           Swap
                         </TableCell>
                         <TableCell align="right">
-                          {resources.min_swap}
+                          {resources?.min_swap}
                         </TableCell>
                         <TableCell align="right">
-                          {resources.avg_swap.toFixed(1)}
+                          {resources?.avg_swap?.toFixed(1)}
                         </TableCell>
                         <TableCell align="right">
-                          {resources.max_swap}
+                          {resources?.max_swap}
                         </TableCell>
                       </TableRow>
                       <TableRow
@@ -1155,13 +1159,13 @@ function App() {
                           Memory
                         </TableCell>
                         <TableCell align="right" sx={{ color: "#0288d1" }}>
-                          {resources.min_mem}
+                          {resources?.min_mem}
                         </TableCell>
                         <TableCell align="right" sx={{ color: "#0288d1" }}>
-                          {resources.avg_mem.toFixed(1)}
+                          {resources?.avg_mem?.toFixed(1)}
                         </TableCell>
                         <TableCell align="right" sx={{ color: "#0288d1" }}>
-                          {resources.max_mem}
+                          {resources?.max_mem}
                         </TableCell>
                       </TableRow>
                       <TableRow
@@ -1173,13 +1177,13 @@ function App() {
                           Workspace
                         </TableCell>
                         <TableCell align="right">
-                          {resources.min_workspace}
+                          {resources?.min_workspace}
                         </TableCell>
                         <TableCell align="right">
-                          {resources.avg_workspace.toFixed(1)}
+                          {resources?.avg_workspace?.toFixed(1)}
                         </TableCell>
                         <TableCell align="right">
-                          {resources.max_workspace}
+                          {resources?.max_workspace}
                         </TableCell>
                       </TableRow>
                       <TableRow
@@ -1195,13 +1199,13 @@ function App() {
                           Transient
                         </TableCell>
                         <TableCell align="right" sx={{ color: "#0288d1" }}>
-                          {resources.min_transient}
+                          {resources?.min_transient}
                         </TableCell>
                         <TableCell align="right" sx={{ color: "#0288d1" }}>
-                          {resources.avg_transient.toFixed(1)}
+                          {resources?.avg_transient?.toFixed(1)}
                         </TableCell>
                         <TableCell align="right" sx={{ color: "#0288d1" }}>
-                          {resources.max_transient}
+                          {resources?.max_transient}
                         </TableCell>
                       </TableRow>
                       <TableRow
@@ -1213,13 +1217,13 @@ function App() {
                           Xythos
                         </TableCell>
                         <TableCell align="right">
-                          {resources.min_xythos}
+                          {resources?.min_xythos}
                         </TableCell>
                         <TableCell align="right">
-                          {resources.avg_xythos.toFixed(1)}
+                          {resources?.avg_xythos?.toFixed(1)}
                         </TableCell>
                         <TableCell align="right">
-                          {resources.max_xythos}
+                          {resources?.max_xythos}
                         </TableCell>
                       </TableRow>
                     </TableBody>
