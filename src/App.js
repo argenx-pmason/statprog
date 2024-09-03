@@ -468,6 +468,7 @@ function App() {
             cpu = Number(d.cpu_pct_used),
             mem = Number(d.mem_pct_used),
             xythos = Number(d.xythosfs_pct_used),
+            saswork = Number(d.saswork_pct_used),
             workspace = Number(d.workspace_pct_used),
             transient = Number(d.transient_pct_used);
           return {
@@ -478,6 +479,7 @@ function App() {
             xythos: xythos,
             workspace: workspace,
             transient: transient,
+            saswork: saswork,
           };
         });
       console.log("tempDays", tempDays);
@@ -488,6 +490,7 @@ function App() {
           " min(cpu) as min_cpu, avg(cpu) as avg_cpu, max(cpu) as max_cpu," +
           " min(mem) as min_mem, avg(mem) as avg_mem, max(mem) as max_mem," +
           " min(swap) as min_swap, avg(swap) as avg_swap, max(swap) as max_swap," +
+          " min(saswork) as min_saswork, avg(saswork) as avg_saswork, max(saswork) as max_saswork," +
           " min(xythos) as min_xythos, avg(xythos) as avg_xythos, max(xythos) as max_xythos," +
           " min(transient) as min_transient, avg(transient) as avg_transient, max(transient) as max_transient," +
           " min(workspace) as min_workspace, avg(workspace) as avg_workspace, max(workspace) as max_workspace" +
@@ -1079,7 +1082,7 @@ function App() {
                   ? resources?.days?.toFixed(2) +
                     " days (" +
                     resources?.hours?.toFixed(1) +
-                    " hours) of data - "+
+                    " hours) of data - " +
                     resources?.down_time_hours?.toFixed(1) +
                     " hours of down time."
                   : null
@@ -1224,6 +1227,28 @@ function App() {
                         </TableCell>
                         <TableCell align="right">
                           {resources?.max_xythos}
+                        </TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell
+                          component="th"
+                          scope="row"
+                          sx={{ color: "#0288d1" }}
+                        >
+                          SAS Work
+                        </TableCell>
+                        <TableCell align="right" sx={{ color: "#0288d1" }}>
+                          {resources?.min_saswork}
+                        </TableCell>
+                        <TableCell align="right" sx={{ color: "#0288d1" }}>
+                          {resources?.avg_saswork?.toFixed(1)}
+                        </TableCell>
+                        <TableCell align="right" sx={{ color: "#0288d1" }}>
+                          {resources?.max_saswork}
                         </TableCell>
                       </TableRow>
                     </TableBody>
