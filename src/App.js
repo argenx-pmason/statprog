@@ -39,6 +39,7 @@ import {
   LocalPizza,
   Build,
   Brush,
+  CakeTwoTone,
 } from "@mui/icons-material";
 import { Masonry } from "@mui/lab";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -47,6 +48,8 @@ import links from "./links.json";
 import l_gadam_jobs_info from "./gadam_jobs_info.json";
 import l_studies_info from "./studies_info.json";
 import l_metapluslink from "./metapluslink.json";
+import l_across from "./across.json";
+// import l_mile from "./mile.json";
 import { usePapaParse } from "react-papaparse";
 import gadamCsv from "./gadam.csv";
 import l_day1 from "./day1.csv";
@@ -82,7 +85,9 @@ function App() {
     [gadamRefresh, setGadamRefresh] = useState(null),
     r_gadamRefresh =
       "/general/biostat/gadam/documents/gadam_dshb/gadam_events/gadam.csv",
+    r_across = "/general/biostat/metadata/projects/across.json",
     [resources, setResources] = useState(null),
+    [across, setAcross] = useState(null),
     [day1, setDay1] = useState([]),
     [day2, setDay2] = useState([]),
     [day3, setDay3] = useState([]),
@@ -167,9 +172,10 @@ function App() {
       setGadamCounts(gadamCounts);
     },
     // process data used in the studies info screen (studies_info.json)
-    processStudiesInfoData = (data, weeks, days) => {
-      if (!data) return;
-      console.log("data", data);
+    processStudiesInfoData = (data, weeks, days, tableau) => {
+      console.log("data", data, "tableau", tableau);
+      if (!data || !tableau) return;
+      console.log("data", data, "tableau", tableau);
       const subset = data.filter((d) => {
           return (
             d.status === "ongoing" &&
@@ -178,7 +184,17 @@ function App() {
               d.days_between >= days)
           );
         }),
-        sc = subset.map((d) => {
+        // if a study is at CSR or DBL stage, then we should have received last SDTM and ADAM data
+        subset2 = subset.filter((d) => {
+          return (
+            tableau.filter(
+              (a) =>
+                a["Study ID"] === d.STUDYID &&
+                ["CSR", "DBL"].includes(a["Last Achieved Milestone"])
+            ).length === 0
+          );
+        }),
+        sc = subset2.map((d) => {
           return {
             study: d.STUDYID,
             days_since_last_adsl_refresh: d.days_since_last_adsl_refresh,
@@ -217,7 +233,7 @@ function App() {
       setRepEventCounts(re);
     },
     processCsv = (data, setFunc) => {
-      console.log("data", data);
+      // console.log("data", data);
       readString(data, {
         worker: true,
         header: true,
@@ -225,7 +241,7 @@ function App() {
           // take papaparse results and transform them to fit DataGridPro
           const keys = results.data[0],
             tempRows = results.data;
-          console.log("processCsv", "keys", keys, "tempRows", tempRows);
+          // console.log("processCsv", "keys", keys, "tempRows", tempRows);
           setFunc(tempRows);
         },
         error: (error, file) => {
@@ -268,6 +284,7 @@ function App() {
       setGadamJobsInfo(l_gadam_jobs_info);
       setMetapluslink(l_metapluslink);
       setStudiesInfo(l_studies_info);
+      setAcross(l_across);
       fetch(gadamCsv)
         .then((response) => response.text())
         .then((text) => {
@@ -313,6 +330,7 @@ function App() {
         Url2 = `${webDavPrefix}${r_studies_info}`,
         Url3 = `${webDavPrefix}${r_metapluslink}`,
         Url4 = `${webDavPrefix}${r_gadamRefresh}`,
+        Url5 = `${webDavPrefix}${r_across}`,
         urlday1 = `${webDavPrefix}${r_day1}`,
         urlday2 = `${webDavPrefix}${r_day2}`,
         urlday3 = `${webDavPrefix}${r_day3}`,
@@ -329,6 +347,8 @@ function App() {
         Url3,
         "Url4",
         Url4,
+        "Url5",
+        Url5,
         "urlday1",
         urlday1,
         "urlday2",
@@ -360,7 +380,12 @@ function App() {
         .then((response) => response.json())
         .then((data) => {
           setStudiesInfo(data.data);
-          processStudiesInfoData(data.data, weeks, days);
+          fetch(Url5)
+            .then((response2) => response2.json())
+            .then((data2) => {
+              setAcross(data2);
+              processStudiesInfoData(data.data, weeks, days, data2);
+            });
         });
       fetch(Url4)
         .then((response) => response.text())
@@ -413,10 +438,11 @@ function App() {
   }, [hours, gadamJobsInfo]);
 
   useEffect(() => {
-    if (studiesInfo && studiesInfo.data && weeks && days) {
-      processStudiesInfoData(studiesInfo.data, weeks, days);
+    if (studiesInfo && studiesInfo.data && weeks && days && across) {
+      processStudiesInfoData(studiesInfo.data, weeks, days, across);
     }
-  }, [days, weeks, studiesInfo]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [days, weeks, studiesInfo, across]);
 
   useEffect(() => {
     if (metapluslink && metapluslink.length > 0 && weeks && days) {
@@ -756,6 +782,19 @@ function App() {
                   ))}
             </CardContent>
             <CardActions>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/tools/sdtm-last/index.html",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                startIcon={<CakeTwoTone />}
+              >
+                SDTM-last
+              </Button>
               <Button
                 onClick={() => {
                   window
