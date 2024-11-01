@@ -48,6 +48,7 @@ import links from "./links.json";
 import l_gadam_jobs_info from "./gadam_jobs_info.json";
 import l_studies_info from "./studies_info.json";
 import l_metapluslink from "./metapluslink.json";
+import l_sdtm_for_studies from "./sdtm_for_studies.json";
 import l_across from "./across.json";
 // import l_mile from "./mile.json";
 import { usePapaParse } from "react-papaparse";
@@ -80,6 +81,9 @@ function App() {
       "/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json",
     [studiesInfo, setStudiesInfo] = useState(null),
     r_studies_info = "/general/biostat/metadata/projects/studies_info.json",
+    [sdtmForStudies, setSdtmForStudies] = useState(null),
+    r_sdtm_for_studies =
+      "/general/biostat/metadata/projects/sdtm_for_studies.json",
     [metapluslink, setMetapluslink] = useState(null),
     r_metapluslink = "/general/biostat/metadata/projects/metapluslink.json",
     [gadamRefresh, setGadamRefresh] = useState(null),
@@ -232,6 +236,75 @@ function App() {
       console.log("re", re);
       setRepEventCounts(re);
     },
+    parseCustomDate = (dateTimeStr) => {
+      const months = {
+          jan: 0,
+          feb: 1,
+          mar: 2,
+          apr: 3,
+          may: 4,
+          jun: 5,
+          jul: 6,
+          aug: 7,
+          sep: 8,
+          oct: 9,
+          nov: 10,
+          dec: 11,
+        },
+        trim = dateTimeStr.trim(),
+        day = parseInt(trim.slice(0, 2), 10),
+        month = months[trim.slice(2, 5).toLowerCase()],
+        year = parseInt(trim.slice(5), 10),
+        hour = parseInt(trim.slice(10, 12), 10),
+        minute = parseInt(trim.slice(13, 15), 10),
+        second = parseInt(trim.slice(16, 18), 10);
+      return new Date(year, month, day, hour, minute, second);
+    },
+    // process sdtm-last data (sdtm_for_studies.json)
+    [sdtmLast, setSdtmLast] = useState(null),
+    processSdtmForStudies = (data, hours) => {
+      console.log("processSdtmForStudies - data", data);
+      if (!data) return;
+      const subset = data.filter((d) => {
+          return (
+            (d.status === "ongoing" &&
+              (new Date() - parseCustomDate(d.datecopied)) / 1000 / 60 / 60 <=
+                hours) ||
+            d.visibleFlag === "N"
+          );
+        }),
+        re = subset.map((d) => {
+          const copyHours =
+              (new Date() - parseCustomDate(d.datecopied)) / 1000 / 60 / 60,
+            cs =
+              d.statusoflastcopy.toLowerCase() === "passed" ? "" : "attempted",
+            who = d.username ? ` by ${d.userFullName} (${d.username})` : "",
+            message = `${copyHours.toFixed(
+              1
+            )} hours since the last ${cs} copy ${who} (status=${
+              d.statusoflastcopy
+            })`;
+          return {
+            study: d.studyname,
+            message: message,
+            visibleFlag: d.visibleFlag,
+            gsdtmflag: d.gsdtmflag,
+            blockedDate: d.blockedDate,
+            indication: d.indication,
+            product: d.product,
+            datecopied: d.datecopied,
+            username: d.username,
+            userFullName: d.userFullName,
+            changed: d.changed,
+            date: parseCustomDate(d.datecopied),
+            statusoflastcopy: d.statusoflastcopy.toLowerCase(),
+            copyHours: copyHours,
+          };
+        });
+      // sdtm_ae_refresh_date
+      console.log("processSdtmForStudies - re", re);
+      setSdtmLast(re);
+    },
     processCsv = (data, setFunc) => {
       // console.log("data", data);
       readString(data, {
@@ -239,9 +312,7 @@ function App() {
         header: true,
         complete: (results) => {
           // take papaparse results and transform them to fit DataGridPro
-          const keys = results.data[0],
-            tempRows = results.data;
-          // console.log("processCsv", "keys", keys, "tempRows", tempRows);
+          const tempRows = results.data;
           setFunc(tempRows);
         },
         error: (error, file) => {
@@ -284,6 +355,7 @@ function App() {
       setGadamJobsInfo(l_gadam_jobs_info);
       setMetapluslink(l_metapluslink);
       setStudiesInfo(l_studies_info);
+      setSdtmForStudies(l_sdtm_for_studies);
       setAcross(l_across);
       fetch(gadamCsv)
         .then((response) => response.text())
@@ -331,6 +403,7 @@ function App() {
         Url3 = `${webDavPrefix}${r_metapluslink}`,
         Url4 = `${webDavPrefix}${r_gadamRefresh}`,
         Url5 = `${webDavPrefix}${r_across}`,
+        Url6 = `${webDavPrefix}${r_sdtm_for_studies}`,
         urlday1 = `${webDavPrefix}${r_day1}`,
         urlday2 = `${webDavPrefix}${r_day2}`,
         urlday3 = `${webDavPrefix}${r_day3}`,
@@ -349,6 +422,8 @@ function App() {
         Url4,
         "Url5",
         Url5,
+        "Url6",
+        Url6,
         "urlday1",
         urlday1,
         "urlday2",
@@ -391,6 +466,12 @@ function App() {
         .then((response) => response.text())
         .then((text) => {
           processCsv(text, setGadamRefresh);
+        });
+      fetch(Url6)
+        .then((response) => response.json())
+        .then((data) => {
+          setSdtmForStudies(data);
+          processSdtmForStudies(data, hours);
         });
       fetch(urlday1)
         .then((response) => response.text())
@@ -436,6 +517,13 @@ function App() {
       processGadamData(gadamJobsInfo.data, hours);
     }
   }, [hours, gadamJobsInfo]);
+
+  useEffect(() => {
+    if (sdtmForStudies && hours) {
+      processSdtmForStudies(sdtmForStudies, hours);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hours, sdtmForStudies]);
 
   useEffect(() => {
     if (studiesInfo && studiesInfo.data && weeks && days && across) {
@@ -615,7 +703,7 @@ function App() {
                 color: "blue",
                 fontSize: 18,
               }}
-              title={`Results from gADaM jobs run in the last ${hours} hours`}
+              title={`gADaM jobs monitor for last ${hours} hours`}
               subheader={`data updated at ${
                 gadamJobsInfo
                   ? gadamJobsInfo.lastModified
@@ -724,7 +812,7 @@ function App() {
                 color: "blue",
                 fontSize: 18,
               }}
-              title={`Studies with data not updated in the last ${weeks} weeks`}
+              title={`No update to sdtm-last in the last ${weeks} weeks`}
               subheader={`click to open File Viewer`}
             />
             <CardContent>
@@ -833,6 +921,7 @@ function App() {
             </CardActions>{" "}
           </Card>
         </Paper>
+
         <Paper>
           <Card sx={{ m: 3, backgroundColor: cardColor }}>
             <CardHeader
@@ -840,7 +929,104 @@ function App() {
                 color: "blue",
                 fontSize: 18,
               }}
-              title={`Studies with more than ${days} days between last SDTM and gADaM refresh`}
+              title={`SDTM-last copies in the last ${hours} hours`}
+              subheader={`click to open File Viewer`}
+            ></CardHeader>
+            <CardContent>
+              {sdtmLast &&
+                sdtmLast.length > 0 &&
+                sdtmLast.map((k) => (
+                  <Tooltip
+                    key={"hours_old" + k.study}
+                    title={
+                      k.visibleFlag === "N"
+                        ? `Blocked since ${k.blockedDate}`
+                        : k.message
+                    }
+                  >
+                    <Chip
+                      sx={{
+                        mr: 1,
+                        mt: 0.5,
+                        mb: 1,
+                        backgroundColor:
+                          k.visibleFlag === "N"
+                            ? "black"
+                            : k.statusoflastcopy === "passed" && k.gsdtmflag===1
+                            ? "#e6e6ff"
+                            : k.statusoflastcopy === "passed"
+                            ? "#e6ffe6"
+                            : "#ffebe6",
+                        color: k.visibleFlag === "N" ? "white" : "black",
+                      }}
+                      label={`${k.study}`}
+                      onClick={() => {
+                        window
+                          .open(
+                            fileViewerPrefix +
+                              "/clinical/" +
+                              k.product +
+                              "/" +
+                              k.indication +
+                              "/" +
+                              k.study.toLowerCase() +
+                              "/dm",
+                            "_blank"
+                          )
+                          .focus();
+                      }}
+                    />
+                  </Tooltip>
+                ))}
+            </CardContent>{" "}
+            <CardActions>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/tools/sdtm-last/index.html",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                startIcon={<Build />}
+              >
+                SDTM Last
+              </Button>
+              <Tooltip title="Reduce time period by 6 hours">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setHours(hours - 6);
+                  }}
+                >
+                  <Remove />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Expand time period by 6 hours">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setHours(hours + 6);
+                  }}
+                >
+                  <Add />
+                </IconButton>
+              </Tooltip>
+            </CardActions>
+          </Card>
+        </Paper>
+
+        <Paper>
+          <Card sx={{ m: 3, backgroundColor: cardColor }}>
+            <CardHeader
+              sx={{
+                color: "blue",
+                fontSize: 18,
+              }}
+              title={`SDTM-gADaM refresh gap larger than ${days} days`}
               subheader={`click to open File Viewer`}
             ></CardHeader>
             <CardContent>
@@ -925,7 +1111,7 @@ function App() {
                 color: "blue",
                 fontSize: 18,
               }}
-              title={`Reporting events not updated in more than ${weeks} weeks`}
+              title={`Reporting Events not updated for ${weeks} weeks`}
               subheader={`click to open File Viewer, ctrl-click to open study dashboard`}
             ></CardHeader>
             <CardContent>
@@ -1028,7 +1214,7 @@ function App() {
                 color: "blue",
                 fontSize: 18,
               }}
-              title={`GADAM Data Refresh Events in the last ${days} days`}
+              title={`gADaM Refreshes in last ${days} days`}
               subheader={`Yellow have warnings, click to open File Viewer`}
             ></CardHeader>
             <CardContent>
