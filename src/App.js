@@ -24,6 +24,7 @@ import {
   TableCell,
   TableHead,
   TableBody,
+  Stack,
   Paper,
 } from "@mui/material";
 import {
@@ -40,6 +41,8 @@ import {
   Build,
   Brush,
   CakeTwoTone,
+  NavigateNext,
+  NavigateBefore,
 } from "@mui/icons-material";
 import { Masonry } from "@mui/lab";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -60,6 +63,9 @@ import l_day4 from "./day4.csv";
 import l_day5 from "./day5.csv";
 import l_day6 from "./day6.csv";
 import l_day7 from "./day7.csv";
+import useSound from "use-sound";
+import _up from "./_up.ogg";
+import _down from "./_down.ogg";
 
 function App() {
   const { href, host } = window.location, // get the URL so we can work out where we are running
@@ -200,7 +206,9 @@ function App() {
         }),
         sc = subset2.map((d) => {
           return {
-            study: d.STUDYID,
+            studyid: d.STUDYID,
+            studyid_add: d.studyid_add,
+            study: d.study,
             days_since_last_adsl_refresh: d.days_since_last_adsl_refresh,
             days_since_last_ae_refresh: d.days_since_last_ae_refresh,
             days_between: d.days_between,
@@ -270,7 +278,8 @@ function App() {
             (d.status === "ongoing" &&
               (new Date() - parseCustomDate(d.datecopied)) / 1000 / 60 / 60 <=
                 hours) ||
-            d.visibleFlag === "N"
+            d.visibleFlag === "N" ||
+            d.new_study === "Y"
           );
         }),
         re = subset.map((d) => {
@@ -290,6 +299,7 @@ function App() {
             visibleFlag: d.visibleFlag,
             gsdtmflag: d.gsdtmflag,
             blockedDate: d.blockedDate,
+            new_study: d.new_study,
             indication: d.indication,
             product: d.product,
             datecopied: d.datecopied,
@@ -346,7 +356,9 @@ function App() {
         updates
       );
     },
-    [refreshUpdates, setRefreshUpdates] = useState(null);
+    [refreshUpdates, setRefreshUpdates] = useState(null),
+    [up] = useSound(_up),
+    [down] = useSound(_down);
 
   useEffect(() => {
     console.log("mode", mode, "href", href, "webDavPrefix", webDavPrefix);
@@ -647,27 +659,112 @@ function App() {
           >
             &nbsp;&nbsp;{title}&nbsp;&nbsp;
           </Box>
+          <Stack direction="row" sx={{ ml: 1, border: "1px dashed lightgrey" }}>
+            <Tooltip title="Reduce time period by 6 hours">
+              <IconButton
+                color="info"
+                // sx={{ mr: 2 }}
+                onClick={() => {
+                  setHours(hours - 6);
+                  down();
+                }}
+              >
+                <Remove />
+              </IconButton>
+            </Tooltip>
+            <Box
+              sx={{ fontSize: 14, color: "black", mt: 1 }}
+            >{`${hours}H`}</Box>
+            <Tooltip title="Expand time period by 6 hours">
+              <IconButton
+                color="info"
+                // sx={{ mr: 2 }}
+                onClick={() => {
+                  setHours(hours + 6);
+                  up();
+                }}
+              >
+                <Add />
+              </IconButton>
+            </Tooltip>
+          </Stack>
+          <Stack direction="row" sx={{ ml: 1, border: "1px dashed lightgrey" }}>
+            <Tooltip title="Reduce time period by 1 day">
+              <IconButton
+                color="primary"
+                // sx={{ mr: 2 }}
+                onClick={() => {
+                  setDays(days - 1);
+                  down();
+                }}
+              >
+                <Remove />
+              </IconButton>
+            </Tooltip>
+            <Box sx={{ fontSize: 14, color: "black", mt: 1 }}>{`${days}D`}</Box>
+            <Tooltip title="Expand time period by 1 day">
+              <IconButton
+                color="primary"
+                // sx={{ mr: 2 }}
+                onClick={() => {
+                  setDays(days + 1);
+                  up();
+                }}
+              >
+                <Add />
+              </IconButton>
+            </Tooltip>
+          </Stack>{" "}
+          <Stack direction="row" sx={{ ml: 1, border: "1px dashed lightgrey" }}>
+            <Tooltip title="Reduce time period by 1 week">
+              <IconButton
+                color="info"
+                // sx={{ mr: 2 }}
+                onClick={() => {
+                  setWeeks(weeks - 1);
+                  down();
+                }}
+              >
+                <Remove />
+              </IconButton>
+            </Tooltip>
+            <Box
+              sx={{ fontSize: 14, color: "black", mt: 1 }}
+            >{`${weeks}W`}</Box>
+            <Tooltip title="Expand time period by 1 week">
+              <IconButton
+                color="info"
+                // sx={{ mr: 2 }}
+                onClick={() => {
+                  setWeeks(weeks + 1);
+                  up();
+                }}
+              >
+                <Add />
+              </IconButton>
+            </Tooltip>
+          </Stack>
           <Box sx={{ flexGrow: 1 }}></Box>
           <Tooltip title="Fewer columns">
             <IconButton
-              color="primary"
+              color="secondary"
               size="small"
               onClick={() => {
                 setColumns(columns - 1 < 1 ? 1 : columns - 1);
               }}
             >
-              <Remove />
+              <NavigateBefore />
             </IconButton>
           </Tooltip>
           <Tooltip title="More columns">
             <IconButton
-              color="primary"
+              color="secondary"
               size="small"
               onClick={() => {
                 setColumns(columns + 1 > 6 ? 6 : columns + 1);
               }}
             >
-              <Add />
+              <NavigateNext />
             </IconButton>
           </Tooltip>
           <Tooltip title="Settings">
@@ -696,7 +793,7 @@ function App() {
       </AppBar>
       <Box sx={{ mt: 7 }}></Box>
       <Masonry columns={columns} spacing={1}>
-        <Paper>
+        <Paper sx={{ bgcolor: "#f4f6ff" }}>
           <Card sx={{ m: 3, backgroundColor: cardColor }}>
             <CardHeader
               sx={{
@@ -786,6 +883,7 @@ function App() {
                   // sx={{ mr: 2 }}
                   onClick={() => {
                     setHours(hours - 6);
+                    down();
                   }}
                 >
                   <Remove />
@@ -797,6 +895,7 @@ function App() {
                   // sx={{ mr: 2 }}
                   onClick={() => {
                     setHours(hours + 6);
+                    up();
                   }}
                 >
                   <Add />
@@ -813,7 +912,7 @@ function App() {
                 fontSize: 18,
               }}
               title={`No update to sdtm-last in the last ${weeks} weeks`}
-              subheader={`click to open File Viewer`}
+              subheader={`Orange is just ADSL, Pink is just sdtm, Red is both - click to open File Viewer`}
             />
             <CardContent>
               {studyCounts.length > 0 &&
@@ -848,7 +947,13 @@ function App() {
                               ? "#ffe0b3"
                               : "#ffccff",
                         }}
-                        label={`${k.study}`}
+                        label={`${
+                          k.study.includes("argx")
+                            ? k.study
+                            : k.studyid_add.includes("ARGX")
+                            ? k.studyid_add
+                            : k.studyid
+                        }`}
                         onClick={() => {
                           console.log("k", k);
                           window
@@ -902,6 +1007,7 @@ function App() {
                   // sx={{ mr: 2 }}
                   onClick={() => {
                     setWeeks(weeks - 1);
+                    down();
                   }}
                 >
                   <Remove />
@@ -913,6 +1019,7 @@ function App() {
                   // sx={{ mr: 2 }}
                   onClick={() => {
                     setWeeks(weeks + 1);
+                    up();
                   }}
                 >
                   <Add />
@@ -929,8 +1036,8 @@ function App() {
                 color: "blue",
                 fontSize: 18,
               }}
-              title={`SDTM-last copies in the last ${hours} hours`}
-              subheader={`click to open File Viewer`}
+              title={`SDTM-last (copies - ${hours} hours)`}
+              subheader={`Blue is gSDTM OK, Green is Zip OK, Red is error - click to open File Viewer`}
             ></CardHeader>
             <CardContent>
               {sdtmLast &&
@@ -952,7 +1059,8 @@ function App() {
                         backgroundColor:
                           k.visibleFlag === "N"
                             ? "black"
-                            : k.statusoflastcopy === "passed" && k.gsdtmflag===1
+                            : k.statusoflastcopy === "passed" &&
+                              k.gsdtmflag === 1
                             ? "#e6e6ff"
                             : k.statusoflastcopy === "passed"
                             ? "#e6ffe6"
@@ -999,6 +1107,7 @@ function App() {
                   // sx={{ mr: 2 }}
                   onClick={() => {
                     setHours(hours - 6);
+                    down();
                   }}
                 >
                   <Remove />
@@ -1010,6 +1119,7 @@ function App() {
                   // sx={{ mr: 2 }}
                   onClick={() => {
                     setHours(hours + 6);
+                    up();
                   }}
                 >
                   <Add />
@@ -1085,6 +1195,7 @@ function App() {
                   // sx={{ mr: 2 }}
                   onClick={() => {
                     setDays(days - 1);
+                    down();
                   }}
                 >
                   <Remove />
@@ -1096,6 +1207,7 @@ function App() {
                   // sx={{ mr: 2 }}
                   onClick={() => {
                     setDays(days + 1);
+                    up();
                   }}
                 >
                   <Add />
@@ -1188,6 +1300,7 @@ function App() {
                   // sx={{ mr: 2 }}
                   onClick={() => {
                     setWeeks(weeks - 1);
+                    down();
                   }}
                 >
                   <Remove />
@@ -1199,6 +1312,7 @@ function App() {
                   // sx={{ mr: 2 }}
                   onClick={() => {
                     setWeeks(weeks + 1);
+                    up();
                   }}
                 >
                   <Add />
@@ -1275,6 +1389,7 @@ function App() {
                   // sx={{ mr: 2 }}
                   onClick={() => {
                     setDays(days - 1);
+                    down();
                   }}
                 >
                   <Remove />
@@ -1286,6 +1401,7 @@ function App() {
                   // sx={{ mr: 2 }}
                   onClick={() => {
                     setDays(days + 1);
+                    up();
                   }}
                 >
                   <Add />
@@ -1514,6 +1630,7 @@ function App() {
                   // sx={{ mr: 2 }}
                   onClick={() => {
                     setDays(days - 1);
+                    down();
                   }}
                 >
                   <Remove />
@@ -1525,6 +1642,7 @@ function App() {
                   // sx={{ mr: 2 }}
                   onClick={() => {
                     setDays(days + 1);
+                    up();
                   }}
                 >
                   <Add />
@@ -1634,9 +1752,153 @@ function App() {
             File used
           </Typography>
           <ul>
-            <li>gadam_jobs_info.json</li>
-            <li>studies_info.json</li>
-            <li> metapluslink.json</li>
+            <li>
+              <b>
+                <a
+                  href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/fileviewer/index.html?file=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  gadam_jobs_info.json
+                </a>
+              </b>{" "}
+              - which is created by{" "}
+              <a
+                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/fileviewer/index.html?file=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.sas"
+                target="_blank"
+                rel="noreferrer"
+              >
+                /general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.sas
+              </a>
+            </li>
+            <li>
+              <b>
+                {" "}
+                <a
+                  href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/fileviewer/index.html?file=/general/biostat/metadata/projects/studies_info.json"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  studies_info.json
+                </a>
+              </b>{" "}
+              - which is created by{" "}
+              <a
+                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/fileviewer/index.html?file=/general/biostat/gadam/documents/gadam_dshb/study_info/study_info.sas"
+                target="_blank"
+                rel="noreferrer"
+              >
+                /general/biostat/gadam/documents/gadam_dshb/study_info/study_info.sas
+              </a>
+            </li>
+            <li>
+              <b>
+                {" "}
+                <a
+                  href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/fileviewer/index.html?file=/general/biostat/metadata/projects/metapluslink.json"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  metapluslink.json
+                </a>
+              </b>{" "}
+              - which is created by{" "}
+              <a
+                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/fileviewer/index.html?file=/general/biostat/jobs/dashboard/dev/programs/dashboard2.sas"
+                target="_blank"
+                rel="noreferrer"
+              >
+                /general/biostat/jobs/dashboard/dev/programs/dashboard2.sas
+              </a>
+            </li>
+            <li>
+              <b>
+                {" "}
+                <a
+                  href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/fileviewer/index.html?file=/general/biostat/gadam/documents/gadam_dshb/gadam_events/gadam.csv"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  gadam.csv
+                </a>
+              </b>{" "}
+              - which is created by{" "}
+              <a
+                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/fileviewer/index.html?file="
+                target="_blank"
+                rel="noreferrer"
+              >
+                sas
+              </a>
+            </li>
+            <li>
+              <b>
+                {" "}
+                <a
+                  href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/fileviewer/index.html?file=/general/biostat/metadata/projects/sdtm_for_studies.json"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  sdtm_for_studies.json
+                </a>
+              </b>{" "}
+              - which is created by{" "}
+              <a
+                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/fileviewer/index.html?file=/general/biostat/jobs/gadam_ongoing_studies/dev/programs/sdtm_part1.sas"
+                target="_blank"
+                rel="noreferrer"
+              >
+                sdtm_part1.sas
+              </a>{" "}
+              and{" "}
+              <a
+                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/fileviewer/index.html?file=/general/biostat/jobs/gadam_ongoing_studies/dev/programs/sdtm_part3.sas"
+                target="_blank"
+                rel="noreferrer"
+              >
+                sdtm_part3.sas
+              </a>
+            </li>
+            <li>
+              <b>
+                {" "}
+                <a
+                  href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/fileviewer/index.html?file=/general/biostat/metadata/projects/resources_monitoring/day1.csv"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  day1.csv - day7.csv
+                </a>
+              </b>{" "}
+              - which is created by{" "}
+              <a
+                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/fileviewer/index.html?file="
+                target="_blank"
+                rel="noreferrer"
+              >
+                sas program ???
+              </a>
+            </li>
+            <li>
+              <b>
+                {" "}
+                <a
+                  href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/fileviewer/index.html?file=/general/biostat/metadata/projects/across.json"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  across.json
+                </a>
+              </b>{" "}
+              - which is created by{" "}
+              <a
+                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/fileviewer/index.html?file=/general/biostat/metadata/projects/rm/tableau.sas"
+                target="_blank"
+                rel="noreferrer"
+              >
+                sas program ???
+              </a>
+            </li>
           </ul>
         </DialogContent>
       </Dialog>{" "}

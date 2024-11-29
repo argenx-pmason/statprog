@@ -152,5 +152,12 @@
     "description": "Edit bookmarks from the browser's localStorage, which are then used with a bookmarklet to implement LSAF bookmarks.",
     "url": "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/tools/edit-localstorage/index.html",
     "group": "code"
+  },
+  {
+    "id": "subscribe",
+    "name": "⛳ Subscribe",
+    "description": "Subscribe to notifications about information about studies such as new data, changes in status.",
+    "url": "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/tools/subscribe/index.html",
+    "group": "study"
   }
 ]
