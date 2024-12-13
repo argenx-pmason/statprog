@@ -867,7 +867,8 @@
     "EDC_extract_dt": "",
     "EDC_extract_min_dt": "",
     "id": 26,
-    "sort": 0
+    "sort": 0,
+    "comment": "This is a comment to explain something."
   },
   {
     "statusoflastcopy": "",

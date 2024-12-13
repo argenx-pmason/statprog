@@ -183,15 +183,22 @@ function App() {
     },
     // process data used in the studies info screen (studies_info.json)
     processStudiesInfoData = (data, weeks, days, tableau) => {
-      console.log("data", data, "tableau", tableau);
+      console.log(
+        "data",
+        data,
+        "tableau",
+        tableau,
+        "sdtmForStudies",
+        sdtmForStudies
+      );
       if (!data || !tableau) return;
-      console.log("data", data, "tableau", tableau);
       const subset = data.filter((d) => {
           return (
-            d.status === "ongoing" &&
-            (d.days_since_last_adsl_refresh > weeks * 7 ||
-              d.days_since_last_ae_refresh > weeks * 7 ||
-              d.days_between >= days)
+            (d.status === "ongoing" &&
+              (d.days_since_last_adsl_refresh > weeks * 7 ||
+                d.days_since_last_ae_refresh > weeks * 7 ||
+                d.days_between >= days)) ||
+            d.status !== "final"
           );
         }),
         // if a study is at CSR or DBL stage, then we should have received last SDTM and ADAM data
@@ -204,7 +211,46 @@ function App() {
             ).length === 0
           );
         }),
-        sc = subset2.map((d) => {
+        subset3 = subset2.map((d) => {
+          console.log("d", d, "sdtmForStudies", sdtmForStudies);
+          const comments =
+              sdtmForStudies &&
+              sdtmForStudies.length > 0 &&
+              sdtmForStudies.filter((a) => a.study === d.study),
+            comment =
+              comments && comments.length > 0 ? comments[0].comment : "",
+            gsdtmflag =
+              comments && comments.length > 0 ? comments[0].gsdtmflag : null,
+            path = comments && comments.length > 0 ? comments[0].path : null,
+            status =
+              comments && comments.length > 0 ? comments[0].status : null;
+          console.log("gsdtmflag", gsdtmflag, "path", path, "status", status);
+          let needsData = false;
+          // decide if it falls into the category of needing data
+          if (
+            !gsdtmflag &&
+            (path === "" || !(path.includes(".zip") || path === "Manual")) &&
+            status !== "final"
+          )
+            needsData = true;
+          const returnData = {
+            ...d,
+            comment: comment,
+            gsdtmflag: gsdtmflag,
+            path: path,
+            needsData: needsData,
+          };
+          console.log(
+            "returnData",
+            returnData,
+            "comments",
+            comments,
+            "comment",
+            comment
+          );
+          return returnData;
+        }),
+        sc = subset3.map((d) => {
           return {
             studyid: d.STUDYID,
             studyid_add: d.studyid_add,
@@ -214,10 +260,12 @@ function App() {
             days_between: d.days_between,
             product: d.product,
             indication: d.indication,
+            comment: d.comment ? " / " + d.comment : "",
+            needsData: d.needsData,
           };
         });
       // sdtm_ae_refresh_date
-      console.log("sc", sc);
+      console.log("sc", sc, "subset3", subset3);
       setStudyCounts(sc);
     },
     // process reporting event data (metapluslink.json)
@@ -286,8 +334,13 @@ function App() {
           const copyHours =
               (new Date() - parseCustomDate(d.datecopied)) / 1000 / 60 / 60,
             cs =
-              d.statusoflastcopy.toLowerCase() === "passed" ? "" : "attempted",
-            who = d.username ? ` by ${d.userFullName} (${d.username})` : "",
+              d.statusoflastcopy.toLowerCase() === "passed" ? "" : "successful",
+            who =
+              d.username && d.userFullName
+                ? ` by ${d.userFullName} (${d.username})`
+                : d.username
+                ? ` by ${d.username}`
+                : "",
             message = `${copyHours.toFixed(
               1
             )} hours since the last ${cs} copy ${who} (status=${
@@ -542,7 +595,7 @@ function App() {
       processStudiesInfoData(studiesInfo.data, weeks, days, across);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [days, weeks, studiesInfo, across]);
+  }, [days, weeks, studiesInfo, across, sdtmLast]);
 
   useEffect(() => {
     if (metapluslink && metapluslink.length > 0 && weeks && days) {
@@ -912,7 +965,7 @@ function App() {
                 fontSize: 18,
               }}
               title={`No update to sdtm-last in the last ${weeks} weeks`}
-              subheader={`Orange is just ADSL, Pink is just sdtm, Red is both - click to open File Viewer`}
+              subheader={`Orange is just ADSL, Pink is just sdtm, Red is both, Gray has no data source - click to open File Viewer`}
             />
             <CardContent>
               {studyCounts.length > 0 &&
@@ -920,7 +973,8 @@ function App() {
                   .filter(
                     (k) =>
                       k.days_since_last_adsl_refresh > weeks * 7 ||
-                      k.days_since_last_ae_refresh > weeks * 7
+                      k.days_since_last_ae_refresh > weeks * 7 ||
+                      k.needsData
                   )
                   .map((k) => (
                     <Tooltip
@@ -928,10 +982,12 @@ function App() {
                       title={
                         k.days_since_last_adsl_refresh > weeks * 7 &&
                         k.days_since_last_ae_refresh > weeks * 7
-                          ? `ADSL updated ${k.days_since_last_adsl_refresh} days ago and AE updated ${k.days_since_last_ae_refresh} days ago`
+                          ? `ADSL ${k.days_since_last_adsl_refresh}d & AE ${k.days_since_last_ae_refresh}d ${k.comment}`
                           : k.days_since_last_adsl_refresh > weeks * 7
-                          ? `ADSL updated ${k.days_since_last_adsl_refresh} days ago`
-                          : `AE updated ${k.days_since_last_ae_refresh} days ago`
+                          ? `ADSL ${k.days_since_last_adsl_refresh}d ${k.comment}`
+                          : k.days_since_last_ae_refresh > weeks * 7
+                          ? `AE ${k.days_since_last_ae_refresh}d ${k.comment}`
+                          : `No source`
                       }
                     >
                       <Chip
@@ -945,7 +1001,9 @@ function App() {
                               ? errorColor
                               : k.days_since_last_adsl_refresh > weeks * 7
                               ? "#ffe0b3"
-                              : "#ffccff",
+                              : k.days_since_last_ae_refresh > weeks * 7
+                              ? "#ffccff"
+                              : "#dddddd",
                         }}
                         label={`${
                           k.study.includes("argx")
@@ -1037,7 +1095,7 @@ function App() {
                 fontSize: 18,
               }}
               title={`SDTM-last (copies - ${hours} hours)`}
-              subheader={`Blue is gSDTM OK, Green is Zip OK, Red is error - click to open File Viewer`}
+              subheader={`Blue (gSDTM copy OK), Green (Zip copy OK), Red (copy failed) - click opens File Viewer`}
             ></CardHeader>
             <CardContent>
               {sdtmLast &&
@@ -1329,7 +1387,7 @@ function App() {
                 fontSize: 18,
               }}
               title={`gADaM Refreshes in last ${days} days`}
-              subheader={`Yellow have warnings, click to open File Viewer`}
+              subheader={`Yellow (warnings), Green (OK), click opens File Viewer`}
             ></CardHeader>
             <CardContent>
               {refreshUpdates &&
