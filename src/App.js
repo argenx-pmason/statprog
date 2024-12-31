@@ -229,7 +229,9 @@ function App() {
           // decide if it falls into the category of needing data
           if (
             !gsdtmflag &&
-            (path === "" || !(path.includes(".zip") || path === "Manual")) &&
+            (path === "" ||
+              (path && !path.includes(".zip")) ||
+              (path && path === "Manual")) &&
             status !== "final"
           )
             needsData = true;
@@ -880,9 +882,12 @@ function App() {
                     label={`${gadamCounts[k]} x ${k}`}
                     key={"gac" + k}
                     onClick={() => {
+                      let f = "";
+                      if (k === "WARNINGS") f = "&filter=WARNINGS";
+                      else if (k === "ERRORS") f = "&filter=ERRORS";
                       window
                         .open(
-                          "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/gadam_jobs/jobs.html",
+                          `https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/tools/view/index.html?lsaf=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json&meta=/general/biostat/tools/view/gadam_jobs_info-metadata.json&key=data&title=%F0%9F%94%A8%20GADAM%20Jobs${f}`,
                           "_blank"
                         )
                         .focus();
@@ -957,136 +962,6 @@ function App() {
             </CardActions>
           </Card>
         </Paper>
-        <Paper>
-          <Card sx={{ m: 3, backgroundColor: cardColor }}>
-            <CardHeader
-              sx={{
-                color: "blue",
-                fontSize: 18,
-              }}
-              title={`No update to sdtm-last in the last ${weeks} weeks`}
-              subheader={`Orange is just ADSL, Pink is just sdtm, Red is both, Gray has no data source - click to open File Viewer`}
-            />
-            <CardContent>
-              {studyCounts.length > 0 &&
-                studyCounts
-                  .filter(
-                    (k) =>
-                      k.days_since_last_adsl_refresh > weeks * 7 ||
-                      k.days_since_last_ae_refresh > weeks * 7 ||
-                      k.needsData
-                  )
-                  .map((k) => (
-                    <Tooltip
-                      key={k.study}
-                      title={
-                        k.days_since_last_adsl_refresh > weeks * 7 &&
-                        k.days_since_last_ae_refresh > weeks * 7
-                          ? `ADSL ${k.days_since_last_adsl_refresh}d & AE ${k.days_since_last_ae_refresh}d ${k.comment}`
-                          : k.days_since_last_adsl_refresh > weeks * 7
-                          ? `ADSL ${k.days_since_last_adsl_refresh}d ${k.comment}`
-                          : k.days_since_last_ae_refresh > weeks * 7
-                          ? `AE ${k.days_since_last_ae_refresh}d ${k.comment}`
-                          : `No source`
-                      }
-                    >
-                      <Chip
-                        sx={{
-                          mr: 1,
-                          mt: 0.5,
-                          mb: 1,
-                          backgroundColor:
-                            k.days_since_last_adsl_refresh > weeks * 7 &&
-                            k.days_since_last_ae_refresh > weeks * 7
-                              ? errorColor
-                              : k.days_since_last_adsl_refresh > weeks * 7
-                              ? "#ffe0b3"
-                              : k.days_since_last_ae_refresh > weeks * 7
-                              ? "#ffccff"
-                              : "#dddddd",
-                        }}
-                        label={`${
-                          k.study.includes("argx")
-                            ? k.study
-                            : k.studyid_add.includes("ARGX")
-                            ? k.studyid_add
-                            : k.studyid
-                        }`}
-                        onClick={() => {
-                          console.log("k", k);
-                          window
-                            .open(
-                              fileViewerPrefix +
-                                "/clinical/" +
-                                k.product +
-                                "/" +
-                                k.indication +
-                                "/" +
-                                k.study.toLowerCase() +
-                                "/dm",
-                              "_blank"
-                            )
-                            .focus();
-                        }}
-                      />
-                    </Tooltip>
-                  ))}
-            </CardContent>
-            <CardActions>
-              <Button
-                onClick={() => {
-                  window
-                    .open(
-                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/tools/sdtm-last/index.html",
-                      "_blank"
-                    )
-                    .focus();
-                }}
-                startIcon={<CakeTwoTone />}
-              >
-                SDTM-last
-              </Button>
-              <Button
-                onClick={() => {
-                  window
-                    .open(
-                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/study_info/studies_info.html",
-                      "_blank"
-                    )
-                    .focus();
-                }}
-                startIcon={<AdbTwoTone />}
-              >
-                Studies Summary
-              </Button>
-              <Tooltip title="Reduce time period by 1 week">
-                <IconButton
-                  color="info"
-                  // sx={{ mr: 2 }}
-                  onClick={() => {
-                    setWeeks(weeks - 1);
-                    down();
-                  }}
-                >
-                  <Remove />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Expand time period by 1 week">
-                <IconButton
-                  color="info"
-                  // sx={{ mr: 2 }}
-                  onClick={() => {
-                    setWeeks(weeks + 1);
-                    up();
-                  }}
-                >
-                  <Add />
-                </IconButton>
-              </Tooltip>
-            </CardActions>{" "}
-          </Card>
-        </Paper>
-
         <Paper>
           <Card sx={{ m: 3, backgroundColor: cardColor }}>
             <CardHeader
@@ -1186,94 +1061,6 @@ function App() {
             </CardActions>
           </Card>
         </Paper>
-
-        <Paper>
-          <Card sx={{ m: 3, backgroundColor: cardColor }}>
-            <CardHeader
-              sx={{
-                color: "blue",
-                fontSize: 18,
-              }}
-              title={`SDTM-gADaM refresh gap larger than ${days} days`}
-              subheader={`click to open File Viewer`}
-            ></CardHeader>
-            <CardContent>
-              {studyCounts.length > 0 &&
-                studyCounts
-                  .filter((k) => k.days_between >= days)
-                  .map((k) => (
-                    <Tooltip
-                      key={"days_between" + k.study}
-                      title={`${k.days_between} days between last SDTM and gADaM refresh`}
-                    >
-                      <Chip
-                        sx={{
-                          mr: 1,
-                          mt: 0.5,
-                          mb: 1,
-                          backgroundColor: warningColor,
-                        }}
-                        label={`${k.study}`}
-                        onClick={() => {
-                          window
-                            .open(
-                              fileViewerPrefix +
-                                "/clinical/" +
-                                k.product +
-                                "/" +
-                                k.indication +
-                                "/" +
-                                k.study.toLowerCase() +
-                                "/dm",
-                              "_blank"
-                            )
-                            .focus();
-                        }}
-                      />
-                    </Tooltip>
-                  ))}
-            </CardContent>{" "}
-            <CardActions>
-              <Button
-                onClick={() => {
-                  window
-                    .open(
-                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/study_info/studies_info.html",
-                      "_blank"
-                    )
-                    .focus();
-                }}
-                startIcon={<AdbTwoTone />}
-              >
-                Studies Summary
-              </Button>
-              <Tooltip title="Reduce time period by 1 day">
-                <IconButton
-                  color="info"
-                  // sx={{ mr: 2 }}
-                  onClick={() => {
-                    setDays(days - 1);
-                    down();
-                  }}
-                >
-                  <Remove />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Expand time period by 1 day">
-                <IconButton
-                  color="info"
-                  // sx={{ mr: 2 }}
-                  onClick={() => {
-                    setDays(days + 1);
-                    up();
-                  }}
-                >
-                  <Add />
-                </IconButton>
-              </Tooltip>
-            </CardActions>
-          </Card>
-        </Paper>
         <Paper>
           <Card sx={{ m: 3, backgroundColor: cardColor }}>
             <CardHeader
@@ -1330,7 +1117,7 @@ function App() {
                 onClick={() => {
                   window
                     .open(
-                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/study_info/studies_info.html",
+                      "https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/view/index.html?lsaf=/general/biostat/metadata/projects/studies_info.json&info=/general/biostat/metadata/projects/studies-info-info.json&meta=/general/biostat/metadata/projects/studies-info-meta.json&readonly=true&title=%F0%9F%A6%89%20Studies%20Summary",
                       "_blank"
                     )
                     .focus();
@@ -1370,95 +1157,6 @@ function App() {
                   // sx={{ mr: 2 }}
                   onClick={() => {
                     setWeeks(weeks + 1);
-                    up();
-                  }}
-                >
-                  <Add />
-                </IconButton>
-              </Tooltip>
-            </CardActions>
-          </Card>
-        </Paper>
-        <Paper>
-          <Card sx={{ m: 3, backgroundColor: cardColor }}>
-            <CardHeader
-              sx={{
-                color: "blue",
-                fontSize: 18,
-              }}
-              title={`gADaM Refreshes in last ${days} days`}
-              subheader={`Yellow (warnings), Green (OK), click opens File Viewer`}
-            ></CardHeader>
-            <CardContent>
-              {refreshUpdates &&
-                refreshUpdates.length > 0 &&
-                [...new Set(refreshUpdates.map((item) => item.study))].map(
-                  (study) => (
-                    <Chip
-                      sx={{
-                        mr: 1,
-                        mt: 0.5,
-                        mb: 1,
-                        backgroundColor: warnings.includes(study)
-                          ? warningColor
-                          : okColor,
-                      }}
-                      label={`${study}`}
-                      onClick={() => {
-                        const s = study.split("-"),
-                          product = s[0] + "-" + s[1],
-                          indication = s[2].slice(1, -1),
-                          stud = product + "-" + s[3];
-                        window
-                          .open(
-                            fileViewerPrefix +
-                              "/clinical/" +
-                              product +
-                              "/" +
-                              indication +
-                              "/" +
-                              stud +
-                              "/dm",
-                            "_blank"
-                          )
-                          .focus();
-                      }}
-                    />
-                  )
-                )}
-            </CardContent>
-            <CardActions>
-              <Button
-                onClick={() => {
-                  window
-                    .open(
-                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/gadam_events/gadam_dshb.html",
-                      "_blank"
-                    )
-                    .focus();
-                }}
-                startIcon={<LocalPizza />}
-              >
-                GADAM Data Refresh Events
-              </Button>
-              <Tooltip title="Reduce time period by 1 day">
-                <IconButton
-                  color="info"
-                  // sx={{ mr: 2 }}
-                  onClick={() => {
-                    setDays(days - 1);
-                    down();
-                  }}
-                >
-                  <Remove />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Expand time period by 1 day">
-                <IconButton
-                  color="info"
-                  // sx={{ mr: 2 }}
-                  onClick={() => {
-                    setDays(days + 1);
                     up();
                   }}
                 >
@@ -1707,6 +1405,311 @@ function App() {
                 </IconButton>
               </Tooltip>
             </CardActions>
+          </Card>
+        </Paper>
+        <Paper>
+          <Card sx={{ m: 3, backgroundColor: cardColor }}>
+            <CardHeader
+              sx={{
+                color: "blue",
+                fontSize: 18,
+              }}
+              title={`gADaM Refreshes in last ${days} days`}
+              subheader={`Yellow (warnings), Green (OK), click opens File Viewer`}
+            ></CardHeader>
+            <CardContent>
+              {refreshUpdates &&
+                refreshUpdates.length > 0 &&
+                [...new Set(refreshUpdates.map((item) => item.study))].map(
+                  (study) => (
+                    <Chip
+                      sx={{
+                        mr: 1,
+                        mt: 0.5,
+                        mb: 1,
+                        backgroundColor: warnings.includes(study)
+                          ? warningColor
+                          : okColor,
+                      }}
+                      label={`${study}`}
+                      onClick={() => {
+                        const s = study.split("-"),
+                          product = s[0] + "-" + s[1],
+                          indication = s[2].slice(1, -1),
+                          stud = product + "-" + s[3];
+                        window
+                          .open(
+                            fileViewerPrefix +
+                              "/clinical/" +
+                              product +
+                              "/" +
+                              indication +
+                              "/" +
+                              stud +
+                              "/dm",
+                            "_blank"
+                          )
+                          .focus();
+                      }}
+                    />
+                  )
+                )}
+            </CardContent>
+            <CardActions>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/gadam_events/gadam_dshb.html",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                startIcon={<LocalPizza />}
+              >
+                GADAM Data Refresh Events
+              </Button>
+              <Tooltip title="Reduce time period by 1 day">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setDays(days - 1);
+                    down();
+                  }}
+                >
+                  <Remove />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Expand time period by 1 day">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setDays(days + 1);
+                    up();
+                  }}
+                >
+                  <Add />
+                </IconButton>
+              </Tooltip>
+            </CardActions>
+          </Card>
+        </Paper>
+        <Paper>
+          <Card sx={{ m: 3, backgroundColor: cardColor }}>
+            <CardHeader
+              sx={{
+                color: "blue",
+                fontSize: 18,
+              }}
+              title={`SDTM-gADaM refresh gap larger than ${days} days`}
+              subheader={`click to open File Viewer`}
+            ></CardHeader>
+            <CardContent>
+              {studyCounts.length > 0 &&
+                studyCounts
+                  .filter((k) => k.days_between >= days)
+                  .map((k) => (
+                    <Tooltip
+                      key={"days_between" + k.study}
+                      title={`${k.days_between} days between last SDTM and gADaM refresh`}
+                    >
+                      <Chip
+                        sx={{
+                          mr: 1,
+                          mt: 0.5,
+                          mb: 1,
+                          backgroundColor: warningColor,
+                        }}
+                        label={`${k.study}`}
+                        onClick={() => {
+                          window
+                            .open(
+                              fileViewerPrefix +
+                                "/clinical/" +
+                                k.product +
+                                "/" +
+                                k.indication +
+                                "/" +
+                                k.study.toLowerCase() +
+                                "/dm",
+                              "_blank"
+                            )
+                            .focus();
+                        }}
+                      />
+                    </Tooltip>
+                  ))}
+            </CardContent>{" "}
+            <CardActions>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      "https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/view/index.html?lsaf=/general/biostat/metadata/projects/studies_info.json&info=/general/biostat/metadata/projects/studies-info-info.json&meta=/general/biostat/metadata/projects/studies-info-meta.json&readonly=true&title=%F0%9F%A6%89%20Studies%20Summary",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                startIcon={<AdbTwoTone />}
+              >
+                Studies Summary
+              </Button>
+              <Tooltip title="Reduce time period by 1 day">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setDays(days - 1);
+                    down();
+                  }}
+                >
+                  <Remove />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Expand time period by 1 day">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setDays(days + 1);
+                    up();
+                  }}
+                >
+                  <Add />
+                </IconButton>
+              </Tooltip>
+            </CardActions>
+          </Card>
+        </Paper>
+        <Paper>
+          <Card sx={{ m: 3, backgroundColor: cardColor }}>
+            <CardHeader
+              sx={{
+                color: "blue",
+                fontSize: 18,
+              }}
+              title={`No update to sdtm-last in the last ${weeks} weeks`}
+              subheader={`Orange is just ADSL, Pink is just sdtm, Red is both, Gray has no data source - click to open File Viewer`}
+            />
+            <CardContent>
+              {studyCounts.length > 0 &&
+                studyCounts
+                  .filter(
+                    (k) =>
+                      k.days_since_last_adsl_refresh > weeks * 7 ||
+                      k.days_since_last_ae_refresh > weeks * 7 ||
+                      k.needsData
+                  )
+                  .map((k) => (
+                    <Tooltip
+                      key={k.study}
+                      title={
+                        k.days_since_last_adsl_refresh > weeks * 7 &&
+                        k.days_since_last_ae_refresh > weeks * 7
+                          ? `ADSL ${k.days_since_last_adsl_refresh}d & AE ${k.days_since_last_ae_refresh}d ${k.comment}`
+                          : k.days_since_last_adsl_refresh > weeks * 7
+                          ? `ADSL ${k.days_since_last_adsl_refresh}d ${k.comment}`
+                          : k.days_since_last_ae_refresh > weeks * 7
+                          ? `AE ${k.days_since_last_ae_refresh}d ${k.comment}`
+                          : `No source`
+                      }
+                    >
+                      <Chip
+                        sx={{
+                          mr: 1,
+                          mt: 0.5,
+                          mb: 1,
+                          backgroundColor:
+                            k.days_since_last_adsl_refresh > weeks * 7 &&
+                            k.days_since_last_ae_refresh > weeks * 7
+                              ? errorColor
+                              : k.days_since_last_adsl_refresh > weeks * 7
+                              ? "#ffe0b3"
+                              : k.days_since_last_ae_refresh > weeks * 7
+                              ? "#ffccff"
+                              : "#dddddd",
+                        }}
+                        label={`${
+                          k.study.includes("argx")
+                            ? k.study
+                            : k.studyid_add.includes("ARGX")
+                            ? k.studyid_add
+                            : k.studyid
+                        }`}
+                        onClick={() => {
+                          console.log("k", k);
+                          window
+                            .open(
+                              fileViewerPrefix +
+                                "/clinical/" +
+                                k.product +
+                                "/" +
+                                k.indication +
+                                "/" +
+                                k.study.toLowerCase() +
+                                "/dm",
+                              "_blank"
+                            )
+                            .focus();
+                        }}
+                      />
+                    </Tooltip>
+                  ))}
+            </CardContent>
+            <CardActions>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/tools/sdtm-last/index.html",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                startIcon={<CakeTwoTone />}
+              >
+                SDTM-last
+              </Button>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      "https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/tools/view/index.html?lsaf=/general/biostat/metadata/projects/studies_info.json&info=/general/biostat/metadata/projects/studies-info-info.json&meta=/general/biostat/metadata/projects/studies-info-meta.json&readonly=true&title=%F0%9F%A6%89%20Studies%20Summary",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                startIcon={<AdbTwoTone />}
+              >
+                Studies Summary
+              </Button>
+              <Tooltip title="Reduce time period by 1 week">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setWeeks(weeks - 1);
+                    down();
+                  }}
+                >
+                  <Remove />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Expand time period by 1 week">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setWeeks(weeks + 1);
+                    up();
+                  }}
+                >
+                  <Add />
+                </IconButton>
+              </Tooltip>
+            </CardActions>{" "}
           </Card>
         </Paper>
       </Masonry>
