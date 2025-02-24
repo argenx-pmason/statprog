@@ -49,6 +49,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import alasql from "alasql";
 import links from "./links.json";
 import l_gadam_jobs_info from "./gadam_jobs_info.json";
+import l_lsaf_jobs_info from "./lsaf_jobs_monitor.json";
 import l_studies_info from "./studies_info.json";
 import l_metapluslink from "./metapluslink.json";
 import l_sdtm_for_studies from "./sdtm_for_studies.json";
@@ -68,7 +69,7 @@ import _up from "./_up.ogg";
 import _down from "./_down.ogg";
 
 function App() {
-  const { href, host } = window.location, // get the URL so we can work out where we are running
+  const { href, host, origin } = window.location, // get the URL so we can work out where we are running
     mode = href.startsWith("http://localhost") ? "local" : "remote",
     webDavPrefix = "https://" + host + "/lsaf/webdav/repo", // prefix for webdav access to LSAF
     fileDownloadPrefix = "https://" + host + "/lsaf/filedownload/sdd%3A//", // prefix for webdav access to LSAF
@@ -80,17 +81,21 @@ function App() {
     [openInfo, setOpenInfo] = useState(false),
     [openSettings, setOpenSettings] = useState(false),
     [gadamCounts, setGadamCounts] = useState({}),
+    [lsafCounts, setLsafCounts] = useState({}),
     [studyCounts, setStudyCounts] = useState([]),
     [gadamJobsInfo, setGadamJobsInfo] = useState(null),
+    [lsafJobsInfo, setLsafJobsInfo] = useState(null),
     [columns, setColumns] = useState(3),
     defaultColumns = localStorage.getItem("columns"),
     r_gadam_jobs_info =
       "/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json",
+    r_lsaf_jobs_info =
+      "/general/biostat/tools/lsaf_jobs_monitor/output/lsaf_jobs_monitor.json",
     [studiesInfo, setStudiesInfo] = useState(null),
     r_studies_info = "/general/biostat/metadata/projects/studies_info.json",
     [sdtmForStudies, setSdtmForStudies] = useState(null),
     r_sdtm_for_studies =
-      "/general/biostat/metadata/projects/sdtm_for_studies.json",
+      "/general/biostat/apps/sdtm-last/sdtm_for_studies.json",
     [metapluslink, setMetapluslink] = useState(null),
     r_metapluslink = "/general/biostat/metadata/projects/metapluslink.json",
     [gadamRefresh, setGadamRefresh] = useState(null),
@@ -115,7 +120,7 @@ function App() {
     r_day7 = "/general/biostat/metadata/projects/resources_monitoring/day7.csv",
     [repEventCounts, setRepEventCounts] = useState([]),
     [title] = useState("Statistical Programming Dashboard"),
-    [hours, setHours] = useState(12),
+    [hours, setHours] = useState(24),
     [weeks, setWeeks] = useState(4),
     [days, setDays] = useState(3),
     [hoursRange] = useState([
@@ -182,6 +187,39 @@ function App() {
       console.log("gadamCounts", gadamCounts);
       setGadamCounts(gadamCounts);
     },
+    // process data used in the gADaM jobs screen
+    processLsafData = (data, hours) => {
+      if (!data) return;
+      const subset = data.filter((d) => {
+        const completedDate = new Date(d.completedDateSAS),
+          now = new Date(),
+          diff = now - completedDate,
+          actualHours = diff / 1000 / 60 / 60;
+        return actualHours < hours;
+      });
+      // console.log("subset", subset);
+      const detailStatus = subset.map((d) => d.detailStatus),
+        uniqueDetailStatus = [...new Set(detailStatus)],
+        counts = uniqueDetailStatus.map((k) => {
+          const l = subset.filter(
+            (d) =>
+              d.detailStatus === k &&
+              d.job_name !== "pp" &&
+              d.job_name !== "pp_launcher"
+          ).length;
+          return { [k]: l };
+        }),
+        lsafCounts =
+          counts.length > 0
+            ? counts.reduce((acc, obj) => {
+                let key = Object.keys(obj)[0];
+                acc[key] = obj[key];
+                return acc;
+              })
+            : {};
+      console.log("lsafCounts", lsafCounts);
+      setLsafCounts(lsafCounts);
+    },
     // process data used in the studies info screen (studies_info.json)
     processStudiesInfoData = (data, weeks, days, tableau) => {
       console.log(
@@ -213,7 +251,7 @@ function App() {
           );
         }),
         subset3 = subset2.map((d) => {
-          console.log("d", d, "sdtmForStudies", sdtmForStudies);
+          // console.log("d", d, "sdtmForStudies", sdtmForStudies);
           const comments =
               sdtmForStudies &&
               sdtmForStudies.length > 0 &&
@@ -225,7 +263,7 @@ function App() {
             path = comments && comments.length > 0 ? comments[0].path : null,
             status =
               comments && comments.length > 0 ? comments[0].status : null;
-          console.log("gsdtmflag", gsdtmflag, "path", path, "status", status);
+          // console.log("gsdtmflag", gsdtmflag, "path", path, "status", status);
           let needsData = false;
           // decide if it falls into the category of needing data
           if (
@@ -243,14 +281,14 @@ function App() {
             path: path,
             needsData: needsData,
           };
-          console.log(
-            "returnData",
-            returnData,
-            "comments",
-            comments,
-            "comment",
-            comment
-          );
+          // console.log(
+          //   "returnData",
+          //   returnData,
+          //   "comments",
+          //   comments,
+          //   "comment",
+          //   comment
+          // );
           return returnData;
         }),
         sc = subset3.map((d) => {
@@ -408,8 +446,10 @@ function App() {
         unique,
         "warningStudies",
         warningStudies,
+        warnings,
         "updates",
-        updates
+        updates,
+        refreshUpdates
       );
     },
     [refreshUpdates, setRefreshUpdates] = useState(null),
@@ -426,6 +466,7 @@ function App() {
     document.title = "Statistical Programming Dashboard";
     if (mode === "local") {
       setGadamJobsInfo(l_gadam_jobs_info);
+      setLsafJobsInfo(l_lsaf_jobs_info);
       setMetapluslink(l_metapluslink);
       setStudiesInfo(l_studies_info);
       setSdtmForStudies(l_sdtm_for_studies);
@@ -477,6 +518,7 @@ function App() {
         Url4 = `${webDavPrefix}${r_gadamRefresh}`,
         Url5 = `${webDavPrefix}${r_across}`,
         Url6 = `${webDavPrefix}${r_sdtm_for_studies}`,
+        Url7 = `${webDavPrefix}${r_lsaf_jobs_info}`,
         urlday1 = `${webDavPrefix}${r_day1}`,
         urlday2 = `${webDavPrefix}${r_day2}`,
         urlday3 = `${webDavPrefix}${r_day3}`,
@@ -497,6 +539,8 @@ function App() {
         Url5,
         "Url6",
         Url6,
+        "Url7",
+        Url7,
         "urlday1",
         urlday1,
         "urlday2",
@@ -546,6 +590,12 @@ function App() {
           setSdtmForStudies(data);
           processSdtmForStudies(data, hours);
         });
+      fetch(Url7)
+        .then((response) => response.json())
+        .then((data) => {
+          setLsafJobsInfo(data);
+          processLsafData(data.data, hours);
+        });
       fetch(urlday1)
         .then((response) => response.text())
         .then((text) => {
@@ -590,6 +640,12 @@ function App() {
       processGadamData(gadamJobsInfo.data, hours);
     }
   }, [hours, gadamJobsInfo]);
+
+  useEffect(() => {
+    if (lsafJobsInfo && lsafJobsInfo.data) {
+      processLsafData(lsafJobsInfo.data, hours);
+    }
+  }, [hours, lsafJobsInfo]);
 
   useEffect(() => {
     if (sdtmForStudies && hours) {
@@ -901,7 +957,7 @@ function App() {
                       else if (k === "ERRORS") f = "&filter=ERRORS";
                       window
                         .open(
-                          `https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/apps/view/index.html?lsaf=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json&meta=/general/biostat/apps/gadam_jobs/gadam_jobs_info-metadata.json&key=data&title=%F0%9F%94%A8%20GADAM%20Jobs${f}`,
+                          `${origin}/lsaf/filedownload/sdd%3A///general/biostat/apps/view/index.html?lsaf=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json&meta=/general/biostat/apps/gadam_jobs/gadam_jobs_info-metadata.json&key=data&title=%F0%9F%94%A8%20GADAM%20Jobs${f}`,
                           "_blank"
                         )
                         .focus();
@@ -914,7 +970,8 @@ function App() {
                 onClick={() => {
                   window
                     .open(
-                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/gadam_jobs/jobs.html",
+                      origin +
+                        "/lsaf/filedownload/sdd%3A///general/biostat/gadam/documents/gadam_dshb/gadam_jobs/jobs.html",
                       "_blank"
                     )
                     .focus();
@@ -927,7 +984,8 @@ function App() {
                 onClick={() => {
                   window
                     .open(
-                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/apps/view/index.html?lsaf=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json&meta=/general/biostat/apps/gadam_jobs/gadam_jobs_info-metadata.json&key=data&title=GADAM%20Jobs",
+                      origin +
+                        "/lsaf/filedownload/sdd%3A///general/biostat/apps/view/index.html?lsaf=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json&meta=/general/biostat/apps/gadam_jobs/gadam_jobs_info-metadata.json&key=data&title=GADAM%20Jobs",
                       "_blank"
                     )
                     .focus();
@@ -963,6 +1021,111 @@ function App() {
             </CardActions>
           </Card>
         </Paper>
+
+        <Paper sx={{ bgcolor: "#f4f6ff" }}>
+          <Card sx={{ m: 3, backgroundColor: cardColor }}>
+            <CardHeader
+              sx={{
+                color: "blue",
+                fontSize: 18,
+              }}
+              title={`LSAF jobs monitor for last ${hours} hours`}
+              subheader={`data updated at ${
+                lsafJobsInfo
+                  ? lsafJobsInfo.lastModified
+                      .replace("T", " at ")
+                      .replace("Z", "")
+                  : "?"
+              }`}
+            />
+            <CardContent>
+              {Object.keys(lsafCounts)
+                .filter((k) => !["SUCCESSFUL", "SKIPPED"].includes(k))
+                .map((k) => (
+                  <Chip
+                    sx={{
+                      mr: 1,
+                      mt: 0.5,
+                      backgroundColor:
+                        k === "ERRORS"
+                          ? errorColor
+                          : k === "WARNINGS"
+                          ? okColor
+                          : warningColor,
+                    }}
+                    label={`${lsafCounts[k]} x ${k}`}
+                    key={"gac" + k}
+                    onClick={() => {
+                      let f = "";
+                      if (k === "WARNINGS") f = "&filter=WARNINGS";
+                      else if (k === "ERRORS") f = "&filter=ERRORS";
+                      window
+                        .open(
+                          `${origin}/lsaf/filedownload/sdd:///general/biostat/apps/view/index.html?lsaf=/general/biostat/tools/lsaf_jobs_monitor/output/lsaf_jobs_monitor.json&meta=/general/biostat/tools/lsaf_jobs_monitor/output/lsaf_jobs_output_metadata.json&key=data&title=%20%20%F0%9F%8F%83%E2%80%8D%E2%99%80%EF%B8%8F%20LSAF%20Jobs%20Table%20View${f}`,
+                          "_blank"
+                        )
+                        .focus();
+                    }}
+                  />
+                ))}
+            </CardContent>
+            <CardActions>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      origin +
+                        "/lsaf/filedownload/sdd%3A///general/biostat/tools/lsaf_jobs_monitor/lsaf_jobs.html",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                startIcon={<HistoryTwoTone />}
+              >
+                Jobs Chart
+              </Button>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      origin +
+                        "/lsaf/filedownload/sdd:///general/biostat/apps/view/index.html?lsaf=/general/biostat/tools/lsaf_jobs_monitor/output/lsaf_jobs_monitor.json&meta=/general/biostat/tools/lsaf_jobs_monitor/output/lsaf_jobs_output_metadata.json&key=data&title=%20%20%F0%9F%8F%83%E2%80%8D%E2%99%80%EF%B8%8F%20LSAF%20Jobs%20Table%20View",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                startIcon={<LocalPizza />}
+              >
+                Jobs Table
+              </Button>
+              <Tooltip title="Reduce time period by 6 hours">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setHours(hours - 6);
+                    down();
+                  }}
+                >
+                  <Remove />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Expand time period by 6 hours">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setHours(hours + 6);
+                    up();
+                  }}
+                >
+                  <Add />
+                </IconButton>
+              </Tooltip>
+            </CardActions>
+          </Card>
+        </Paper>
+
         <Paper>
           <Card sx={{ m: 3, backgroundColor: cardColor }}>
             <CardHeader
@@ -971,7 +1134,7 @@ function App() {
                 fontSize: 18,
               }}
               title={`SDTM-last (copies - ${hours} hours)`}
-              subheader={`Blue (gSDTM copy OK), Green (Zip copy OK), Red (copy failed), Yellow (new), Black (blocked) - click opens File Viewer`}
+              subheader={`Blue (gSDTM copy OK), Green (Zip copy OK), Red (gSDTM copy failed), Orange (zip copy failed), Yellow (new), Black (blocked) - click opens File Viewer`}
             ></CardHeader>
             <CardContent>
               {sdtmLast &&
@@ -1002,7 +1165,9 @@ function App() {
                             ? "#e6ffe6"
                             : k.new_study === "Y"
                             ? "#ffff99"
-                            : "#ffebe6",
+                            : k.gsdtmflag === 1
+                            ? "#ff8080"
+                            : "#ffbf80",
                         color: k.visibleFlag === "N" ? "white" : "black",
                       }}
                       label={`${k.study}`}
@@ -1030,7 +1195,8 @@ function App() {
                 onClick={() => {
                   window
                     .open(
-                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/apps/sdtm-last/index.html",
+                      origin +
+                        "/lsaf/filedownload/sdd%3A///general/biostat/apps/sdtm-last/index.html",
                       "_blank"
                     )
                     .focus();
@@ -1122,7 +1288,8 @@ function App() {
                 onClick={() => {
                   window
                     .open(
-                      "https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/view/index.html?lsaf=/general/biostat/metadata/projects/studies_info.json&info=/general/biostat/metadata/projects/studies-info-info.json&meta=/general/biostat/metadata/projects/studies-info-meta.json&readonly=true&title=%F0%9F%A6%89%20Studies%20Summary",
+                      origin +
+                        "/lsaf/webdav/repo/general/biostat/apps/view/index.html?lsaf=/general/biostat/metadata/projects/studies_info.json&info=/general/biostat/metadata/projects/studies-info-info.json&meta=/general/biostat/metadata/projects/studies-info-meta.json&readonly=true&title=%F0%9F%A6%89%20Studies%20Summary",
                       "_blank"
                     )
                     .focus();
@@ -1135,7 +1302,8 @@ function App() {
                 onClick={() => {
                   window
                     .open(
-                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/apps/rep-events-dash/index.html",
+                      origin +
+                        "/lsaf/filedownload/sdd%3A///general/biostat/apps/rep-events-dash/index.html",
                       "_blank"
                     )
                     .focus();
@@ -1363,7 +1531,8 @@ function App() {
                 onClick={() => {
                   window
                     .open(
-                      "https://xarprod.ondemand.sas.com:8000/lsaf/filedownload/sdd%3A///general/biostat/tools/resources_monitoring/index.html",
+                      origin +
+                        "/lsaf/filedownload/sdd%3A///general/biostat/tools/resources_monitoring/index.html",
                       "_blank"
                     )
                     .focus();
@@ -1376,7 +1545,8 @@ function App() {
                 onClick={() => {
                   window
                     .open(
-                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/apps/resources_monitoring/index.html",
+                      origin +
+                        "/lsaf/filedownload/sdd%3A///general/biostat/apps/resources_monitoring/index.html",
                       "_blank"
                     )
                     .focus();
@@ -1492,7 +1662,8 @@ function App() {
                 onClick={() => {
                   window
                     .open(
-                      "https://xarprod.ondemand.sas.com/lsaf/filedownload/sdd%3A///general/biostat/apps/sdtm-last/index.html",
+                      origin +
+                        "/lsaf/filedownload/sdd%3A///general/biostat/apps/sdtm-last/index.html",
                       "_blank"
                     )
                     .focus();
@@ -1505,7 +1676,8 @@ function App() {
                 onClick={() => {
                   window
                     .open(
-                      "https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/view/index.html?lsaf=/general/biostat/metadata/projects/studies_info.json&info=/general/biostat/metadata/projects/studies-info-info.json&meta=/general/biostat/metadata/projects/studies-info-meta.json&readonly=true&title=%F0%9F%A6%89%20Studies%20Summary",
+                      origin +
+                        "/lsaf/webdav/repo/general/biostat/apps/view/index.html?lsaf=/general/biostat/metadata/projects/studies_info.json&info=/general/biostat/metadata/projects/studies-info-info.json&meta=/general/biostat/metadata/projects/studies-info-meta.json&readonly=true&title=%F0%9F%A6%89%20Studies%20Summary",
                       "_blank"
                     )
                     .focus();
@@ -1645,7 +1817,10 @@ function App() {
             <li>
               <b>
                 <a
-                  href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json"
+                  href={
+                    origin +
+                    "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json"
+                  }
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -1654,7 +1829,10 @@ function App() {
               </b>{" "}
               - which is created by{" "}
               <a
-                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.sas"
+                href={
+                  origin +
+                  "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.sas"
+                }
                 target="_blank"
                 rel="noreferrer"
               >
@@ -1665,7 +1843,10 @@ function App() {
               <b>
                 {" "}
                 <a
-                  href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/metadata/projects/studies_info.json"
+                  href={
+                    origin +
+                    "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/metadata/projects/studies_info.json"
+                  }
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -1674,7 +1855,10 @@ function App() {
               </b>{" "}
               - which is created by{" "}
               <a
-                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/gadam/documents/gadam_dshb/study_info/study_info.sas"
+                href={
+                  origin +
+                  "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/gadam/documents/gadam_dshb/study_info/study_info.sas"
+                }
                 target="_blank"
                 rel="noreferrer"
               >
@@ -1685,7 +1869,10 @@ function App() {
               <b>
                 {" "}
                 <a
-                  href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/metadata/projects/metapluslink.json"
+                  href={
+                    origin +
+                    "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/metadata/projects/metapluslink.json"
+                  }
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -1694,7 +1881,10 @@ function App() {
               </b>{" "}
               - which is created by{" "}
               <a
-                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/jobs/dashboard/dev/programs/dashboard2.sas"
+                href={
+                  origin +
+                  "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/jobs/dashboard/dev/programs/dashboard2.sas"
+                }
                 target="_blank"
                 rel="noreferrer"
               >
@@ -1705,7 +1895,10 @@ function App() {
               <b>
                 {" "}
                 <a
-                  href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/gadam/documents/gadam_dshb/gadam_events/gadam.csv"
+                  href={
+                    origin +
+                    "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/gadam/documents/gadam_dshb/gadam_events/gadam.csv"
+                  }
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -1714,7 +1907,10 @@ function App() {
               </b>{" "}
               - which is created by{" "}
               <a
-                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file="
+                href={
+                  origin +
+                  "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file="
+                }
                 target="_blank"
                 rel="noreferrer"
               >
@@ -1725,7 +1921,10 @@ function App() {
               <b>
                 {" "}
                 <a
-                  href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/metadata/projects/sdtm_for_studies.json"
+                  href={
+                    origin +
+                    "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/apps/sdtm-last/sdtm_for_studies.json"
+                  }
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -1734,7 +1933,10 @@ function App() {
               </b>{" "}
               - which is created by{" "}
               <a
-                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/jobs/gadam_ongoing_studies/dev/programs/sdtm_part1.sas"
+                href={
+                  origin +
+                  "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/jobs/gadam_ongoing_studies/dev/programs/sdtm_part1.sas"
+                }
                 target="_blank"
                 rel="noreferrer"
               >
@@ -1742,7 +1944,10 @@ function App() {
               </a>{" "}
               and{" "}
               <a
-                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/jobs/gadam_ongoing_studies/dev/programs/sdtm_part3.sas"
+                href={
+                  origin +
+                  "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/jobs/gadam_ongoing_studies/dev/programs/sdtm_part3.sas"
+                }
                 target="_blank"
                 rel="noreferrer"
               >
@@ -1753,7 +1958,10 @@ function App() {
               <b>
                 {" "}
                 <a
-                  href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/metadata/projects/resources_monitoring/day1.csv"
+                  href={
+                    origin +
+                    "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/metadata/projects/resources_monitoring/day1.csv"
+                  }
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -1762,7 +1970,10 @@ function App() {
               </b>{" "}
               - which is created by{" "}
               <a
-                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file="
+                href={
+                  origin +
+                  "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file="
+                }
                 target="_blank"
                 rel="noreferrer"
               >
@@ -1773,7 +1984,10 @@ function App() {
               <b>
                 {" "}
                 <a
-                  href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/metadata/projects/across.json"
+                  href={
+                    origin +
+                    "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/metadata/projects/across.json"
+                  }
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -1782,7 +1996,10 @@ function App() {
               </b>{" "}
               - which is created by{" "}
               <a
-                href="https://xarprod.ondemand.sas.com/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/metadata/projects/rm/tableau.sas"
+                href={
+                  origin +
+                  "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/metadata/projects/rm/tableau.sas"
+                }
                 target="_blank"
                 rel="noreferrer"
               >
