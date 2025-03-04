@@ -86,6 +86,7 @@ function App() {
     [gadamJobsInfo, setGadamJobsInfo] = useState(null),
     [lsafJobsInfo, setLsafJobsInfo] = useState(null),
     [columns, setColumns] = useState(3),
+    [newZips, setNewZips] = useState(null),
     defaultColumns = localStorage.getItem("columns"),
     r_gadam_jobs_info =
       "/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json",
@@ -588,6 +589,7 @@ function App() {
         .then((response) => response.json())
         .then((data) => {
           setSdtmForStudies(data);
+          setNewZips(data.filter((d) => d.newer_zip > "/clinical").length);
           processSdtmForStudies(data, hours);
         });
       fetch(Url7)
@@ -1229,6 +1231,15 @@ function App() {
                   <Add />
                 </IconButton>
               </Tooltip>
+              {newZips > 0 && (
+                <Tooltip title="New zips files are available">
+                  <Chip
+                    sx={{ ml: 1 }}
+                    label={newZips + " new zip(s)"}
+                    color="success"
+                  />
+                </Tooltip>
+              )}
             </CardActions>
           </Card>
         </Paper>
