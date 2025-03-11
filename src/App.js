@@ -87,6 +87,7 @@ function App() {
     [lsafJobsInfo, setLsafJobsInfo] = useState(null),
     [columns, setColumns] = useState(3),
     [newZips, setNewZips] = useState(null),
+    [listOfNewZips, setListOfNewZips] = useState(""),
     defaultColumns = localStorage.getItem("columns"),
     r_gadam_jobs_info =
       "/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json",
@@ -589,7 +590,15 @@ function App() {
         .then((response) => response.json())
         .then((data) => {
           setSdtmForStudies(data);
-          setNewZips(data.filter((d) => d.newer_zip > "/clinical").length);
+          const _listOfNewZips = data
+            .filter((d) => d.newer_zip > "/clinical")
+            .map((d) => {
+              const fn = d.newer_zip.split("/");
+              return fn[3] + "/" + fn[4];
+            });
+          // console.log("_listOfNewZips", _listOfNewZips, "data", data);
+          setNewZips(_listOfNewZips.length);
+          setListOfNewZips(_listOfNewZips.join("  &  "));
           processSdtmForStudies(data, hours);
         });
       fetch(Url7)
@@ -1232,10 +1241,10 @@ function App() {
                 </IconButton>
               </Tooltip>
               {newZips > 0 && (
-                <Tooltip title="New zips files are available">
+                <Tooltip title={listOfNewZips}>
                   <Chip
                     sx={{ ml: 1 }}
-                    label={newZips + " new zip(s)"}
+                    label={newZips + " new zip(s): "}
                     color="success"
                   />
                 </Tooltip>
