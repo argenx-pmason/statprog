@@ -10,6 +10,7 @@ import {
   AppBar,
   Menu,
   MenuItem,
+  Badge,
   Chip,
   Slider,
   Typography,
@@ -88,6 +89,10 @@ function App() {
     [columns, setColumns] = useState(3),
     [newZips, setNewZips] = useState(null),
     [listOfNewZips, setListOfNewZips] = useState(""),
+    [newStudies, setNewStudies] = useState(null),
+    [listOfNewStudies, setListOfNewStudies] = useState(""),
+    [failedCopies, setFailedCopies] = useState(null),
+    [listOfFailedCopies, setListOfFailedCopies] = useState(""),
     defaultColumns = localStorage.getItem("columns"),
     r_gadam_jobs_info =
       "/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json",
@@ -154,7 +159,10 @@ function App() {
     backgroundColor = "#f7f7f7",
     errorColor = "#ffdddd",
     okColor = "#ddffdd",
-    cardColor = "#f8f8f8",
+    // cardColor = "#f8f8f8",
+    cardColor1 = "#ffffe6",
+    cardColor2 = "#f0ffeb",
+    cardColor3 = "#f0f5ff",
     [anchorEl, setAnchorEl] = useState(null),
     handleClickMenu = (event) => {
       setAnchorEl(event.currentTarget);
@@ -596,9 +604,25 @@ function App() {
               const fn = d.newer_zip.split("/");
               return fn[3] + "/" + fn[4];
             });
-          // console.log("_listOfNewZips", _listOfNewZips, "data", data);
           setNewZips(_listOfNewZips.length);
           setListOfNewZips(_listOfNewZips.join("  &  "));
+          const _listOfNewStudies = data
+            .filter((d) => d.new_study !== "N")
+            .map((d) => {
+              return d.indication + "-" + d.studyname;
+            });
+          setNewStudies(_listOfNewStudies.length);
+          setListOfNewStudies(_listOfNewStudies.join(", "));
+          const _listOfFailedCopies = data
+            .filter(
+              (d) =>
+                d.statusoflastcopy !== "Passed" && d.statusoflastcopy !== ""
+            )
+            .map((d) => {
+              return d.indication + "-" + d.studyname;
+            });
+          setFailedCopies(_listOfFailedCopies.length);
+          setListOfFailedCopies(_listOfFailedCopies.join(", "));
           processSdtmForStudies(data, hours);
         });
       fetch(Url7)
@@ -787,7 +811,14 @@ function App() {
           >
             &nbsp;&nbsp;{title}&nbsp;&nbsp;
           </Box>
-          <Stack direction="row" sx={{ ml: 1, border: "1px dashed lightgrey" }}>
+          <Stack
+            direction="row"
+            sx={{
+              ml: 1,
+              backgroundColor: cardColor1,
+              border: `1px dashed grey`,
+            }}
+          >
             <Tooltip title="Reduce time period by 6 hours">
               <IconButton
                 color="info"
@@ -816,7 +847,14 @@ function App() {
               </IconButton>
             </Tooltip>
           </Stack>
-          <Stack direction="row" sx={{ ml: 1, border: "1px dashed lightgrey" }}>
+          <Stack
+            direction="row"
+            sx={{
+              ml: 1,
+              backgroundColor: cardColor2,
+              border: "1px dashed grey",
+            }}
+          >
             <Tooltip title="Reduce time period by 1 day">
               <IconButton
                 color="primary"
@@ -843,7 +881,14 @@ function App() {
               </IconButton>
             </Tooltip>
           </Stack>{" "}
-          <Stack direction="row" sx={{ ml: 1, border: "1px dashed lightgrey" }}>
+          <Stack
+            direction="row"
+            sx={{
+              ml: 1,
+              backgroundColor: cardColor3,
+              border: "1px dashed grey",
+            }}
+          >
             <Tooltip title="Reduce time period by 1 week">
               <IconButton
                 color="info"
@@ -929,8 +974,8 @@ function App() {
       </AppBar>
       <Box sx={{ mt: 7 }}></Box>
       <Masonry columns={columns} spacing={1}>
-        <Paper sx={{ bgcolor: "#f4f6ff" }}>
-          <Card sx={{ m: 3, backgroundColor: cardColor }}>
+        <Paper sx={{ bgcolor: backgroundColor }}>
+          <Card sx={{ m: 3, backgroundColor: cardColor1 }}>
             <CardHeader
               sx={{
                 color: "blue",
@@ -987,9 +1032,9 @@ function App() {
                     )
                     .focus();
                 }}
-                startIcon={<AccessAlarm />}
+                // startIcon={<AccessAlarm />}
               >
-                Jobs Chart
+                📊 Jobs Chart
               </Button>
               <Button
                 onClick={() => {
@@ -1001,9 +1046,9 @@ function App() {
                     )
                     .focus();
                 }}
-                startIcon={<AccessAlarmTwoTone />}
+                // startIcon={<AccessAlarmTwoTone />}
               >
-                Jobs Table
+                📊 Jobs Table
               </Button>
               <Tooltip title="Reduce time period by 6 hours">
                 <IconButton
@@ -1033,8 +1078,8 @@ function App() {
           </Card>
         </Paper>
 
-        <Paper sx={{ bgcolor: "#f4f6ff" }}>
-          <Card sx={{ m: 3, backgroundColor: cardColor }}>
+        <Paper sx={{ bgcolor: backgroundColor }}>
+          <Card sx={{ m: 3, backgroundColor: cardColor1 }}>
             <CardHeader
               sx={{
                 color: "blue",
@@ -1091,9 +1136,9 @@ function App() {
                     )
                     .focus();
                 }}
-                startIcon={<HistoryTwoTone />}
+                // startIcon={<HistoryTwoTone />}
               >
-                Jobs Chart
+                🏃 Jobs Chart
               </Button>
               <Button
                 onClick={() => {
@@ -1105,9 +1150,9 @@ function App() {
                     )
                     .focus();
                 }}
-                startIcon={<LocalPizza />}
+                // startIcon={<LocalPizza />}
               >
-                Jobs Table
+                🏃 Jobs Table
               </Button>
               <Tooltip title="Reduce time period by 6 hours">
                 <IconButton
@@ -1138,14 +1183,14 @@ function App() {
         </Paper>
 
         <Paper>
-          <Card sx={{ m: 3, backgroundColor: cardColor }}>
+          <Card sx={{ m: 3, backgroundColor: cardColor1 }}>
             <CardHeader
               sx={{
                 color: "blue",
                 fontSize: 18,
               }}
               title={`SDTM-last (copies - ${hours} hours)`}
-              subheader={`Blue (gSDTM copy OK), Green (Zip copy OK), Red (gSDTM copy failed), Orange (zip copy failed), Yellow (new), Black (blocked) - click opens File Viewer`}
+              subheader={`Blue (gSDTM copy OK), Green (Zip copy OK), Red (gSDTM copy failed), Orange (zip copy failed), Black (blocked) - click opens File Viewer`}
             ></CardHeader>
             <CardContent>
               {sdtmLast &&
@@ -1161,43 +1206,49 @@ function App() {
                         : k.message
                     }
                   >
-                    <Chip
-                      sx={{
-                        mr: 1,
-                        mt: 0.5,
-                        mb: 1,
-                        backgroundColor:
-                          k.visibleFlag === "N"
-                            ? "black"
-                            : k.statusoflastcopy === "passed" &&
-                              k.gsdtmflag === 1
-                            ? "#e6e6ff"
-                            : k.statusoflastcopy === "passed"
-                            ? "#e6ffe6"
-                            : k.new_study === "Y"
-                            ? "#ffff99"
-                            : k.gsdtmflag === 1
-                            ? "#ff8080"
-                            : "#ffbf80",
-                        color: k.visibleFlag === "N" ? "white" : "black",
-                      }}
-                      label={`${k.study}`}
-                      onClick={() => {
-                        window
-                          .open(
-                            fileViewerPrefix +
-                              "/clinical/" +
-                              k.product +
-                              "/" +
-                              k.indication +
-                              "/" +
-                              k.study.toLowerCase() +
-                              "/dm",
-                            "_blank"
-                          )
-                          .focus();
-                      }}
-                    />
+                    <Badge
+                      badgeContent={Math.round(k.copyHours)}
+                      overlap="circular"
+                      color="secondary"
+                    >
+                      <Chip
+                        sx={{
+                          mr: 1,
+                          mt: 0.5,
+                          mb: 1,
+                          backgroundColor:
+                            k.visibleFlag === "N"
+                              ? "black"
+                              : k.statusoflastcopy === "passed" &&
+                                k.gsdtmflag === 1
+                              ? "#e6e6ff"
+                              : k.statusoflastcopy === "passed"
+                              ? "#e6ffe6"
+                              : k.new_study === "Y"
+                              ? "#ffff99"
+                              : k.gsdtmflag === 1
+                              ? "#ff8080"
+                              : "#ffbf80",
+                          color: k.visibleFlag === "N" ? "white" : "black",
+                        }}
+                        label={`${k.study}`}
+                        onClick={() => {
+                          window
+                            .open(
+                              fileViewerPrefix +
+                                "/clinical/" +
+                                k.product +
+                                "/" +
+                                k.indication +
+                                "/" +
+                                k.study.toLowerCase() +
+                                "/dm",
+                              "_blank"
+                            )
+                            .focus();
+                        }}
+                      />
+                    </Badge>
                   </Tooltip>
                 ))}
             </CardContent>{" "}
@@ -1212,9 +1263,9 @@ function App() {
                     )
                     .focus();
                 }}
-                startIcon={<Build />}
+                // startIcon={<Build />}
               >
-                SDTM Last
+                💡 SDTM Last
               </Button>
               <Tooltip title="Reduce time period by 6 hours">
                 <IconButton
@@ -1243,9 +1294,36 @@ function App() {
               {newZips > 0 && (
                 <Tooltip title={listOfNewZips}>
                   <Chip
-                    sx={{ ml: 1 }}
+                    sx={{ ml: 1, backgroundColor: "#0033cc", color: "#ffff00" }}
                     label={newZips + " new zip(s): "}
-                    color="success"
+                    color="secondary"
+                  />
+                </Tooltip>
+              )}
+              {newStudies > 0 && (
+                <Tooltip title={listOfNewStudies}>
+                  <Chip
+                    sx={{ ml: 1, backgroundColor: "#99ffff", color: "#000000" }}
+                    label={newStudies + " new study(s): "}
+                    color="secondary"
+                  />
+                </Tooltip>
+              )}
+              {failedCopies > 0 && (
+                <Tooltip title={listOfFailedCopies}>
+                  <Chip
+                    sx={{ ml: 1, backgroundColor: "#992600", color: "#ffffff" }}
+                    label={failedCopies + " failed copy(s): "}
+                    color="secondary"
+                    onClick={() => {
+                      window
+                        .open(
+                          origin +
+                            "/lsaf/filedownload/sdd%3A///general/biostat/apps/sdtm-last/index.html?study=invalid",
+                          "_blank"
+                        )
+                        .focus();
+                    }}
                   />
                 </Tooltip>
               )}
@@ -1253,114 +1331,7 @@ function App() {
           </Card>
         </Paper>
         <Paper>
-          <Card sx={{ m: 3, backgroundColor: cardColor }}>
-            <CardHeader
-              sx={{
-                color: "blue",
-                fontSize: 18,
-              }}
-              title={`Reporting Events not updated for ${weeks} weeks`}
-              subheader={`click to open File Viewer, ctrl-click to open study dashboard`}
-            ></CardHeader>
-            <CardContent>
-              {repEventCounts.length > 0 &&
-                repEventCounts
-                  .filter((k) => k.reldays >= weeks * 7)
-                  .map((k) => (
-                    <Tooltip
-                      key={"repEvent-" + k.study + "-" + k.re}
-                      title={`${k.reldays} days since last update`}
-                    >
-                      <Chip
-                        sx={{
-                          mr: 1,
-                          mt: 0.5,
-                          mb: 1,
-                          backgroundColor: warningColor,
-                        }}
-                        label={`${k.study}, ${k.re}`}
-                        onClick={(e) => {
-                          console.log("e", e);
-                          if (e.ctrlKey) {
-                            window
-                              .open(
-                                dashStudyPrefix +
-                                  k.reporting_event_path +
-                                  "/documents/meta/dashstudy.json",
-                                "_blank"
-                              )
-                              .focus();
-                          } else {
-                            window
-                              .open(
-                                fileViewerPrefix + k.reporting_event_path,
-                                "_blank"
-                              )
-                              .focus();
-                          }
-                        }}
-                      />
-                    </Tooltip>
-                  ))}
-            </CardContent>{" "}
-            <CardActions>
-              <Button
-                onClick={() => {
-                  window
-                    .open(
-                      origin +
-                        "/lsaf/webdav/repo/general/biostat/apps/view/index.html?lsaf=/general/biostat/metadata/projects/studies_info.json&info=/general/biostat/metadata/projects/studies-info-info.json&meta=/general/biostat/metadata/projects/studies-info-meta.json&readonly=true&title=%F0%9F%A6%89%20Studies%20Summary",
-                      "_blank"
-                    )
-                    .focus();
-                }}
-                startIcon={<AdbTwoTone />}
-              >
-                Studies Summary
-              </Button>
-              <Button
-                onClick={() => {
-                  window
-                    .open(
-                      origin +
-                        "/lsaf/filedownload/sdd%3A///general/biostat/apps/rep-events-dash/index.html",
-                      "_blank"
-                    )
-                    .focus();
-                }}
-                startIcon={<TvTwoTone />}
-              >
-                Reporting Events
-              </Button>
-              <Tooltip title="Reduce time period by 1 week">
-                <IconButton
-                  color="info"
-                  // sx={{ mr: 2 }}
-                  onClick={() => {
-                    setWeeks(weeks - 1);
-                    down();
-                  }}
-                >
-                  <Remove />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Expand time period by 1 week">
-                <IconButton
-                  color="info"
-                  // sx={{ mr: 2 }}
-                  onClick={() => {
-                    setWeeks(weeks + 1);
-                    up();
-                  }}
-                >
-                  <Add />
-                </IconButton>
-              </Tooltip>
-            </CardActions>
-          </Card>
-        </Paper>
-        <Paper>
-          <Card sx={{ m: 3, backgroundColor: cardColor }}>
+          <Card sx={{ m: 3, backgroundColor: cardColor2 }}>
             <CardHeader
               sx={{
                 color: "blue",
@@ -1557,9 +1528,9 @@ function App() {
                     )
                     .focus();
                 }}
-                startIcon={<Build />}
+                // startIcon={<Build />}
               >
-                Basic
+                💻 Basic
               </Button>
               <Button
                 onClick={() => {
@@ -1571,9 +1542,9 @@ function App() {
                     )
                     .focus();
                 }}
-                startIcon={<Brush />}
+                // startIcon={<Brush />}
               >
-                Extensive
+                💻 Extensive
               </Button>
               <Tooltip title="Reduce time period by 1 day">
                 <IconButton
@@ -1603,7 +1574,7 @@ function App() {
           </Card>
         </Paper>
         <Paper>
-          <Card sx={{ m: 3, backgroundColor: cardColor }}>
+          <Card sx={{ m: 3, backgroundColor: cardColor3 }}>
             <CardHeader
               sx={{
                 color: "blue",
@@ -1688,9 +1659,9 @@ function App() {
                     )
                     .focus();
                 }}
-                startIcon={<CakeTwoTone />}
+                // startIcon={<CakeTwoTone />}
               >
-                SDTM-last
+                💡 SDTM-last
               </Button>
               <Button
                 onClick={() => {
@@ -1702,9 +1673,9 @@ function App() {
                     )
                     .focus();
                 }}
-                startIcon={<AdbTwoTone />}
+                // startIcon={<AdbTwoTone />}
               >
-                Studies Summary
+                🦉 Studies Summary
               </Button>
               <Tooltip title="Reduce time period by 1 week">
                 <IconButton
@@ -1731,6 +1702,113 @@ function App() {
                 </IconButton>
               </Tooltip>
             </CardActions>{" "}
+          </Card>
+        </Paper>
+        <Paper>
+          <Card sx={{ m: 3, backgroundColor: cardColor3 }}>
+            <CardHeader
+              sx={{
+                color: "blue",
+                fontSize: 18,
+              }}
+              title={`Reporting Events not updated for ${weeks} weeks`}
+              subheader={`click to open File Viewer, ctrl-click to open study dashboard`}
+            ></CardHeader>
+            <CardContent>
+              {repEventCounts.length > 0 &&
+                repEventCounts
+                  .filter((k) => k.reldays >= weeks * 7)
+                  .map((k) => (
+                    <Tooltip
+                      key={"repEvent-" + k.study + "-" + k.re}
+                      title={`${k.reldays} days since last update`}
+                    >
+                      <Chip
+                        sx={{
+                          mr: 1,
+                          mt: 0.5,
+                          mb: 1,
+                          backgroundColor: warningColor,
+                        }}
+                        label={`${k.study}, ${k.re}`}
+                        onClick={(e) => {
+                          console.log("e", e);
+                          if (e.ctrlKey) {
+                            window
+                              .open(
+                                dashStudyPrefix +
+                                  k.reporting_event_path +
+                                  "/documents/meta/dashstudy.json",
+                                "_blank"
+                              )
+                              .focus();
+                          } else {
+                            window
+                              .open(
+                                fileViewerPrefix + k.reporting_event_path,
+                                "_blank"
+                              )
+                              .focus();
+                          }
+                        }}
+                      />
+                    </Tooltip>
+                  ))}
+            </CardContent>{" "}
+            <CardActions>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      origin +
+                        "/lsaf/webdav/repo/general/biostat/apps/view/index.html?lsaf=/general/biostat/metadata/projects/studies_info.json&info=/general/biostat/metadata/projects/studies-info-info.json&meta=/general/biostat/metadata/projects/studies-info-meta.json&readonly=true&title=%F0%9F%A6%89%20Studies%20Summary",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                // startIcon={<AdbTwoTone />}
+              >
+                🦉 Studies Summary
+              </Button>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      origin +
+                        "/lsaf/filedownload/sdd%3A///general/biostat/apps/rep-events-dash/index.html",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                // startIcon={<TvTwoTone />}
+              >
+                🤡 Reporting Events
+              </Button>
+              <Tooltip title="Reduce time period by 1 week">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setWeeks(weeks - 1);
+                    down();
+                  }}
+                >
+                  <Remove />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Expand time period by 1 week">
+                <IconButton
+                  color="info"
+                  // sx={{ mr: 2 }}
+                  onClick={() => {
+                    setWeeks(weeks + 1);
+                    up();
+                  }}
+                >
+                  <Add />
+                </IconButton>
+              </Tooltip>
+            </CardActions>
           </Card>
         </Paper>
       </Masonry>
