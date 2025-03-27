@@ -1207,9 +1207,16 @@ function App() {
                     }
                   >
                     <Badge
-                      badgeContent={Math.round(k.copyHours)}
+                      badgeContent={
+                        k.copyHours
+                          ? Math.round(k.copyHours)
+                          : Math.round(
+                              (new Date() - new Date(k.blockedDate)) /
+                                (3600 * 24 * 1000)
+                            )
+                      }
                       overlap="circular"
-                      color="secondary"
+                      color={k.copyHours ? "secondary" : "error"}
                     >
                       <Chip
                         sx={{
@@ -1218,7 +1225,7 @@ function App() {
                           mb: 1,
                           backgroundColor:
                             k.visibleFlag === "N"
-                              ? "black"
+                              ? "#000000"
                               : k.statusoflastcopy === "passed" &&
                                 k.gsdtmflag === 1
                               ? "#e6e6ff"
@@ -1229,7 +1236,7 @@ function App() {
                               : k.gsdtmflag === 1
                               ? "#ff8080"
                               : "#ffbf80",
-                          color: k.visibleFlag === "N" ? "white" : "black",
+                          color: k.visibleFlag === "N" ? "#ffffff" : "#000000",
                         }}
                         label={`${k.study}`}
                         onClick={() => {
