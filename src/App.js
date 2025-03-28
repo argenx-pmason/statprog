@@ -31,17 +31,8 @@ import {
 import {
   Info,
   Settings,
-  AccessAlarm,
-  AdbTwoTone,
-  AccessAlarmTwoTone,
-  HistoryTwoTone,
   Add,
   Remove,
-  TvTwoTone,
-  LocalPizza,
-  Build,
-  Brush,
-  CakeTwoTone,
   NavigateNext,
   NavigateBefore,
 } from "@mui/icons-material";
@@ -616,7 +607,8 @@ function App() {
           const _listOfFailedCopies = data
             .filter(
               (d) =>
-                d.statusoflastcopy !== "Passed" && d.statusoflastcopy !== ""
+                d.statusoflastcopy.toLowerCase() !== "passed" &&
+                d.statusoflastcopy !== ""
             )
             .map((d) => {
               return d.indication + "-" + d.studyname;
@@ -706,6 +698,7 @@ function App() {
     if (gadamRefresh && gadamRefresh.length > 0 && days) {
       processGadamRefresh(gadamRefresh, days);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [days, gadamRefresh]);
 
   // once we have all the days, then put them together and calculate the stats we want
@@ -748,7 +741,8 @@ function App() {
             xythos = Number(d.xythosfs_pct_used),
             saswork = Number(d.saswork_pct_used),
             workspace = Number(d.workspace_pct_used),
-            transient = Number(d.transient_pct_used);
+            transient = Number(d.transient_pct_used),
+            realdate = new Date(d.date);
           return {
             ...d,
             swap: swap,
@@ -758,13 +752,15 @@ function App() {
             workspace: workspace,
             transient: transient,
             saswork: saswork,
+            realdate: realdate,
           };
         });
       console.log("tempDays", tempDays);
       const sql =
-          "select  count(*)/12/24 as days," +
-          " count(*)/12 as hours," +
-          ` (${days}*24) - (count(*)/12) as down_time_hours,` +
+          "select  count(*)/30/24 as days," +
+          " count(*)/30 as hours," +
+          " min(realdate) as start_date, max(realdate) as end_date," +
+          ` (${days}*24) - (count(*)/30) as down_time_hours,` +
           " min(cpu) as min_cpu, avg(cpu) as avg_cpu, max(cpu) as max_cpu," +
           " min(mem) as min_mem, avg(mem) as avg_mem, max(mem) as max_mem," +
           " min(swap) as min_swap, avg(swap) as avg_swap, max(swap) as max_swap," +
@@ -1226,10 +1222,10 @@ function App() {
                           backgroundColor:
                             k.visibleFlag === "N"
                               ? "#000000"
-                              : k.statusoflastcopy === "passed" &&
+                              : k.statusoflastcopy.toLowerCase() === "passed" &&
                                 k.gsdtmflag === 1
                               ? "#e6e6ff"
-                              : k.statusoflastcopy === "passed"
+                              : k.statusoflastcopy.toLowerCase() === "passed"
                               ? "#e6ffe6"
                               : k.new_study === "Y"
                               ? "#ffff99"
@@ -1352,7 +1348,11 @@ function App() {
                     resources?.hours?.toFixed(1) +
                     " hours) of data - " +
                     resources?.down_time_hours?.toFixed(1) +
-                    " hours of down time."
+                    " hours of down time." +
+                    "  Data from " +
+                    resources?.start_date +
+                    " to " +
+                    resources?.end_date
                   : null
               }
             ></CardHeader>
