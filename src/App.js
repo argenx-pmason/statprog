@@ -46,6 +46,11 @@ import l_studies_info from "./studies_info.json";
 import l_metapluslink from "./metapluslink.json";
 import l_sdtm_for_studies from "./sdtm_for_studies.json";
 import l_across from "./across.json";
+import l_staff from "./staff.json";
+import l_study_people from "./study_people.json";
+import l_allsumm from "./allsumm.json";
+import l_allsummtot from "./allsummtot.json";
+import l_fac from "./folder_access_request.json";
 // import l_mile from "./mile.json";
 import { usePapaParse } from "react-papaparse";
 import gadamCsv from "./gadam.csv";
@@ -85,21 +90,28 @@ function App() {
     [failedCopies, setFailedCopies] = useState(null),
     [listOfFailedCopies, setListOfFailedCopies] = useState(""),
     defaultColumns = localStorage.getItem("columns"),
+    [studiesInfo, setStudiesInfo] = useState(null),
+    [sdtmForStudies, setSdtmForStudies] = useState(null),
+    [metapluslink, setMetapluslink] = useState(null),
+    [gadamRefresh, setGadamRefresh] = useState(null),
+    [staff, setStaff] = useState(null),
+    [studyPeople, setStudyPeople] = useState(null),
+    [allSumm, setAllSumm] = useState(null),
+    [allSummTot, setAllSummTot] = useState(null),
+    [fac, setFac] = useState(null),
+    [issues, setIssues] = useState(null),
     r_gadam_jobs_info =
-      "/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json",
+      "/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/output/gadam_jobs_info.json",
     r_lsaf_jobs_info =
       "/general/biostat/tools/lsaf_jobs_monitor/output/lsaf_jobs_monitor.json",
-    [studiesInfo, setStudiesInfo] = useState(null),
     r_studies_info = "/general/biostat/metadata/projects/studies_info.json",
-    [sdtmForStudies, setSdtmForStudies] = useState(null),
     r_sdtm_for_studies =
       "/general/biostat/apps/sdtm-last/sdtm_for_studies.json",
-    [metapluslink, setMetapluslink] = useState(null),
     r_metapluslink = "/general/biostat/metadata/projects/metapluslink.json",
-    [gadamRefresh, setGadamRefresh] = useState(null),
     r_gadamRefresh =
       "/general/biostat/gadam/documents/gadam_dshb/gadam_events/gadam.csv",
     r_across = "/general/biostat/metadata/projects/across.json",
+    r_staff = "/general/biostat/apps/staff/staff.json",
     [resources, setResources] = useState(null),
     [across, setAcross] = useState(null),
     [day1, setDay1] = useState([]),
@@ -360,23 +372,47 @@ function App() {
     },
     // process sdtm-last data (sdtm_for_studies.json)
     [sdtmLast, setSdtmLast] = useState(null),
+    summarizeByCategory = (data, categoryKey) => {
+      const summary = data.reduce((acc, item) => {
+        const category = item[categoryKey];
+        acc[category] = (acc[category] || 0) + 1;
+        return acc;
+      }, {});
+
+      return Object.entries(summary).map(([category, count]) => ({
+        category,
+        count,
+      }));
+    },
     processSdtmForStudies = (data, hours) => {
       console.log("processSdtmForStudies - data", data);
       if (!data) return;
       const subset = data.filter((d) => {
           return (
             (d.status === "ongoing" &&
-              (new Date() - parseCustomDate(d.datecopied)) / 1000 / 60 / 60 <=
-                hours) ||
+              ((new Date() - parseCustomDate(d.datecopied)) / 1000 / 60 / 60 <=
+                hours ||
+                (new Date() - parseCustomDate(d.copyattempted)) /
+                  1000 /
+                  60 /
+                  60 <=
+                  hours)) ||
             d.visibleFlag === "N" ||
             d.new_study === "Y"
           );
         }),
         re = subset.map((d) => {
-          const copyHours =
+          const copyHours = Math.min(
               (new Date() - parseCustomDate(d.datecopied)) / 1000 / 60 / 60,
+              (new Date() - parseCustomDate(d.copyattempted)) /
+                1000 /
+                60 /
+                60 || 9999
+            ),
             cs =
-              d.statusoflastcopy.toLowerCase() === "passed" ? "" : "successful",
+              d.statusoflastcopy.toLowerCase() === "passed"
+                ? "successful"
+                : "attempted",
             who =
               d.username && d.userFullName
                 ? ` by ${d.userFullName} (${d.username})`
@@ -472,6 +508,11 @@ function App() {
       setStudiesInfo(l_studies_info);
       setSdtmForStudies(l_sdtm_for_studies);
       setAcross(l_across);
+      setStaff(l_staff);
+      setStudyPeople(l_study_people);
+      setAllSumm(l_allsumm);
+      setAllSummTot(l_allsummtot);
+      setFac(l_fac);
       fetch(gadamCsv)
         .then((response) => response.text())
         .then((text) => {
@@ -520,6 +561,7 @@ function App() {
         Url5 = `${webDavPrefix}${r_across}`,
         Url6 = `${webDavPrefix}${r_sdtm_for_studies}`,
         Url7 = `${webDavPrefix}${r_lsaf_jobs_info}`,
+        Url8 = `${webDavPrefix}${r_staff}`,
         urlday1 = `${webDavPrefix}${r_day1}`,
         urlday2 = `${webDavPrefix}${r_day2}`,
         urlday3 = `${webDavPrefix}${r_day3}`,
@@ -542,6 +584,8 @@ function App() {
         Url6,
         "Url7",
         Url7,
+        "Url8",
+        Url8,
         "urlday1",
         urlday1,
         "urlday2",
@@ -623,6 +667,11 @@ function App() {
           setLsafJobsInfo(data);
           processLsafData(data.data, hours);
         });
+      fetch(Url8)
+        .then((response) => response.json())
+        .then((data) => {
+          setStaff(data);
+        });
       fetch(urlday1)
         .then((response) => response.text())
         .then((text) => {
@@ -693,6 +742,31 @@ function App() {
       processRepEventData(metapluslink, weeks);
     }
   }, [days, weeks, metapluslink]);
+
+  useEffect(() => {
+    if (!staff) return;
+    const noLead = staff.filter((d) => !d.lead).length,
+      noLine = staff.filter((d) => !d.line_mgr).length;
+    // ,profiles = summarizeByCategory(fac, "profile");
+    const _issues = { noLead: noLead, noLine: noLine };
+    setIssues(_issues);
+    console.log(
+      "staff",
+      staff
+      // "studyPeople",
+      // studyPeople,
+      // "allSumm",
+      // allSumm,
+      // "allSumTot",
+      // allSummTot,
+      // "fac",
+      // fac,
+      // noLead,
+      // noLine,
+      // "profiles",
+      // profiles
+    );
+  }, [staff]);
 
   useEffect(() => {
     if (gadamRefresh && gadamRefresh.length > 0 && days) {
@@ -810,6 +884,7 @@ function App() {
           <Stack
             direction="row"
             sx={{
+              height: 23,
               ml: 1,
               backgroundColor: cardColor1,
               border: `1px dashed grey`,
@@ -827,9 +902,7 @@ function App() {
                 <Remove />
               </IconButton>
             </Tooltip>
-            <Box
-              sx={{ fontSize: 14, color: "black", mt: 1 }}
-            >{`${hours}H`}</Box>
+            <Box sx={{ fontSize: 14, color: "black" }}>{`${hours}H`}</Box>
             <Tooltip title="Expand time period by 6 hours">
               <IconButton
                 color="info"
@@ -847,6 +920,7 @@ function App() {
             direction="row"
             sx={{
               ml: 1,
+              height: 23,
               backgroundColor: cardColor2,
               border: "1px dashed grey",
             }}
@@ -863,7 +937,7 @@ function App() {
                 <Remove />
               </IconButton>
             </Tooltip>
-            <Box sx={{ fontSize: 14, color: "black", mt: 1 }}>{`${days}D`}</Box>
+            <Box sx={{ fontSize: 14, color: "black" }}>{`${days}D`}</Box>
             <Tooltip title="Expand time period by 1 day">
               <IconButton
                 color="primary"
@@ -881,6 +955,7 @@ function App() {
             direction="row"
             sx={{
               ml: 1,
+              height: 23,
               backgroundColor: cardColor3,
               border: "1px dashed grey",
             }}
@@ -897,9 +972,7 @@ function App() {
                 <Remove />
               </IconButton>
             </Tooltip>
-            <Box
-              sx={{ fontSize: 14, color: "black", mt: 1 }}
-            >{`${weeks}W`}</Box>
+            <Box sx={{ fontSize: 14, color: "black" }}>{`${weeks}W`}</Box>
             <Tooltip title="Expand time period by 1 week">
               <IconButton
                 color="info"
@@ -1009,7 +1082,7 @@ function App() {
                       else if (k === "ERRORS") f = "&filter=ERRORS";
                       window
                         .open(
-                          `${origin}/lsaf/filedownload/sdd%3A///general/biostat/apps/view/index.html?lsaf=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json&meta=/general/biostat/apps/gadam_jobs/gadam_jobs_info-metadata.json&key=data&title=%F0%9F%94%A8%20GADAM%20Jobs${f}`,
+                          `${origin}/lsaf/filedownload/sdd%3A///general/biostat/apps/view/index.html?lsaf=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/output/gadam_jobs_info.json&meta=/general/biostat/apps/gadam_jobs/gadam_jobs_info-metadata.json&key=data&title=%F0%9F%94%A8%20GADAM%20Jobs${f}`,
                           "_blank"
                         )
                         .focus();
@@ -1037,7 +1110,7 @@ function App() {
                   window
                     .open(
                       origin +
-                        "/lsaf/filedownload/sdd%3A///general/biostat/apps/view/index.html?lsaf=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json&meta=/general/biostat/apps/gadam_jobs/gadam_jobs_info-metadata.json&key=data&title=GADAM%20Jobs",
+                        "/lsaf/filedownload/sdd%3A///general/biostat/apps/view/index.html?lsaf=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/output/gadam_jobs_info.json&meta=/general/biostat/apps/gadam_jobs/gadam_jobs_info-metadata.json&key=data&title=GADAM%20Jobs",
                       "_blank"
                     )
                     .focus();
@@ -1073,7 +1146,6 @@ function App() {
             </CardActions>
           </Card>
         </Paper>
-
         <Paper sx={{ bgcolor: backgroundColor }}>
           <Card sx={{ m: 3, backgroundColor: cardColor1 }}>
             <CardHeader
@@ -1177,7 +1249,6 @@ function App() {
             </CardActions>
           </Card>
         </Paper>
-
         <Paper>
           <Card sx={{ m: 3, backgroundColor: cardColor1 }}>
             <CardHeader
@@ -1818,6 +1889,106 @@ function App() {
             </CardActions>
           </Card>
         </Paper>
+        <Paper>
+          <Card sx={{ m: 3, backgroundColor: cardColor3 }}>
+            <CardHeader
+              sx={{
+                color: "blue",
+                fontSize: 18,
+              }}
+              title={`Other issues`}
+            />
+            <CardContent>
+              {issues &&
+                Object.keys(issues).length > 0 &&
+                Object.keys(issues).map((k, id) => {
+                  const value = issues.noLead,
+                    tip =
+                      k === "noLead"
+                        ? `${value} missing Lead programmers`
+                        : k === "noLine"
+                        ? `${value} missing Line Managers`
+                        : null,
+                    message =
+                      k === "noLead"
+                        ? `Lead Programmers`
+                        : k === "noLine"
+                        ? `Line Managers`
+                        : null;
+                  console.log("k", k, value);
+                  return (
+                    <Tooltip key={"issues-" + id} title={`${tip}`}>
+                      <Badge
+                        badgeContent={value}
+                        overlap="circular"
+                        color={"error"}
+                      >
+                        <Chip
+                          sx={{
+                            mr: 1,
+                            mt: 0.5,
+                            mb: 1,
+                            backgroundColor: warningColor,
+                          }}
+                          label={`${message}`}
+                          // onClick={(e) => {
+                          //   console.log("e", e);
+                          //   if (e.ctrlKey) {
+                          //     window
+                          //       .open(
+                          //         dashStudyPrefix +
+                          //           k.reporting_event_path +
+                          //           "/documents/meta/dashstudy.json",
+                          //         "_blank"
+                          //       )
+                          //       .focus();
+                          //   } else {
+                          //     window
+                          //       .open(
+                          //         fileViewerPrefix + k.reporting_event_path,
+                          //         "_blank"
+                          //       )
+                          //       .focus();
+                          //   }
+                          // }}
+                        />
+                      </Badge>
+                    </Tooltip>
+                  );
+                })}
+            </CardContent>
+            <CardActions>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      origin +
+                        "/lsaf/webdav/repo/general/biostat/apps/view/index.html?lsaf=/general/biostat/apps/staff/staff.json&meta=/general/biostat/apps/staff/staff_meta.json&title=👩%20Staff",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                // startIcon={<AdbTwoTone />}
+              >
+                👩 Staff
+              </Button>
+              <Button
+                onClick={() => {
+                  window
+                    .open(
+                      origin +
+                        "/lsaf/webdav/repo/general/biostat/apps/view/index.html?lsaf=/general/biostat/apps/study_people/study_people.json&meta=/general/biostat/apps/study_people/study_people_meta.json&title=🧙%20Study%20People",
+                      "_blank"
+                    )
+                    .focus();
+                }}
+                // startIcon={<TvTwoTone />}
+              >
+                🧙 Study People
+              </Button>
+            </CardActions>
+          </Card>
+        </Paper>
       </Masonry>
       <Menu
         anchorEl={anchorEl}
@@ -1924,7 +2095,7 @@ function App() {
                 <a
                   href={
                     origin +
-                    "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/gadam_jobs_info.json"
+                    "/lsaf/webdav/repo/general/biostat/apps/fileviewer/index.html?file=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/output/gadam_jobs_info.json"
                   }
                   target="_blank"
                   rel="noreferrer"

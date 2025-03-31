@@ -1,101 +1,101 @@
 [
   {
-    "nreevents": 770,
-    "summfiles": 215546,
-    "summsize": 114916135261,
+    "nreevents": 968,
+    "summfiles": 285976,
+    "summsize": 178812567846,
     "status": "All",
     "compound": "",
     "indication": "",
     "study": "",
     "retype": "All",
-    "sizemb": 114916.14
+    "sizemb": 178812.57
   },
   {
-    "nreevents": 398,
-    "summfiles": 68767,
-    "summsize": 19993801281,
+    "nreevents": 493,
+    "summfiles": 96228,
+    "summsize": 28281474875,
     "status": "All",
     "compound": "All",
     "indication": "All",
     "study": "All",
     "retype": "cro oversight",
-    "sizemb": 19993.8
+    "sizemb": 28281.47
   },
   {
-    "nreevents": 372,
-    "summfiles": 146779,
-    "summsize": 94922333980,
+    "nreevents": 475,
+    "summfiles": 189748,
+    "summsize": 150531092971,
     "status": "All",
     "compound": "All",
     "indication": "All",
     "study": "All",
     "retype": "reporting event",
-    "sizemb": 94922.33
+    "sizemb": 150531.09
+  },
+  {
+    "nreevents": 34,
+    "summfiles": 7526,
+    "summsize": 3396300317,
+    "status": "development",
+    "compound": "All",
+    "indication": "All",
+    "study": "All",
+    "retype": "cro oversight",
+    "sizemb": 3396.3
   },
   {
     "nreevents": 52,
-    "summfiles": 12252,
-    "summsize": 4771026073,
-    "status": "development",
-    "compound": "All",
-    "indication": "All",
-    "study": "All",
-    "retype": "cro oversight",
-    "sizemb": 4771.03
-  },
-  {
-    "nreevents": 51,
-    "summfiles": 20545,
-    "summsize": 7027347415,
+    "summfiles": 25395,
+    "summsize": 20280037542,
     "status": "development",
     "compound": "All",
     "indication": "All",
     "study": "All",
     "retype": "reporting event",
-    "sizemb": 7027.35
+    "sizemb": 20280.04
   },
   {
-    "nreevents": 244,
-    "summfiles": 50133,
-    "summsize": 12481960218,
+    "nreevents": 325,
+    "summfiles": 79441,
+    "summsize": 21423322885,
     "status": "final",
     "compound": "All",
     "indication": "All",
     "study": "All",
     "retype": "cro oversight",
-    "sizemb": 12481.96
+    "sizemb": 21423.32
   },
   {
-    "nreevents": 218,
-    "summfiles": 75542,
-    "summsize": 22419763372,
+    "nreevents": 301,
+    "summfiles": 106044,
+    "summsize": 33486902997,
     "status": "final",
     "compound": "All",
     "indication": "All",
     "study": "All",
     "retype": "reporting event",
-    "sizemb": 22419.76
+    "sizemb": 33486.9
   },
   {
-    "nreevents": 102,
-    "summfiles": 6382,
-    "summsize": 2740814990,
+    "nreevents": 134,
+    "summfiles": 9261,
+    "summsize": 3461851673,
     "status": "gadam",
     "compound": "All",
     "indication": "All",
     "study": "All",
     "retype": "cro oversight",
-    "sizemb": 2740.81
+    "sizemb": 3461.85
   },
   {
-    "nreevents": 103,
-    "summfiles": 50692,
-    "summsize": 65475223193,
+    "nreevents": 122,
+    "summfiles": 58309,
+    "summsize": 96764152432,
     "status": "gadam",
     "compound": "All",
     "indication": "All",
     "study": "All",
     "retype": "reporting event",
-    "sizemb": 65475.22
+    "sizemb": 96764.15
   }
 ]

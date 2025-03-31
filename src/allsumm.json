@@ -5,10 +5,10 @@
     "indication": "All",
     "study": "All",
     "retype": "cro oversight",
-    "nreevents": 398,
-    "summfiles": 68767,
-    "summsize": 19993801281,
-    "sizemb": 19993.8
+    "nreevents": 493,
+    "summfiles": 96228,
+    "summsize": 28281474875,
+    "sizemb": 28281.47
   },
   {
     "status": "All",
@@ -16,10 +16,10 @@
     "indication": "All",
     "study": "All",
     "retype": "reporting event",
-    "nreevents": 372,
-    "summfiles": 146779,
-    "summsize": 94922333980,
-    "sizemb": 94922.33
+    "nreevents": 475,
+    "summfiles": 189748,
+    "summsize": 150531092971,
+    "sizemb": 150531.09
   },
   {
     "status": "development",
@@ -27,10 +27,10 @@
     "indication": "All",
     "study": "All",
     "retype": "",
-    "nreevents": 103,
-    "summfiles": 32797,
-    "summsize": 11798373488,
-    "sizemb": 11798.37
+    "nreevents": 86,
+    "summfiles": 32921,
+    "summsize": 23676337859,
+    "sizemb": 23676.34
   },
   {
     "status": "development",
@@ -38,10 +38,10 @@
     "indication": "All",
     "study": "All",
     "retype": "cro oversight",
-    "nreevents": 52,
-    "summfiles": 12252,
-    "summsize": 4771026073,
-    "sizemb": 4771.03
+    "nreevents": 34,
+    "summfiles": 7526,
+    "summsize": 3396300317,
+    "sizemb": 3396.3
   },
   {
     "status": "development",
@@ -49,10 +49,10 @@
     "indication": "All",
     "study": "All",
     "retype": "reporting event",
-    "nreevents": 51,
-    "summfiles": 20545,
-    "summsize": 7027347415,
-    "sizemb": 7027.35
+    "nreevents": 52,
+    "summfiles": 25395,
+    "summsize": 20280037542,
+    "sizemb": 20280.04
   },
   {
     "status": "development",
@@ -60,10 +60,32 @@
     "indication": "All",
     "study": "All",
     "retype": "",
-    "nreevents": 83,
-    "summfiles": 25853,
-    "summsize": 9904726205,
-    "sizemb": 9904.73
+    "nreevents": 71,
+    "summfiles": 25338,
+    "summsize": 21057878653,
+    "sizemb": 21057.88
+  },
+  {
+    "status": "development",
+    "compound": "argx-113",
+    "indication": "amr",
+    "study": "All",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 147,
+    "summsize": 8297612,
+    "sizemb": 8.3
+  },
+  {
+    "status": "development",
+    "compound": "argx-113",
+    "indication": "amr",
+    "study": "argx-113-2302",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 147,
+    "summsize": 8297612,
+    "sizemb": 8.3
   },
   {
     "status": "development",
@@ -71,21 +93,10 @@
     "indication": "bp",
     "study": "All",
     "retype": "",
-    "nreevents": 5,
-    "summfiles": 1063,
-    "summsize": 637859035,
-    "sizemb": 637.86
-  },
-  {
-    "status": "development",
-    "compound": "argx-113",
-    "indication": "bp",
-    "study": "argx-113-2009",
-    "retype": "",
     "nreevents": 3,
-    "summfiles": 721,
-    "summsize": 549190138,
-    "sizemb": 549.19
+    "summfiles": 472,
+    "summsize": 224478132,
+    "sizemb": 224.48
   },
   {
     "status": "development",
@@ -93,10 +104,10 @@
     "indication": "bp",
     "study": "argx-113-2010",
     "retype": "",
-    "nreevents": 2,
-    "summfiles": 342,
-    "summsize": 88668897,
-    "sizemb": 88.67
+    "nreevents": 3,
+    "summfiles": 472,
+    "summsize": 224478132,
+    "sizemb": 224.48
   },
   {
     "status": "development",
@@ -104,10 +115,21 @@
     "indication": "cidp",
     "study": "All",
     "retype": "",
-    "nreevents": 19,
-    "summfiles": 7031,
-    "summsize": 1467419210,
-    "sizemb": 1467.42
+    "nreevents": 17,
+    "summfiles": 6980,
+    "summsize": 3218412980,
+    "sizemb": 3218.41
+  },
+  {
+    "status": "development",
+    "compound": "argx-113",
+    "indication": "cidp",
+    "study": "argx-113-0000",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 164,
+    "summsize": 5669532,
+    "sizemb": 5.67
   },
   {
     "status": "development",
@@ -116,9 +138,9 @@
     "study": "argx-113-1802",
     "retype": "",
     "nreevents": 7,
-    "summfiles": 2421,
-    "summsize": 535307260,
-    "sizemb": 535.31
+    "summfiles": 5486,
+    "summsize": 3042425787,
+    "sizemb": 3042.43
   },
   {
     "status": "development",
@@ -126,21 +148,43 @@
     "indication": "cidp",
     "study": "argx-113-1902",
     "retype": "",
-    "nreevents": 11,
-    "summfiles": 4468,
-    "summsize": 925527794,
-    "sizemb": 925.53
+    "nreevents": 6,
+    "summfiles": 764,
+    "summsize": 54179428,
+    "sizemb": 54.18
   },
   {
     "status": "development",
     "compound": "argx-113",
     "indication": "cidp",
-    "study": "argx-113-9301",
+    "study": "argx-113-9302",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 142,
-    "summsize": 6584156,
-    "sizemb": 6.58
+    "nreevents": 3,
+    "summfiles": 566,
+    "summsize": 116138233,
+    "sizemb": 116.14
+  },
+  {
+    "status": "development",
+    "compound": "argx-113",
+    "indication": "hv",
+    "study": "All",
+    "retype": "",
+    "nreevents": 2,
+    "summfiles": 4,
+    "summsize": 85436,
+    "sizemb": 0.09
+  },
+  {
+    "status": "development",
+    "compound": "argx-113",
+    "indication": "hv",
+    "study": "argx-113-2405",
+    "retype": "",
+    "nreevents": 2,
+    "summfiles": 4,
+    "summsize": 85436,
+    "sizemb": 0.09
   },
   {
     "status": "development",
@@ -148,10 +192,10 @@
     "indication": "iim",
     "study": "All",
     "retype": "",
-    "nreevents": 7,
-    "summfiles": 3572,
-    "summsize": 622517586,
-    "sizemb": 622.52
+    "nreevents": 5,
+    "summfiles": 2475,
+    "summsize": 1714543952,
+    "sizemb": 1714.54
   },
   {
     "status": "development",
@@ -159,10 +203,10 @@
     "indication": "iim",
     "study": "argx-113-2007",
     "retype": "",
-    "nreevents": 6,
-    "summfiles": 3320,
-    "summsize": 487795085,
-    "sizemb": 487.8
+    "nreevents": 3,
+    "summfiles": 1681,
+    "summsize": 631464997,
+    "sizemb": 631.46
   },
   {
     "status": "development",
@@ -170,10 +214,10 @@
     "indication": "iim",
     "study": "argx-113-2011",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 252,
-    "summsize": 134722501,
-    "sizemb": 134.72
+    "nreevents": 2,
+    "summfiles": 794,
+    "summsize": 1083078955,
+    "sizemb": 1083.08
   },
   {
     "status": "development",
@@ -181,65 +225,43 @@
     "indication": "itp",
     "study": "All",
     "retype": "",
-    "nreevents": 19,
-    "summfiles": 6147,
-    "summsize": 2471734631,
-    "sizemb": 2471.73
+    "nreevents": 2,
+    "summfiles": 483,
+    "summsize": 23650362,
+    "sizemb": 23.65
   },
   {
     "status": "development",
     "compound": "argx-113",
     "indication": "itp",
-    "study": "argx-113-1803",
+    "study": "argx-113-9101",
     "retype": "",
     "nreevents": 2,
-    "summfiles": 261,
-    "summsize": 246928563,
-    "sizemb": 246.93
+    "summfiles": 483,
+    "summsize": 23650362,
+    "sizemb": 23.65
   },
   {
     "status": "development",
     "compound": "argx-113",
-    "indication": "itp",
-    "study": "argx-113-2004",
-    "retype": "",
-    "nreevents": 8,
-    "summfiles": 3560,
-    "summsize": 937617372,
-    "sizemb": 937.62
-  },
-  {
-    "status": "development",
-    "compound": "argx-113",
-    "indication": "itp",
-    "study": "argx-113-2005",
-    "retype": "",
-    "nreevents": 2,
-    "summfiles": 656,
-    "summsize": 274990003,
-    "sizemb": 274.99
-  },
-  {
-    "status": "development",
-    "compound": "argx-113",
-    "indication": "itp",
-    "study": "argx-113-9111",
+    "indication": "ln",
+    "study": "All",
     "retype": "",
     "nreevents": 1,
-    "summfiles": 179,
-    "summsize": 554163950,
-    "sizemb": 554.16
+    "summfiles": 111,
+    "summsize": 13136741,
+    "sizemb": 13.14
   },
   {
     "status": "development",
     "compound": "argx-113",
-    "indication": "itp",
-    "study": "argx-113-9112",
+    "indication": "ln",
+    "study": "argx-113-2202",
     "retype": "",
-    "nreevents": 6,
-    "summfiles": 1491,
-    "summsize": 458034743,
-    "sizemb": 458.03
+    "nreevents": 1,
+    "summfiles": 111,
+    "summsize": 13136741,
+    "sizemb": 13.14
   },
   {
     "status": "development",
@@ -247,32 +269,21 @@
     "indication": "mg",
     "study": "All",
     "retype": "",
-    "nreevents": 14,
-    "summfiles": 4177,
-    "summsize": 1840573954,
-    "sizemb": 1840.57
+    "nreevents": 28,
+    "summfiles": 8865,
+    "summsize": 3949756711,
+    "sizemb": 3949.76
   },
   {
     "status": "development",
     "compound": "argx-113",
     "indication": "mg",
-    "study": "argx-113-1704",
-    "retype": "",
-    "nreevents": 2,
-    "summfiles": 2218,
-    "summsize": 357850514,
-    "sizemb": 357.85
-  },
-  {
-    "status": "development",
-    "compound": "argx-113",
-    "indication": "mg",
-    "study": "argx-113-2001",
+    "study": "argx-113-0000",
     "retype": "",
     "nreevents": 1,
-    "summfiles": 147,
-    "summsize": 6241040,
-    "sizemb": 6.24
+    "summfiles": 229,
+    "summsize": 20954264,
+    "sizemb": 20.95
   },
   {
     "status": "development",
@@ -280,10 +291,21 @@
     "indication": "mg",
     "study": "argx-113-2002",
     "retype": "",
-    "nreevents": 4,
-    "summfiles": 1268,
-    "summsize": 506005648,
-    "sizemb": 506.01
+    "nreevents": 6,
+    "summfiles": 1664,
+    "summsize": 2001664878,
+    "sizemb": 2001.66
+  },
+  {
+    "status": "development",
+    "compound": "argx-113",
+    "indication": "mg",
+    "study": "argx-113-2003",
+    "retype": "",
+    "nreevents": 8,
+    "summfiles": 3548,
+    "summsize": 396160271,
+    "sizemb": 396.16
   },
   {
     "status": "development",
@@ -292,9 +314,9 @@
     "study": "argx-113-2006",
     "retype": "",
     "nreevents": 3,
-    "summfiles": 140,
-    "summsize": 30537276,
-    "sizemb": 30.54
+    "summfiles": 938,
+    "summsize": 214877803,
+    "sizemb": 214.88
   },
   {
     "status": "development",
@@ -302,98 +324,76 @@
     "indication": "mg",
     "study": "argx-113-2008",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 126,
-    "summsize": 19305951,
-    "sizemb": 19.31
+    "nreevents": 2,
+    "summfiles": 567,
+    "summsize": 486352821,
+    "sizemb": 486.35
   },
   {
     "status": "development",
     "compound": "argx-113",
     "indication": "mg",
-    "study": "argx-113-9004",
+    "study": "argx-113-2207",
     "retype": "",
     "nreevents": 1,
-    "summfiles": 123,
-    "summsize": 725211125,
-    "sizemb": 725.21
+    "summfiles": 125,
+    "summsize": 10373827,
+    "sizemb": 10.37
   },
   {
     "status": "development",
     "compound": "argx-113",
     "indication": "mg",
-    "study": "argx-113-9011",
+    "study": "argx-113-2308",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 31,
-    "summsize": 33374597,
-    "sizemb": 33.37
+    "nreevents": 3,
+    "summfiles": 267,
+    "summsize": 22483118,
+    "sizemb": 22.48
   },
   {
     "status": "development",
     "compound": "argx-113",
     "indication": "mg",
-    "study": "argx-113-9025",
+    "study": "argx-113-2315",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 124,
-    "summsize": 162047803,
-    "sizemb": 162.05
+    "nreevents": 3,
+    "summfiles": 68,
+    "summsize": 1460034,
+    "sizemb": 1.46
   },
   {
     "status": "development",
     "compound": "argx-113",
-    "indication": "pemphigus",
+    "indication": "mg",
+    "study": "argx-113-9041",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 1459,
+    "summsize": 795429695,
+    "sizemb": 795.43
+  },
+  {
+    "status": "development",
+    "compound": "argx-113",
+    "indication": "mn",
     "study": "All",
     "retype": "",
-    "nreevents": 4,
-    "summfiles": 499,
-    "summsize": 373863247,
-    "sizemb": 373.86
+    "nreevents": 2,
+    "summfiles": 616,
+    "summsize": 51257910,
+    "sizemb": 51.26
   },
   {
     "status": "development",
     "compound": "argx-113",
-    "indication": "pemphigus",
-    "study": "argx-113-1905",
+    "indication": "mn",
+    "study": "argx-113-2203",
     "retype": "",
-    "nreevents": 4,
-    "summfiles": 499,
-    "summsize": 373863247,
-    "sizemb": 373.86
-  },
-  {
-    "status": "development",
-    "compound": "argx-113",
-    "indication": "pots",
-    "study": "All",
-    "retype": "",
-    "nreevents": 7,
-    "summfiles": 1730,
-    "summsize": 514103640,
-    "sizemb": 514.1
-  },
-  {
-    "status": "development",
-    "compound": "argx-113",
-    "indication": "pots",
-    "study": "argx-113-2104",
-    "retype": "",
-    "nreevents": 6,
-    "summfiles": 1719,
-    "summsize": 506953832,
-    "sizemb": 506.95
-  },
-  {
-    "status": "development",
-    "compound": "argx-113",
-    "indication": "pots",
-    "study": "argx-113-2105",
-    "retype": "",
-    "nreevents": 1,
-    "summfiles": 11,
-    "summsize": 7149808,
-    "sizemb": 7.15
+    "nreevents": 2,
+    "summfiles": 616,
+    "summsize": 51257910,
+    "sizemb": 51.26
   },
   {
     "status": "development",
@@ -401,10 +401,10 @@
     "indication": "sjogren",
     "study": "All",
     "retype": "",
-    "nreevents": 6,
-    "summfiles": 667,
-    "summsize": 50408706,
-    "sizemb": 50.41
+    "nreevents": 5,
+    "summfiles": 2060,
+    "summsize": 304643007,
+    "sizemb": 304.64
   },
   {
     "status": "development",
@@ -412,10 +412,10 @@
     "indication": "sjogren",
     "study": "argx-113-2106",
     "retype": "",
-    "nreevents": 4,
-    "summfiles": 663,
-    "summsize": 50322674,
-    "sizemb": 50.32
+    "nreevents": 1,
+    "summfiles": 273,
+    "summsize": 17462193,
+    "sizemb": 17.46
   },
   {
     "status": "development",
@@ -423,10 +423,32 @@
     "indication": "sjogren",
     "study": "argx-113-2211",
     "retype": "",
-    "nreevents": 2,
-    "summfiles": 4,
-    "summsize": 86032,
-    "sizemb": 0.09
+    "nreevents": 4,
+    "summfiles": 1787,
+    "summsize": 287180814,
+    "sizemb": 287.18
+  },
+  {
+    "status": "development",
+    "compound": "argx-113",
+    "indication": "ted",
+    "study": "All",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 503,
+    "summsize": 112962000,
+    "sizemb": 112.96
+  },
+  {
+    "status": "development",
+    "compound": "argx-113",
+    "indication": "ted",
+    "study": "argx-113-2309",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 503,
+    "summsize": 112962000,
+    "sizemb": 112.96
   },
   {
     "status": "development",
@@ -434,10 +456,10 @@
     "indication": "x-ind",
     "study": "All",
     "retype": "",
-    "nreevents": 2,
-    "summfiles": 967,
-    "summsize": 1926246196,
-    "sizemb": 1926.25
+    "nreevents": 4,
+    "summfiles": 2622,
+    "summsize": 11436653810,
+    "sizemb": 11436.65
   },
   {
     "status": "development",
@@ -445,10 +467,10 @@
     "indication": "x-ind",
     "study": "argx-113-0000",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 603,
-    "summsize": 1861950125,
-    "sizemb": 1861.95
+    "nreevents": 2,
+    "summfiles": 1203,
+    "summsize": 8154497054,
+    "sizemb": 8154.5
   },
   {
     "status": "development",
@@ -456,10 +478,10 @@
     "indication": "x-ind",
     "study": "argx-113-9006",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 364,
-    "summsize": 64296071,
-    "sizemb": 64.3
+    "nreevents": 2,
+    "summfiles": 1419,
+    "summsize": 3282156756,
+    "sizemb": 3282.16
   },
   {
     "status": "development",
@@ -467,10 +489,54 @@
     "indication": "All",
     "study": "All",
     "retype": "",
-    "nreevents": 13,
-    "summfiles": 4823,
-    "summsize": 1595630365,
-    "sizemb": 1595.63
+    "nreevents": 6,
+    "summfiles": 3158,
+    "summsize": 1867106037,
+    "sizemb": 1867.11
+  },
+  {
+    "status": "development",
+    "compound": "argx-117",
+    "indication": "cidp",
+    "study": "All",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 20,
+    "summsize": 22236378,
+    "sizemb": 22.24
+  },
+  {
+    "status": "development",
+    "compound": "argx-117",
+    "indication": "cidp",
+    "study": "argx-117-2402",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 20,
+    "summsize": 22236378,
+    "sizemb": 22.24
+  },
+  {
+    "status": "development",
+    "compound": "argx-117",
+    "indication": "dgf",
+    "study": "All",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 197,
+    "summsize": 40396402,
+    "sizemb": 40.4
+  },
+  {
+    "status": "development",
+    "compound": "argx-117",
+    "indication": "dgf",
+    "study": "argx-117-2201",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 197,
+    "summsize": 40396402,
+    "sizemb": 40.4
   },
   {
     "status": "development",
@@ -478,10 +544,10 @@
     "indication": "mmn",
     "study": "All",
     "retype": "",
-    "nreevents": 11,
-    "summfiles": 4227,
-    "summsize": 1325975608,
-    "sizemb": 1325.98
+    "nreevents": 1,
+    "summfiles": 172,
+    "summsize": 37200844,
+    "sizemb": 37.2
   },
   {
     "status": "development",
@@ -489,21 +555,10 @@
     "indication": "mmn",
     "study": "argx-117-2002",
     "retype": "",
-    "nreevents": 4,
-    "summfiles": 1920,
-    "summsize": 460348718,
-    "sizemb": 460.35
-  },
-  {
-    "status": "development",
-    "compound": "argx-117",
-    "indication": "mmn",
-    "study": "argx-117-2003",
-    "retype": "",
-    "nreevents": 7,
-    "summfiles": 2307,
-    "summsize": 865626890,
-    "sizemb": 865.63
+    "nreevents": 1,
+    "summfiles": 172,
+    "summsize": 37200844,
+    "sizemb": 37.2
   },
   {
     "status": "development",
@@ -511,10 +566,10 @@
     "indication": "x-ind",
     "study": "All",
     "retype": "",
-    "nreevents": 2,
-    "summfiles": 596,
-    "summsize": 269654757,
-    "sizemb": 269.65
+    "nreevents": 3,
+    "summfiles": 2769,
+    "summsize": 1767272413,
+    "sizemb": 1767.27
   },
   {
     "status": "development",
@@ -522,10 +577,10 @@
     "indication": "x-ind",
     "study": "argx-117-0000",
     "retype": "",
-    "nreevents": 2,
-    "summfiles": 596,
-    "summsize": 269654757,
-    "sizemb": 269.65
+    "nreevents": 3,
+    "summfiles": 2769,
+    "summsize": 1767272413,
+    "sizemb": 1767.27
   },
   {
     "status": "development",
@@ -533,10 +588,10 @@
     "indication": "All",
     "study": "All",
     "retype": "",
-    "nreevents": 7,
-    "summfiles": 2121,
-    "summsize": 298016918,
-    "sizemb": 298.02
+    "nreevents": 8,
+    "summfiles": 4423,
+    "summsize": 751310243,
+    "sizemb": 751.31
   },
   {
     "status": "development",
@@ -544,10 +599,10 @@
     "indication": "cms",
     "study": "All",
     "retype": "",
-    "nreevents": 2,
-    "summfiles": 1535,
-    "summsize": 101123756,
-    "sizemb": 101.12
+    "nreevents": 7,
+    "summfiles": 4090,
+    "summsize": 644185078,
+    "sizemb": 644.19
   },
   {
     "status": "development",
@@ -555,10 +610,10 @@
     "indication": "cms",
     "study": "argx-119-2301",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 1175,
-    "summsize": 77369679,
-    "sizemb": 77.37
+    "nreevents": 2,
+    "summfiles": 1807,
+    "summsize": 234005746,
+    "sizemb": 234.01
   },
   {
     "status": "development",
@@ -566,32 +621,10 @@
     "indication": "cms",
     "study": "argx-119-2302",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 360,
-    "summsize": 23754077,
-    "sizemb": 23.75
-  },
-  {
-    "status": "development",
-    "compound": "argx-119",
-    "indication": "hv",
-    "study": "All",
-    "retype": "",
-    "nreevents": 3,
-    "summfiles": 142,
-    "summsize": 90803644,
-    "sizemb": 90.8
-  },
-  {
-    "status": "development",
-    "compound": "argx-119",
-    "indication": "hv",
-    "study": "argx-119-2201",
-    "retype": "",
-    "nreevents": 3,
-    "summfiles": 142,
-    "summsize": 90803644,
-    "sizemb": 90.8
+    "nreevents": 5,
+    "summfiles": 2283,
+    "summsize": 410179332,
+    "sizemb": 410.18
   },
   {
     "status": "development",
@@ -599,10 +632,10 @@
     "indication": "x-ind",
     "study": "All",
     "retype": "",
-    "nreevents": 2,
-    "summfiles": 444,
-    "summsize": 106089518,
-    "sizemb": 106.09
+    "nreevents": 1,
+    "summfiles": 333,
+    "summsize": 107125165,
+    "sizemb": 107.13
   },
   {
     "status": "development",
@@ -610,10 +643,43 @@
     "indication": "x-ind",
     "study": "argx-119-0000",
     "retype": "",
-    "nreevents": 2,
-    "summfiles": 444,
-    "summsize": 106089518,
-    "sizemb": 106.09
+    "nreevents": 1,
+    "summfiles": 333,
+    "summsize": 107125165,
+    "sizemb": 107.13
+  },
+  {
+    "status": "development",
+    "compound": "test",
+    "indication": "All",
+    "study": "All",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 2,
+    "summsize": 42926,
+    "sizemb": 0.04
+  },
+  {
+    "status": "development",
+    "compound": "test",
+    "indication": "indic",
+    "study": "All",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 2,
+    "summsize": 42926,
+    "sizemb": 0.04
+  },
+  {
+    "status": "development",
+    "compound": "test",
+    "indication": "indic",
+    "study": "cdisc-pilot-0001",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 2,
+    "summsize": 42926,
+    "sizemb": 0.04
   },
   {
     "status": "final",
@@ -621,10 +687,10 @@
     "indication": "All",
     "study": "All",
     "retype": "",
-    "nreevents": 462,
-    "summfiles": 125675,
-    "summsize": 34901723590,
-    "sizemb": 34901.72
+    "nreevents": 626,
+    "summfiles": 185485,
+    "summsize": 54910225882,
+    "sizemb": 54910.23
   },
   {
     "status": "final",
@@ -632,10 +698,10 @@
     "indication": "All",
     "study": "All",
     "retype": "cro oversight",
-    "nreevents": 244,
-    "summfiles": 50133,
-    "summsize": 12481960218,
-    "sizemb": 12481.96
+    "nreevents": 325,
+    "summfiles": 79441,
+    "summsize": 21423322885,
+    "sizemb": 21423.32
   },
   {
     "status": "final",
@@ -643,10 +709,10 @@
     "indication": "All",
     "study": "All",
     "retype": "reporting event",
-    "nreevents": 218,
-    "summfiles": 75542,
-    "summsize": 22419763372,
-    "sizemb": 22419.76
+    "nreevents": 301,
+    "summfiles": 106044,
+    "summsize": 33486902997,
+    "sizemb": 33486.9
   },
   {
     "status": "final",
@@ -656,8 +722,8 @@
     "retype": "",
     "nreevents": 18,
     "summfiles": 6689,
-    "summsize": 1706575153,
-    "sizemb": 1706.58
+    "summsize": 1706570002,
+    "sizemb": 1706.57
   },
   {
     "status": "final",
@@ -667,8 +733,8 @@
     "retype": "",
     "nreevents": 18,
     "summfiles": 6689,
-    "summsize": 1706575153,
-    "sizemb": 1706.58
+    "summsize": 1706570002,
+    "sizemb": 1706.57
   },
   {
     "status": "final",
@@ -711,8 +777,8 @@
     "retype": "",
     "nreevents": 5,
     "summfiles": 1674,
-    "summsize": 351389793,
-    "sizemb": 351.39
+    "summsize": 351384642,
+    "sizemb": 351.38
   },
   {
     "status": "final",
@@ -720,10 +786,10 @@
     "indication": "All",
     "study": "All",
     "retype": "",
-    "nreevents": 390,
-    "summfiles": 104367,
-    "summsize": 29497434955,
-    "sizemb": 29497.43
+    "nreevents": 522,
+    "summfiles": 153864,
+    "summsize": 45847860415,
+    "sizemb": 45847.86
   },
   {
     "status": "final",
@@ -731,10 +797,10 @@
     "indication": "bp",
     "study": "All",
     "retype": "",
-    "nreevents": 9,
-    "summfiles": 2537,
-    "summsize": 195375320,
-    "sizemb": 195.38
+    "nreevents": 19,
+    "summfiles": 7288,
+    "summsize": 1575556383,
+    "sizemb": 1575.56
   },
   {
     "status": "final",
@@ -742,10 +808,21 @@
     "indication": "bp",
     "study": "argx-113-2009",
     "retype": "",
-    "nreevents": 9,
-    "summfiles": 2537,
-    "summsize": 195375320,
-    "sizemb": 195.38
+    "nreevents": 18,
+    "summfiles": 7243,
+    "summsize": 1573125016,
+    "sizemb": 1573.13
+  },
+  {
+    "status": "final",
+    "compound": "argx-113",
+    "indication": "bp",
+    "study": "argx-113-2010",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 45,
+    "summsize": 2431367,
+    "sizemb": 2.43
   },
   {
     "status": "final",
@@ -753,10 +830,10 @@
     "indication": "cidp",
     "study": "All",
     "retype": "",
-    "nreevents": 69,
-    "summfiles": 23228,
-    "summsize": 4704912621,
-    "sizemb": 4704.91
+    "nreevents": 103,
+    "summfiles": 36420,
+    "summsize": 4828731912,
+    "sizemb": 4828.73
   },
   {
     "status": "final",
@@ -764,10 +841,10 @@
     "indication": "cidp",
     "study": "argx-113-1802",
     "retype": "",
-    "nreevents": 34,
-    "summfiles": 13037,
-    "summsize": 3729437937,
-    "sizemb": 3729.44
+    "nreevents": 50,
+    "summfiles": 18498,
+    "summsize": 2537788090,
+    "sizemb": 2537.79
   },
   {
     "status": "final",
@@ -775,10 +852,10 @@
     "indication": "cidp",
     "study": "argx-113-1902",
     "retype": "",
-    "nreevents": 18,
-    "summfiles": 5305,
-    "summsize": 396433012,
-    "sizemb": 396.43
+    "nreevents": 34,
+    "summfiles": 12814,
+    "summsize": 1704496884,
+    "sizemb": 1704.5
   },
   {
     "status": "final",
@@ -786,10 +863,10 @@
     "indication": "cidp",
     "study": "argx-113-9301",
     "retype": "",
-    "nreevents": 7,
-    "summfiles": 2174,
-    "summsize": 287856975,
-    "sizemb": 287.86
+    "nreevents": 9,
+    "summfiles": 2389,
+    "summsize": 295777022,
+    "sizemb": 295.78
   },
   {
     "status": "final",
@@ -799,7 +876,7 @@
     "retype": "",
     "nreevents": 1,
     "summfiles": 247,
-    "summsize": 31983267,
+    "summsize": 31981297,
     "sizemb": 31.98
   },
   {
@@ -809,9 +886,9 @@
     "study": "argx-113-9303",
     "retype": "",
     "nreevents": 9,
-    "summfiles": 2465,
-    "summsize": 259201430,
-    "sizemb": 259.2
+    "summfiles": 2472,
+    "summsize": 258688619,
+    "sizemb": 258.69
   },
   {
     "status": "final",
@@ -819,10 +896,10 @@
     "indication": "hv",
     "study": "All",
     "retype": "",
-    "nreevents": 23,
-    "summfiles": 2860,
-    "summsize": 253820066,
-    "sizemb": 253.82
+    "nreevents": 24,
+    "summfiles": 3662,
+    "summsize": 302080752,
+    "sizemb": 302.08
   },
   {
     "status": "final",
@@ -841,10 +918,10 @@
     "indication": "hv",
     "study": "argx-113-2102",
     "retype": "",
-    "nreevents": 7,
-    "summfiles": 758,
-    "summsize": 46981360,
-    "sizemb": 46.98
+    "nreevents": 8,
+    "summfiles": 900,
+    "summsize": 56603834,
+    "sizemb": 56.6
   },
   {
     "status": "final",
@@ -853,9 +930,9 @@
     "study": "argx-113-2201",
     "retype": "",
     "nreevents": 2,
-    "summfiles": 6,
-    "summsize": 145978,
-    "sizemb": 0.15
+    "summfiles": 638,
+    "summsize": 37597261,
+    "sizemb": 37.6
   },
   {
     "status": "final",
@@ -864,9 +941,9 @@
     "study": "argx-113-2204",
     "retype": "",
     "nreevents": 4,
-    "summfiles": 521,
-    "summsize": 106039875,
-    "sizemb": 106.04
+    "summfiles": 523,
+    "summsize": 106007883,
+    "sizemb": 106.01
   },
   {
     "status": "final",
@@ -875,9 +952,9 @@
     "study": "argx-113-2303",
     "retype": "",
     "nreevents": 4,
-    "summfiles": 837,
-    "summsize": 49669382,
-    "sizemb": 49.67
+    "summfiles": 839,
+    "summsize": 49685925,
+    "sizemb": 49.69
   },
   {
     "status": "final",
@@ -886,9 +963,9 @@
     "study": "argx-113-2312",
     "retype": "",
     "nreevents": 3,
-    "summfiles": 502,
-    "summsize": 43341757,
-    "sizemb": 43.34
+    "summfiles": 526,
+    "summsize": 44544135,
+    "sizemb": 44.54
   },
   {
     "status": "final",
@@ -896,10 +973,10 @@
     "indication": "iim",
     "study": "All",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 15,
-    "summsize": 252519,
-    "sizemb": 0.25
+    "nreevents": 15,
+    "summfiles": 7161,
+    "summsize": 1136345989,
+    "sizemb": 1136.35
   },
   {
     "status": "final",
@@ -907,10 +984,21 @@
     "indication": "iim",
     "study": "argx-113-2007",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 15,
-    "summsize": 252519,
-    "sizemb": 0.25
+    "nreevents": 13,
+    "summfiles": 6996,
+    "summsize": 1116701720,
+    "sizemb": 1116.7
+  },
+  {
+    "status": "final",
+    "compound": "argx-113",
+    "indication": "iim",
+    "study": "argx-113-2011",
+    "retype": "",
+    "nreevents": 2,
+    "summfiles": 165,
+    "summsize": 19644269,
+    "sizemb": 19.64
   },
   {
     "status": "final",
@@ -918,10 +1006,10 @@
     "indication": "itp",
     "study": "All",
     "retype": "",
-    "nreevents": 91,
-    "summfiles": 14258,
-    "summsize": 6499287691,
-    "sizemb": 6499.29
+    "nreevents": 112,
+    "summfiles": 21142,
+    "summsize": 9107299049,
+    "sizemb": 9107.3
   },
   {
     "status": "final",
@@ -942,8 +1030,8 @@
     "retype": "",
     "nreevents": 2,
     "summfiles": 209,
-    "summsize": 6549702,
-    "sizemb": 6.55
+    "summsize": 6560791,
+    "sizemb": 6.56
   },
   {
     "status": "final",
@@ -952,9 +1040,9 @@
     "study": "argx-113-1801",
     "retype": "",
     "nreevents": 14,
-    "summfiles": 5322,
-    "summsize": 1578242018,
-    "sizemb": 1578.24
+    "summfiles": 5561,
+    "summsize": 1585395774,
+    "sizemb": 1585.4
   },
   {
     "status": "final",
@@ -962,10 +1050,10 @@
     "indication": "itp",
     "study": "argx-113-1803",
     "retype": "",
-    "nreevents": 16,
-    "summfiles": 2205,
-    "summsize": 451003699,
-    "sizemb": 451
+    "nreevents": 19,
+    "summfiles": 3210,
+    "summsize": 813341821,
+    "sizemb": 813.34
   },
   {
     "status": "final",
@@ -973,10 +1061,10 @@
     "indication": "itp",
     "study": "argx-113-2004",
     "retype": "",
-    "nreevents": 12,
-    "summfiles": 1051,
-    "summsize": 1209423853,
-    "sizemb": 1209.42
+    "nreevents": 20,
+    "summfiles": 4555,
+    "summsize": 2149006344,
+    "sizemb": 2149.01
   },
   {
     "status": "final",
@@ -984,10 +1072,10 @@
     "indication": "itp",
     "study": "argx-113-2005",
     "retype": "",
-    "nreevents": 8,
-    "summfiles": 946,
-    "summsize": 515914141,
-    "sizemb": 515.91
+    "nreevents": 10,
+    "summfiles": 1600,
+    "summsize": 790559552,
+    "sizemb": 790.56
   },
   {
     "status": "final",
@@ -995,10 +1083,10 @@
     "indication": "itp",
     "study": "argx-113-9101",
     "retype": "",
-    "nreevents": 6,
-    "summfiles": 537,
-    "summsize": 27247454,
-    "sizemb": 27.25
+    "nreevents": 5,
+    "summfiles": 258,
+    "summsize": 14182055,
+    "sizemb": 14.18
   },
   {
     "status": "final",
@@ -1007,9 +1095,9 @@
     "study": "argx-113-9103",
     "retype": "",
     "nreevents": 7,
-    "summfiles": 264,
-    "summsize": 14267298,
-    "sizemb": 14.27
+    "summfiles": 266,
+    "summsize": 14222381,
+    "sizemb": 14.22
   },
   {
     "status": "final",
@@ -1017,10 +1105,10 @@
     "indication": "itp",
     "study": "argx-113-9111",
     "retype": "",
-    "nreevents": 8,
-    "summfiles": 1991,
-    "summsize": 1255795070,
-    "sizemb": 1255.8
+    "nreevents": 10,
+    "summfiles": 2173,
+    "summsize": 1803768304,
+    "sizemb": 1803.77
   },
   {
     "status": "final",
@@ -1028,10 +1116,10 @@
     "indication": "itp",
     "study": "argx-113-9112",
     "retype": "",
-    "nreevents": 4,
-    "summfiles": 461,
-    "summsize": 520789338,
-    "sizemb": 520.79
+    "nreevents": 11,
+    "summfiles": 2026,
+    "summsize": 1008392901,
+    "sizemb": 1008.39
   },
   {
     "status": "final",
@@ -1040,9 +1128,9 @@
     "study": "argx-113-9113",
     "retype": "",
     "nreevents": 13,
-    "summfiles": 1247,
-    "summsize": 915054867,
-    "sizemb": 915.05
+    "summfiles": 1259,
+    "summsize": 916868875,
+    "sizemb": 916.87
   },
   {
     "status": "final",
@@ -1051,9 +1139,9 @@
     "study": "All",
     "retype": "",
     "nreevents": 2,
-    "summfiles": 289,
-    "summsize": 47025996,
-    "sizemb": 47.03
+    "summfiles": 304,
+    "summsize": 62524022,
+    "sizemb": 62.52
   },
   {
     "status": "final",
@@ -1062,9 +1150,9 @@
     "study": "argx-113-2202",
     "retype": "",
     "nreevents": 2,
-    "summfiles": 289,
-    "summsize": 47025996,
-    "sizemb": 47.03
+    "summfiles": 304,
+    "summsize": 62524022,
+    "sizemb": 62.52
   },
   {
     "status": "final",
@@ -1072,10 +1160,21 @@
     "indication": "mg",
     "study": "All",
     "retype": "",
-    "nreevents": 126,
-    "summfiles": 50147,
-    "summsize": 9181337718,
-    "sizemb": 9181.34
+    "nreevents": 149,
+    "summfiles": 59855,
+    "summsize": 14488416892,
+    "sizemb": 14488.42
+  },
+  {
+    "status": "final",
+    "compound": "argx-113",
+    "indication": "mg",
+    "study": "argx-113-0000",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 410,
+    "summsize": 35907248,
+    "sizemb": 35.91
   },
   {
     "status": "final",
@@ -1085,7 +1184,7 @@
     "retype": "",
     "nreevents": 1,
     "summfiles": 98,
-    "summsize": 7001380,
+    "summsize": 7001732,
     "sizemb": 7
   },
   {
@@ -1094,10 +1193,10 @@
     "indication": "mg",
     "study": "argx-113-1704",
     "retype": "",
-    "nreevents": 17,
-    "summfiles": 8227,
-    "summsize": 1865112762,
-    "sizemb": 1865.11
+    "nreevents": 19,
+    "summfiles": 10931,
+    "summsize": 2266492702,
+    "sizemb": 2266.49
   },
   {
     "status": "final",
@@ -1105,10 +1204,10 @@
     "indication": "mg",
     "study": "argx-113-1705",
     "retype": "",
-    "nreevents": 17,
-    "summfiles": 2716,
-    "summsize": 439869485,
-    "sizemb": 439.87
+    "nreevents": 18,
+    "summfiles": 2860,
+    "summsize": 451919939,
+    "sizemb": 451.92
   },
   {
     "status": "final",
@@ -1116,10 +1215,10 @@
     "indication": "mg",
     "study": "argx-113-2001",
     "retype": "",
-    "nreevents": 17,
-    "summfiles": 12904,
-    "summsize": 1505602676,
-    "sizemb": 1505.6
+    "nreevents": 18,
+    "summfiles": 13403,
+    "summsize": 1567590907,
+    "sizemb": 1567.59
   },
   {
     "status": "final",
@@ -1127,10 +1226,10 @@
     "indication": "mg",
     "study": "argx-113-2002",
     "retype": "",
-    "nreevents": 20,
-    "summfiles": 14747,
-    "summsize": 2993701619,
-    "sizemb": 2993.7
+    "nreevents": 28,
+    "summfiles": 19552,
+    "summsize": 6584237970,
+    "sizemb": 6584.24
   },
   {
     "status": "final",
@@ -1139,9 +1238,42 @@
     "study": "argx-113-2003",
     "retype": "",
     "nreevents": 14,
-    "summfiles": 4516,
-    "summsize": 464221531,
-    "sizemb": 464.22
+    "summfiles": 4597,
+    "summsize": 627099036,
+    "sizemb": 627.1
+  },
+  {
+    "status": "final",
+    "compound": "argx-113",
+    "indication": "mg",
+    "study": "argx-113-2006",
+    "retype": "",
+    "nreevents": 4,
+    "summfiles": 306,
+    "summsize": 72782146,
+    "sizemb": 72.78
+  },
+  {
+    "status": "final",
+    "compound": "argx-113",
+    "indication": "mg",
+    "study": "argx-113-2008",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 123,
+    "summsize": 32715878,
+    "sizemb": 32.72
+  },
+  {
+    "status": "final",
+    "compound": "argx-113",
+    "indication": "mg",
+    "study": "argx-113-2315",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 147,
+    "summsize": 8724854,
+    "sizemb": 8.72
   },
   {
     "status": "final",
@@ -1151,7 +1283,7 @@
     "retype": "",
     "nreevents": 1,
     "summfiles": 77,
-    "summsize": 2901714,
+    "summsize": 2901773,
     "sizemb": 2.9
   },
   {
@@ -1162,7 +1294,7 @@
     "retype": "",
     "nreevents": 1,
     "summfiles": 44,
-    "summsize": 3064222,
+    "summsize": 3064277,
     "sizemb": 3.06
   },
   {
@@ -1171,10 +1303,10 @@
     "indication": "mg",
     "study": "argx-113-9004",
     "retype": "",
-    "nreevents": 3,
-    "summfiles": 409,
-    "summsize": 119067565,
-    "sizemb": 119.07
+    "nreevents": 4,
+    "summfiles": 532,
+    "summsize": 844278857,
+    "sizemb": 844.28
   },
   {
     "status": "final",
@@ -1182,10 +1314,10 @@
     "indication": "mg",
     "study": "argx-113-9011",
     "retype": "",
-    "nreevents": 6,
-    "summfiles": 1125,
-    "summsize": 179783087,
-    "sizemb": 179.78
+    "nreevents": 7,
+    "summfiles": 1156,
+    "summsize": 213158106,
+    "sizemb": 213.16
   },
   {
     "status": "final",
@@ -1195,8 +1327,8 @@
     "retype": "",
     "nreevents": 3,
     "summfiles": 160,
-    "summsize": 12414933,
-    "sizemb": 12.41
+    "summsize": 12415057,
+    "sizemb": 12.42
   },
   {
     "status": "final",
@@ -1206,7 +1338,7 @@
     "retype": "",
     "nreevents": 1,
     "summfiles": 89,
-    "summsize": 8729479,
+    "summsize": 8729543,
     "sizemb": 8.73
   },
   {
@@ -1216,9 +1348,9 @@
     "study": "argx-113-9021",
     "retype": "",
     "nreevents": 8,
-    "summfiles": 1677,
-    "summsize": 611465525,
-    "sizemb": 611.47
+    "summfiles": 1826,
+    "summsize": 616414650,
+    "sizemb": 616.41
   },
   {
     "status": "final",
@@ -1227,9 +1359,9 @@
     "study": "argx-113-9022",
     "retype": "",
     "nreevents": 1,
-    "summfiles": 643,
-    "summsize": 175110333,
-    "sizemb": 175.11
+    "summfiles": 644,
+    "summsize": 175214069,
+    "sizemb": 175.21
   },
   {
     "status": "final",
@@ -1238,9 +1370,9 @@
     "study": "argx-113-9023",
     "retype": "",
     "nreevents": 6,
-    "summfiles": 704,
-    "summsize": 112004569,
-    "sizemb": 112
+    "summfiles": 750,
+    "summsize": 113560538,
+    "sizemb": 113.56
   },
   {
     "status": "final",
@@ -1248,10 +1380,10 @@
     "indication": "mg",
     "study": "argx-113-9025",
     "retype": "",
-    "nreevents": 3,
-    "summfiles": 623,
-    "summsize": 68825167,
-    "sizemb": 68.83
+    "nreevents": 4,
+    "summfiles": 751,
+    "summsize": 231068301,
+    "sizemb": 231.07
   },
   {
     "status": "final",
@@ -1259,10 +1391,10 @@
     "indication": "mg",
     "study": "argx-113-9031",
     "retype": "",
-    "nreevents": 4,
-    "summfiles": 844,
-    "summsize": 517925538,
-    "sizemb": 517.93
+    "nreevents": 5,
+    "summfiles": 852,
+    "summsize": 518554741,
+    "sizemb": 518.55
   },
   {
     "status": "final",
@@ -1271,9 +1403,9 @@
     "study": "argx-113-9041",
     "retype": "",
     "nreevents": 3,
-    "summfiles": 544,
-    "summsize": 94536133,
-    "sizemb": 94.54
+    "summfiles": 547,
+    "summsize": 94584568,
+    "sizemb": 94.58
   },
   {
     "status": "final",
@@ -1281,10 +1413,10 @@
     "indication": "mn",
     "study": "All",
     "retype": "",
-    "nreevents": 4,
-    "summfiles": 274,
-    "summsize": 65494608,
-    "sizemb": 65.49
+    "nreevents": 5,
+    "summfiles": 968,
+    "summsize": 175618288,
+    "sizemb": 175.62
   },
   {
     "status": "final",
@@ -1292,10 +1424,10 @@
     "indication": "mn",
     "study": "argx-113-2203",
     "retype": "",
-    "nreevents": 4,
-    "summfiles": 274,
-    "summsize": 65494608,
-    "sizemb": 65.49
+    "nreevents": 5,
+    "summfiles": 968,
+    "summsize": 175618288,
+    "sizemb": 175.62
   },
   {
     "status": "final",
@@ -1303,10 +1435,10 @@
     "indication": "pemphigus",
     "study": "All",
     "retype": "",
-    "nreevents": 53,
-    "summfiles": 8620,
-    "summsize": 3260470664,
-    "sizemb": 3260.47
+    "nreevents": 61,
+    "summfiles": 10629,
+    "summsize": 3816481214,
+    "sizemb": 3816.48
   },
   {
     "status": "final",
@@ -1315,9 +1447,9 @@
     "study": "argx-113-0000",
     "retype": "",
     "nreevents": 1,
-    "summfiles": 375,
-    "summsize": 658151592,
-    "sizemb": 658.15
+    "summfiles": 377,
+    "summsize": 658445777,
+    "sizemb": 658.45
   },
   {
     "status": "final",
@@ -1326,9 +1458,9 @@
     "study": "argx-113-1701",
     "retype": "",
     "nreevents": 4,
-    "summfiles": 387,
-    "summsize": 16668733,
-    "sizemb": 16.67
+    "summfiles": 389,
+    "summsize": 16377879,
+    "sizemb": 16.38
   },
   {
     "status": "final",
@@ -1336,10 +1468,10 @@
     "indication": "pemphigus",
     "study": "argx-113-1904",
     "retype": "",
-    "nreevents": 16,
-    "summfiles": 4266,
-    "summsize": 1285676486,
-    "sizemb": 1285.68
+    "nreevents": 17,
+    "summfiles": 4273,
+    "summsize": 1285981605,
+    "sizemb": 1285.98
   },
   {
     "status": "final",
@@ -1347,10 +1479,10 @@
     "indication": "pemphigus",
     "study": "argx-113-1905",
     "retype": "",
-    "nreevents": 12,
-    "summfiles": 1704,
-    "summsize": 1086507084,
-    "sizemb": 1086.51
+    "nreevents": 17,
+    "summfiles": 2693,
+    "summsize": 1530153790,
+    "sizemb": 1530.15
   },
   {
     "status": "final",
@@ -1359,9 +1491,9 @@
     "study": "argx-113-9201",
     "retype": "",
     "nreevents": 4,
-    "summfiles": 529,
-    "summsize": 35158531,
-    "sizemb": 35.16
+    "summfiles": 1039,
+    "summsize": 90846497,
+    "sizemb": 90.85
   },
   {
     "status": "final",
@@ -1370,9 +1502,9 @@
     "study": "argx-113-9202",
     "retype": "",
     "nreevents": 13,
-    "summfiles": 1054,
-    "summsize": 142606864,
-    "sizemb": 142.61
+    "summfiles": 1347,
+    "summsize": 161247073,
+    "sizemb": 161.25
   },
   {
     "status": "final",
@@ -1380,10 +1512,10 @@
     "indication": "pemphigus",
     "study": "argx-113-9203",
     "retype": "",
-    "nreevents": 3,
-    "summfiles": 305,
-    "summsize": 35701374,
-    "sizemb": 35.7
+    "nreevents": 5,
+    "summfiles": 511,
+    "summsize": 73428593,
+    "sizemb": 73.43
   },
   {
     "status": "final",
@@ -1391,10 +1523,21 @@
     "indication": "pots",
     "study": "All",
     "retype": "",
-    "nreevents": 2,
-    "summfiles": 6,
-    "summsize": 97538,
-    "sizemb": 0.1
+    "nreevents": 9,
+    "summfiles": 1739,
+    "summsize": 519719309,
+    "sizemb": 519.72
+  },
+  {
+    "status": "final",
+    "compound": "argx-113",
+    "indication": "pots",
+    "study": "argx-113-2104",
+    "retype": "",
+    "nreevents": 6,
+    "summfiles": 1722,
+    "summsize": 512471963,
+    "sizemb": 512.47
   },
   {
     "status": "final",
@@ -1402,10 +1545,76 @@
     "indication": "pots",
     "study": "argx-113-2105",
     "retype": "",
+    "nreevents": 3,
+    "summfiles": 17,
+    "summsize": 7247346,
+    "sizemb": 7.25
+  },
+  {
+    "status": "final",
+    "compound": "argx-113",
+    "indication": "sjogren",
+    "study": "All",
+    "retype": "",
+    "nreevents": 7,
+    "summfiles": 897,
+    "summsize": 178677579,
+    "sizemb": 178.68
+  },
+  {
+    "status": "final",
+    "compound": "argx-113",
+    "indication": "sjogren",
+    "study": "argx-113-2106",
+    "retype": "",
+    "nreevents": 4,
+    "summfiles": 489,
+    "summsize": 71080115,
+    "sizemb": 71.08
+  },
+  {
+    "status": "final",
+    "compound": "argx-113",
+    "indication": "sjogren",
+    "study": "argx-113-2211",
+    "retype": "",
+    "nreevents": 3,
+    "summfiles": 408,
+    "summsize": 107597464,
+    "sizemb": 107.6
+  },
+  {
+    "status": "final",
+    "compound": "argx-113",
+    "indication": "ted",
+    "study": "All",
+    "retype": "",
+    "nreevents": 5,
+    "summfiles": 585,
+    "summsize": 39694767,
+    "sizemb": 39.69
+  },
+  {
+    "status": "final",
+    "compound": "argx-113",
+    "indication": "ted",
+    "study": "argx-113-2301",
+    "retype": "",
+    "nreevents": 3,
+    "summfiles": 237,
+    "summsize": 15824532,
+    "sizemb": 15.82
+  },
+  {
+    "status": "final",
+    "compound": "argx-113",
+    "indication": "ted",
+    "study": "argx-113-2309",
+    "retype": "",
     "nreevents": 2,
-    "summfiles": 6,
-    "summsize": 97538,
-    "sizemb": 0.1
+    "summfiles": 348,
+    "summsize": 23870235,
+    "sizemb": 23.87
   },
   {
     "status": "final",
@@ -1413,10 +1622,10 @@
     "indication": "x-ind",
     "study": "All",
     "retype": "",
-    "nreevents": 10,
-    "summfiles": 2133,
-    "summsize": 5289360214,
-    "sizemb": 5289.36
+    "nreevents": 11,
+    "summfiles": 3214,
+    "summsize": 9616714259,
+    "sizemb": 9616.71
   },
   {
     "status": "final",
@@ -1425,9 +1634,9 @@
     "study": "argx-113-0000",
     "retype": "",
     "nreevents": 6,
-    "summfiles": 1853,
-    "summsize": 5269704223,
-    "sizemb": 5269.7
+    "summfiles": 2391,
+    "summsize": 9517763588,
+    "sizemb": 9517.76
   },
   {
     "status": "final",
@@ -1435,10 +1644,10 @@
     "indication": "x-ind",
     "study": "argx-113-9006",
     "retype": "",
-    "nreevents": 4,
-    "summfiles": 280,
-    "summsize": 19655991,
-    "sizemb": 19.66
+    "nreevents": 5,
+    "summfiles": 823,
+    "summsize": 98950671,
+    "sizemb": 98.95
   },
   {
     "status": "final",
@@ -1446,10 +1655,32 @@
     "indication": "All",
     "study": "All",
     "retype": "",
-    "nreevents": 39,
-    "summfiles": 11211,
-    "summsize": 3241139451,
-    "sizemb": 3241.14
+    "nreevents": 64,
+    "summfiles": 19755,
+    "summsize": 6479508142,
+    "sizemb": 6479.51
+  },
+  {
+    "status": "final",
+    "compound": "argx-117",
+    "indication": "cidp",
+    "study": "All",
+    "retype": "",
+    "nreevents": 2,
+    "summfiles": 191,
+    "summsize": 42560664,
+    "sizemb": 42.56
+  },
+  {
+    "status": "final",
+    "compound": "argx-117",
+    "indication": "cidp",
+    "study": "argx-117-2401",
+    "retype": "",
+    "nreevents": 2,
+    "summfiles": 191,
+    "summsize": 42560664,
+    "sizemb": 42.56
   },
   {
     "status": "final",
@@ -1457,10 +1688,10 @@
     "indication": "dgf",
     "study": "All",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 2,
-    "summsize": 42926,
-    "sizemb": 0.04
+    "nreevents": 2,
+    "summfiles": 90,
+    "summsize": 34347591,
+    "sizemb": 34.35
   },
   {
     "status": "final",
@@ -1468,10 +1699,32 @@
     "indication": "dgf",
     "study": "argx-117-2201",
     "retype": "",
+    "nreevents": 2,
+    "summfiles": 90,
+    "summsize": 34347591,
+    "sizemb": 34.35
+  },
+  {
+    "status": "final",
+    "compound": "argx-117",
+    "indication": "dm",
+    "study": "All",
+    "retype": "",
     "nreevents": 1,
-    "summfiles": 2,
-    "summsize": 42926,
-    "sizemb": 0.04
+    "summfiles": 155,
+    "summsize": 11436249,
+    "sizemb": 11.44
+  },
+  {
+    "status": "final",
+    "compound": "argx-117",
+    "indication": "dm",
+    "study": "argx-117-2301",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 155,
+    "summsize": 11436249,
+    "sizemb": 11.44
   },
   {
     "status": "final",
@@ -1479,10 +1732,10 @@
     "indication": "hv",
     "study": "All",
     "retype": "",
-    "nreevents": 11,
-    "summfiles": 2817,
-    "summsize": 372401462,
-    "sizemb": 372.4
+    "nreevents": 13,
+    "summfiles": 3288,
+    "summsize": 406476991,
+    "sizemb": 406.48
   },
   {
     "status": "final",
@@ -1498,13 +1751,24 @@
   {
     "status": "final",
     "compound": "argx-117",
+    "indication": "hv",
+    "study": "argx-117-2303",
+    "retype": "",
+    "nreevents": 2,
+    "summfiles": 471,
+    "summsize": 34075529,
+    "sizemb": 34.08
+  },
+  {
+    "status": "final",
+    "compound": "argx-117",
     "indication": "mmn",
     "study": "All",
     "retype": "",
-    "nreevents": 25,
-    "summfiles": 7400,
-    "summsize": 2529446617,
-    "sizemb": 2529.45
+    "nreevents": 45,
+    "summfiles": 15923,
+    "summsize": 5975223427,
+    "sizemb": 5975.22
   },
   {
     "status": "final",
@@ -1512,10 +1776,10 @@
     "indication": "mmn",
     "study": "argx-117-2002",
     "retype": "",
-    "nreevents": 16,
-    "summfiles": 5748,
-    "summsize": 2259355774,
-    "sizemb": 2259.36
+    "nreevents": 28,
+    "summfiles": 11659,
+    "summsize": 4558236936,
+    "sizemb": 4558.24
   },
   {
     "status": "final",
@@ -1523,10 +1787,21 @@
     "indication": "mmn",
     "study": "argx-117-2003",
     "retype": "",
-    "nreevents": 9,
-    "summfiles": 1652,
-    "summsize": 270090843,
-    "sizemb": 270.09
+    "nreevents": 16,
+    "summfiles": 4113,
+    "summsize": 1410318745,
+    "sizemb": 1410.32
+  },
+  {
+    "status": "final",
+    "compound": "argx-117",
+    "indication": "mmn",
+    "study": "argx-117-2202",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 151,
+    "summsize": 6667746,
+    "sizemb": 6.67
   },
   {
     "status": "final",
@@ -1534,10 +1809,10 @@
     "indication": "x-ind",
     "study": "All",
     "retype": "",
-    "nreevents": 2,
-    "summfiles": 992,
-    "summsize": 339248446,
-    "sizemb": 339.25
+    "nreevents": 1,
+    "summfiles": 108,
+    "summsize": 9463220,
+    "sizemb": 9.46
   },
   {
     "status": "final",
@@ -1545,10 +1820,10 @@
     "indication": "x-ind",
     "study": "argx-117-0000",
     "retype": "",
-    "nreevents": 2,
-    "summfiles": 992,
-    "summsize": 339248446,
-    "sizemb": 339.25
+    "nreevents": 1,
+    "summfiles": 108,
+    "summsize": 9463220,
+    "sizemb": 9.46
   },
   {
     "status": "final",
@@ -1556,10 +1831,10 @@
     "indication": "All",
     "study": "All",
     "retype": "",
-    "nreevents": 8,
-    "summfiles": 1893,
-    "summsize": 223988630,
-    "sizemb": 223.99
+    "nreevents": 15,
+    "summfiles": 3653,
+    "summsize": 643115801,
+    "sizemb": 643.12
   },
   {
     "status": "final",
@@ -1567,21 +1842,21 @@
     "indication": "cms",
     "study": "All",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 3,
-    "summsize": 73197,
-    "sizemb": 0.07
+    "nreevents": 3,
+    "summfiles": 458,
+    "summsize": 26464170,
+    "sizemb": 26.46
   },
   {
     "status": "final",
     "compound": "argx-119",
     "indication": "cms",
-    "study": "argx-119-2302",
+    "study": "argx-119-2301",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 3,
-    "summsize": 73197,
-    "sizemb": 0.07
+    "nreevents": 3,
+    "summfiles": 458,
+    "summsize": 26464170,
+    "sizemb": 26.46
   },
   {
     "status": "final",
@@ -1589,10 +1864,10 @@
     "indication": "hv",
     "study": "All",
     "retype": "",
-    "nreevents": 7,
-    "summfiles": 1890,
-    "summsize": 223915433,
-    "sizemb": 223.92
+    "nreevents": 11,
+    "summfiles": 2899,
+    "summsize": 535288602,
+    "sizemb": 535.29
   },
   {
     "status": "final",
@@ -1600,10 +1875,32 @@
     "indication": "hv",
     "study": "argx-119-2201",
     "retype": "",
-    "nreevents": 7,
-    "summfiles": 1890,
-    "summsize": 223915433,
-    "sizemb": 223.92
+    "nreevents": 11,
+    "summfiles": 2899,
+    "summsize": 535288602,
+    "sizemb": 535.29
+  },
+  {
+    "status": "final",
+    "compound": "argx-119",
+    "indication": "x-ind",
+    "study": "All",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 296,
+    "summsize": 81363029,
+    "sizemb": 81.36
+  },
+  {
+    "status": "final",
+    "compound": "argx-119",
+    "indication": "x-ind",
+    "study": "argx-119-0000",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 296,
+    "summsize": 81363029,
+    "sizemb": 81.36
   },
   {
     "status": "final",
@@ -1612,9 +1909,9 @@
     "study": "All",
     "retype": "",
     "nreevents": 7,
-    "summfiles": 1515,
-    "summsize": 232585401,
-    "sizemb": 232.59
+    "summfiles": 1524,
+    "summsize": 233171522,
+    "sizemb": 233.17
   },
   {
     "status": "final",
@@ -1667,9 +1964,9 @@
     "study": "All",
     "retype": "",
     "nreevents": 5,
-    "summfiles": 1065,
-    "summsize": 215735086,
-    "sizemb": 215.74
+    "summfiles": 1074,
+    "summsize": 216321207,
+    "sizemb": 216.32
   },
   {
     "status": "final",
@@ -1678,9 +1975,9 @@
     "study": "cdisc-pilot-0001",
     "retype": "",
     "nreevents": 3,
-    "summfiles": 283,
-    "summsize": 167757704,
-    "sizemb": 167.76
+    "summfiles": 292,
+    "summsize": 168343418,
+    "sizemb": 168.34
   },
   {
     "status": "final",
@@ -1690,7 +1987,7 @@
     "retype": "",
     "nreevents": 2,
     "summfiles": 782,
-    "summsize": 47977382,
+    "summsize": 47977789,
     "sizemb": 47.98
   },
   {
@@ -1699,10 +1996,10 @@
     "indication": "All",
     "study": "All",
     "retype": "",
-    "nreevents": 205,
-    "summfiles": 57074,
-    "summsize": 68216038183,
-    "sizemb": 68216.04
+    "nreevents": 256,
+    "summfiles": 67570,
+    "summsize": 100226004105,
+    "sizemb": 100226
   },
   {
     "status": "gadam",
@@ -1710,10 +2007,10 @@
     "indication": "All",
     "study": "All",
     "retype": "cro oversight",
-    "nreevents": 102,
-    "summfiles": 6382,
-    "summsize": 2740814990,
-    "sizemb": 2740.81
+    "nreevents": 134,
+    "summfiles": 9261,
+    "summsize": 3461851673,
+    "sizemb": 3461.85
   },
   {
     "status": "gadam",
@@ -1721,10 +2018,43 @@
     "indication": "All",
     "study": "All",
     "retype": "reporting event",
-    "nreevents": 103,
-    "summfiles": 50692,
-    "summsize": 65475223193,
-    "sizemb": 65475.22
+    "nreevents": 122,
+    "summfiles": 58309,
+    "summsize": 96764152432,
+    "sizemb": 96764.15
+  },
+  {
+    "status": "gadam",
+    "compound": "argx-109",
+    "indication": "All",
+    "study": "All",
+    "retype": "",
+    "nreevents": 3,
+    "summfiles": 257,
+    "summsize": 4015507,
+    "sizemb": 4.02
+  },
+  {
+    "status": "gadam",
+    "compound": "argx-109",
+    "indication": "hv",
+    "study": "All",
+    "retype": "",
+    "nreevents": 2,
+    "summfiles": 167,
+    "summsize": 2138363,
+    "sizemb": 2.14
+  },
+  {
+    "status": "gadam",
+    "compound": "argx-109",
+    "indication": "x-ind",
+    "study": "All",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 90,
+    "summsize": 1877144,
+    "sizemb": 1.88
   },
   {
     "status": "gadam",
@@ -1733,9 +2063,9 @@
     "study": "All",
     "retype": "",
     "nreevents": 5,
-    "summfiles": 2684,
-    "summsize": 4222932108,
-    "sizemb": 4222.93
+    "summfiles": 2692,
+    "summsize": 4207560535,
+    "sizemb": 4207.56
   },
   {
     "status": "gadam",
@@ -1744,9 +2074,9 @@
     "study": "All",
     "retype": "",
     "nreevents": 5,
-    "summfiles": 2684,
-    "summsize": 4222932108,
-    "sizemb": 4222.93
+    "summfiles": 2692,
+    "summsize": 4207560535,
+    "sizemb": 4207.56
   },
   {
     "status": "gadam",
@@ -1754,10 +2084,10 @@
     "indication": "All",
     "study": "All",
     "retype": "",
-    "nreevents": 148,
-    "summfiles": 40679,
-    "summsize": 56715356370,
-    "sizemb": 56715.36
+    "nreevents": 184,
+    "summfiles": 47067,
+    "summsize": 85576308100,
+    "sizemb": 85576.31
   },
   {
     "status": "gadam",
@@ -1766,9 +2096,20 @@
     "study": "All",
     "retype": "",
     "nreevents": 3,
-    "summfiles": 297,
-    "summsize": 7139373,
-    "sizemb": 7.14
+    "summfiles": 303,
+    "summsize": 7155355,
+    "sizemb": 7.16
+  },
+  {
+    "status": "gadam",
+    "compound": "argx-113",
+    "indication": "amr",
+    "study": "All",
+    "retype": "",
+    "nreevents": 2,
+    "summfiles": 280,
+    "summsize": 12573812,
+    "sizemb": 12.57
   },
   {
     "status": "gadam",
@@ -1776,10 +2117,10 @@
     "indication": "bp",
     "study": "All",
     "retype": "",
-    "nreevents": 6,
-    "summfiles": 2008,
-    "summsize": 885102984,
-    "sizemb": 885.1
+    "nreevents": 9,
+    "summfiles": 2529,
+    "summsize": 1337524632,
+    "sizemb": 1337.52
   },
   {
     "status": "gadam",
@@ -1787,10 +2128,10 @@
     "indication": "cidp",
     "study": "All",
     "retype": "",
-    "nreevents": 20,
-    "summfiles": 3719,
-    "summsize": 6332945979,
-    "sizemb": 6332.95
+    "nreevents": 22,
+    "summfiles": 3895,
+    "summsize": 6895317634,
+    "sizemb": 6895.32
   },
   {
     "status": "gadam",
@@ -1798,10 +2139,10 @@
     "indication": "hv",
     "study": "All",
     "retype": "",
-    "nreevents": 20,
-    "summfiles": 6050,
-    "summsize": 2293077878,
-    "sizemb": 2293.08
+    "nreevents": 22,
+    "summfiles": 6548,
+    "summsize": 2416701057,
+    "sizemb": 2416.7
   },
   {
     "status": "gadam",
@@ -1809,10 +2150,10 @@
     "indication": "iim",
     "study": "All",
     "retype": "",
-    "nreevents": 5,
-    "summfiles": 1774,
-    "summsize": 647290221,
-    "sizemb": 647.29
+    "nreevents": 8,
+    "summfiles": 2192,
+    "summsize": 1345158087,
+    "sizemb": 1345.16
   },
   {
     "status": "gadam",
@@ -1820,10 +2161,10 @@
     "indication": "itp",
     "study": "All",
     "retype": "",
-    "nreevents": 27,
-    "summfiles": 4589,
-    "summsize": 6677433381,
-    "sizemb": 6677.43
+    "nreevents": 28,
+    "summfiles": 4963,
+    "summsize": 19844619224,
+    "sizemb": 19844.62
   },
   {
     "status": "gadam",
@@ -1832,9 +2173,9 @@
     "study": "All",
     "retype": "",
     "nreevents": 2,
-    "summfiles": 955,
-    "summsize": 183472261,
-    "sizemb": 183.47
+    "summfiles": 1050,
+    "summsize": 326425631,
+    "sizemb": 326.43
   },
   {
     "status": "gadam",
@@ -1842,10 +2183,10 @@
     "indication": "mg",
     "study": "All",
     "retype": "",
-    "nreevents": 26,
-    "summfiles": 8460,
-    "summsize": 13719277195,
-    "sizemb": 13719.28
+    "nreevents": 40,
+    "summfiles": 10161,
+    "summsize": 16249969515,
+    "sizemb": 16249.97
   },
   {
     "status": "gadam",
@@ -1853,10 +2194,10 @@
     "indication": "mn",
     "study": "All",
     "retype": "",
-    "nreevents": 3,
-    "summfiles": 960,
-    "summsize": 174060276,
-    "sizemb": 174.06
+    "nreevents": 4,
+    "summfiles": 1278,
+    "summsize": 293099632,
+    "sizemb": 293.1
   },
   {
     "status": "gadam",
@@ -1864,10 +2205,10 @@
     "indication": "pemphigus",
     "study": "All",
     "retype": "",
-    "nreevents": 18,
-    "summfiles": 2891,
-    "summsize": 4661977441,
-    "sizemb": 4661.98
+    "nreevents": 19,
+    "summfiles": 3136,
+    "summsize": 4931970191,
+    "sizemb": 4931.97
   },
   {
     "status": "gadam",
@@ -1876,9 +2217,9 @@
     "study": "All",
     "retype": "",
     "nreevents": 5,
-    "summfiles": 1603,
-    "summsize": 447737131,
-    "sizemb": 447.74
+    "summfiles": 1757,
+    "summsize": 620908537,
+    "sizemb": 620.91
   },
   {
     "status": "gadam",
@@ -1886,10 +2227,21 @@
     "indication": "sjogren",
     "study": "All",
     "retype": "",
-    "nreevents": 5,
-    "summfiles": 1568,
-    "summsize": 359030049,
-    "sizemb": 359.03
+    "nreevents": 7,
+    "summfiles": 1892,
+    "summsize": 511398775,
+    "sizemb": 511.4
+  },
+  {
+    "status": "gadam",
+    "compound": "argx-113",
+    "indication": "ssc",
+    "study": "All",
+    "retype": "",
+    "nreevents": 2,
+    "summfiles": 179,
+    "summsize": 3798730,
+    "sizemb": 3.8
   },
   {
     "status": "gadam",
@@ -1897,10 +2249,10 @@
     "indication": "ted",
     "study": "All",
     "retype": "",
-    "nreevents": 4,
-    "summfiles": 403,
-    "summsize": 9988394,
-    "sizemb": 9.99
+    "nreevents": 6,
+    "summfiles": 822,
+    "summsize": 75938386,
+    "sizemb": 75.94
   },
   {
     "status": "gadam",
@@ -1908,10 +2260,10 @@
     "indication": "x-ind",
     "study": "All",
     "retype": "",
-    "nreevents": 4,
-    "summfiles": 5402,
-    "summsize": 20316823807,
-    "sizemb": 20316.82
+    "nreevents": 5,
+    "summfiles": 6082,
+    "summsize": 30703748902,
+    "sizemb": 30703.75
   },
   {
     "status": "gadam",
@@ -1919,10 +2271,21 @@
     "indication": "All",
     "study": "All",
     "retype": "",
-    "nreevents": 27,
-    "summfiles": 5738,
-    "summsize": 3212744151,
-    "sizemb": 3212.74
+    "nreevents": 34,
+    "summfiles": 7788,
+    "summsize": 5536361720,
+    "sizemb": 5536.36
+  },
+  {
+    "status": "gadam",
+    "compound": "argx-117",
+    "indication": "cidp",
+    "study": "All",
+    "retype": "",
+    "nreevents": 1,
+    "summfiles": 79,
+    "summsize": 334634,
+    "sizemb": 0.33
   },
   {
     "status": "gadam",
@@ -1931,9 +2294,9 @@
     "study": "All",
     "retype": "",
     "nreevents": 2,
-    "summfiles": 700,
-    "summsize": 40067916,
-    "sizemb": 40.07
+    "summfiles": 758,
+    "summsize": 44457389,
+    "sizemb": 44.46
   },
   {
     "status": "gadam",
@@ -1941,10 +2304,10 @@
     "indication": "dgf",
     "study": "All",
     "retype": "",
-    "nreevents": 2,
-    "summfiles": 784,
-    "summsize": 67811296,
-    "sizemb": 67.81
+    "nreevents": 3,
+    "summfiles": 1035,
+    "summsize": 218152684,
+    "sizemb": 218.15
   },
   {
     "status": "gadam",
@@ -1953,9 +2316,9 @@
     "study": "All",
     "retype": "",
     "nreevents": 2,
-    "summfiles": 198,
-    "summsize": 4947114,
-    "sizemb": 4.95
+    "summfiles": 461,
+    "summsize": 25670148,
+    "sizemb": 25.67
   },
   {
     "status": "gadam",
@@ -1963,10 +2326,10 @@
     "indication": "hv",
     "study": "All",
     "retype": "",
-    "nreevents": 5,
-    "summfiles": 1105,
-    "summsize": 782151557,
-    "sizemb": 782.15
+    "nreevents": 6,
+    "summfiles": 1251,
+    "summsize": 974077220,
+    "sizemb": 974.08
   },
   {
     "status": "gadam",
@@ -1974,10 +2337,10 @@
     "indication": "mmn",
     "study": "All",
     "retype": "",
-    "nreevents": 15,
-    "summfiles": 2111,
-    "summsize": 1096756428,
-    "sizemb": 1096.76
+    "nreevents": 18,
+    "summfiles": 2859,
+    "summsize": 1711031373,
+    "sizemb": 1711.03
   },
   {
     "status": "gadam",
@@ -1985,10 +2348,10 @@
     "indication": "x-ind",
     "study": "All",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 840,
-    "summsize": 1221009840,
-    "sizemb": 1221.01
+    "nreevents": 2,
+    "summfiles": 1345,
+    "summsize": 2562638272,
+    "sizemb": 2562.64
   },
   {
     "status": "gadam",
@@ -1996,10 +2359,10 @@
     "indication": "All",
     "study": "All",
     "retype": "",
-    "nreevents": 12,
-    "summfiles": 2844,
-    "summsize": 1160182655,
-    "sizemb": 1160.18
+    "nreevents": 16,
+    "summfiles": 4431,
+    "summsize": 2001310150,
+    "sizemb": 2001.31
   },
   {
     "status": "gadam",
@@ -2008,9 +2371,9 @@
     "study": "All",
     "retype": "",
     "nreevents": 2,
-    "summfiles": 174,
-    "summsize": 4361014,
-    "sizemb": 4.36
+    "summfiles": 424,
+    "summsize": 32118792,
+    "sizemb": 32.12
   },
   {
     "status": "gadam",
@@ -2018,10 +2381,10 @@
     "indication": "cms",
     "study": "All",
     "retype": "",
-    "nreevents": 3,
-    "summfiles": 849,
-    "summsize": 59552024,
-    "sizemb": 59.55
+    "nreevents": 6,
+    "summfiles": 1425,
+    "summsize": 160243015,
+    "sizemb": 160.24
   },
   {
     "status": "gadam",
@@ -2030,9 +2393,9 @@
     "study": "All",
     "retype": "",
     "nreevents": 6,
-    "summfiles": 1157,
-    "summsize": 705495999,
-    "sizemb": 705.5
+    "summfiles": 1477,
+    "summsize": 932450245,
+    "sizemb": 932.45
   },
   {
     "status": "gadam",
@@ -2040,10 +2403,10 @@
     "indication": "x-ind",
     "study": "All",
     "retype": "",
-    "nreevents": 1,
-    "summfiles": 664,
-    "summsize": 390773618,
-    "sizemb": 390.77
+    "nreevents": 2,
+    "summfiles": 1105,
+    "summsize": 876498098,
+    "sizemb": 876.5
   },
   {
     "status": "gadam",
@@ -2051,10 +2414,10 @@
     "indication": "All",
     "study": "All",
     "retype": "",
-    "nreevents": 13,
-    "summfiles": 5129,
-    "summsize": 2904822899,
-    "sizemb": 2904.82
+    "nreevents": 14,
+    "summfiles": 5335,
+    "summsize": 2900448093,
+    "sizemb": 2900.45
   },
   {
     "status": "gadam",
@@ -2062,10 +2425,10 @@
     "indication": "gadam-tests",
     "study": "All",
     "retype": "",
-    "nreevents": 5,
-    "summfiles": 1930,
-    "summsize": 1647426820,
-    "sizemb": 1647.43
+    "nreevents": 6,
+    "summfiles": 2120,
+    "summsize": 1800182356,
+    "sizemb": 1800.18
   },
   {
     "status": "gadam",
@@ -2074,9 +2437,9 @@
     "study": "All",
     "retype": "",
     "nreevents": 7,
-    "summfiles": 2813,
-    "summsize": 1211140075,
-    "sizemb": 1211.14
+    "summfiles": 2829,
+    "summsize": 1054009733,
+    "sizemb": 1054.01
   },
   {
     "status": "gadam",
