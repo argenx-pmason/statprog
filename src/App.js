@@ -112,6 +112,10 @@ function App() {
       "/general/biostat/gadam/documents/gadam_dshb/gadam_events/gadam.csv",
     r_across = "/general/biostat/metadata/projects/across.json",
     r_staff = "/general/biostat/apps/staff/staff.json",
+    r_studyPeople = "/general/biostat/apps/study_people/study_people.json",
+    r_allSumm = "/general/biostat/metadata/projects/allsumm.json",
+    r_allSummTot = "/general/biostat/metadata/projects/allsummtot.json",
+    r_fac = "/general/biostat/metadata/projects/folder_access_request.json",
     [resources, setResources] = useState(null),
     [across, setAcross] = useState(null),
     [day1, setDay1] = useState([]),
@@ -347,28 +351,32 @@ function App() {
       setRepEventCounts(re);
     },
     parseCustomDate = (dateTimeStr) => {
-      const months = {
-          jan: 0,
-          feb: 1,
-          mar: 2,
-          apr: 3,
-          may: 4,
-          jun: 5,
-          jul: 6,
-          aug: 7,
-          sep: 8,
-          oct: 9,
-          nov: 10,
-          dec: 11,
-        },
-        trim = dateTimeStr.trim(),
-        day = parseInt(trim.slice(0, 2), 10),
-        month = months[trim.slice(2, 5).toLowerCase()],
-        year = parseInt(trim.slice(5), 10),
-        hour = parseInt(trim.slice(10, 12), 10),
-        minute = parseInt(trim.slice(13, 15), 10),
-        second = parseInt(trim.slice(16, 18), 10);
-      return new Date(year, month, day, hour, minute, second);
+      const prep = dateTimeStr
+        .trim()
+        .replace(/(\d+)([a-zA-Z]+)(\d+):/, "$1 $2 $3 ");
+      return new Date(prep);
+      // const months = {
+      //     jan: 0,
+      //     feb: 1,
+      //     mar: 2,
+      //     apr: 3,
+      //     may: 4,
+      //     jun: 5,
+      //     jul: 6,
+      //     aug: 7,
+      //     sep: 8,
+      //     oct: 9,
+      //     nov: 10,
+      //     dec: 11,
+      //   },
+      //   trim = dateTimeStr.trim(),
+      //   day = parseInt(trim.slice(0, 2), 10),
+      //   month = months[trim.slice(2, 5).toLowerCase()],
+      //   year = parseInt(trim.slice(5), 10),
+      //   hour = parseInt(trim.slice(10, 12), 10),
+      //   minute = parseInt(trim.slice(13, 15), 10),
+      //   second = parseInt(trim.slice(16, 18), 10);
+      // return new Date(year, month, day, hour, minute, second);
     },
     // process sdtm-last data (sdtm_for_studies.json)
     [sdtmLast, setSdtmLast] = useState(null),
@@ -388,6 +396,8 @@ function App() {
       console.log("processSdtmForStudies - data", data);
       if (!data) return;
       const subset = data.filter((d) => {
+          // convert datecopied to a standard date text format
+
           return (
             (d.status === "ongoing" &&
               ((new Date() - parseCustomDate(d.datecopied)) / 1000 / 60 / 60 <=
@@ -562,6 +572,10 @@ function App() {
         Url6 = `${webDavPrefix}${r_sdtm_for_studies}`,
         Url7 = `${webDavPrefix}${r_lsaf_jobs_info}`,
         Url8 = `${webDavPrefix}${r_staff}`,
+        Url9 = `${webDavPrefix}${r_studyPeople}`,
+        Url10 = `${webDavPrefix}${r_allSumm}`,
+        Url11 = `${webDavPrefix}${r_allSummTot}`,
+        Url12 = `${webDavPrefix}${r_fac}`,
         urlday1 = `${webDavPrefix}${r_day1}`,
         urlday2 = `${webDavPrefix}${r_day2}`,
         urlday3 = `${webDavPrefix}${r_day3}`,
@@ -586,6 +600,14 @@ function App() {
         Url7,
         "Url8",
         Url8,
+        "Url9",
+        Url9,
+        "Url10",
+        Url10,
+        "Url11",
+        Url11,
+        "Url12",
+        Url12,
         "urlday1",
         urlday1,
         "urlday2",
@@ -672,6 +694,26 @@ function App() {
         .then((data) => {
           setStaff(data);
         });
+      fetch(Url9)
+        .then((response) => response.json())
+        .then((data) => {
+          setStudyPeople(data);
+        });
+      fetch(Url10)
+        .then((response) => response.json())
+        .then((data) => {
+          setAllSumm(data);
+        });
+      fetch(Url11)
+        .then((response) => response.json())
+        .then((data) => {
+          setAllSummTot(data);
+        });
+      fetch(Url12)
+        .then((response) => response.json())
+        .then((data) => {
+          setFac(data);
+        });
       fetch(urlday1)
         .then((response) => response.text())
         .then((text) => {
@@ -747,26 +789,22 @@ function App() {
     if (!staff) return;
     const noLead = staff.filter((d) => !d.lead).length,
       noLine = staff.filter((d) => !d.line_mgr).length;
-    // ,profiles = summarizeByCategory(fac, "profile");
-    const _issues = { noLead: noLead, noLine: noLine };
-    setIssues(_issues);
-    console.log(
-      "staff",
-      staff
-      // "studyPeople",
-      // studyPeople,
-      // "allSumm",
-      // allSumm,
-      // "allSumTot",
-      // allSummTot,
-      // "fac",
-      // fac,
-      // noLead,
-      // noLine,
-      // "profiles",
-      // profiles
-    );
+    setIssues((from) => ({ ...from, noLead: noLead, noLine: noLine }));
   }, [staff]);
+
+  useEffect(() => {
+    if (!fac) return;
+    const profiles = summarizeByCategory(fac, "profile");
+    setIssues((from) => ({ ...from, profiles: profiles }));
+  }, [fac]);
+
+  useEffect(() => {
+    if (!studyPeople) return;
+    const missing_lead_statisticians = studyPeople.filter(
+      (r) => r.status === "ongoing" && r.lead_statistician === ""
+    ).length;
+    setIssues((from) => ({ ...from, noStat: missing_lead_statisticians }));
+  }, [studyPeople]);
 
   useEffect(() => {
     if (gadamRefresh && gadamRefresh.length > 0 && days) {
@@ -774,6 +812,8 @@ function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [days, gadamRefresh]);
+
+  console.log(issues);
 
   // once we have all the days, then put them together and calculate the stats we want
   useEffect(() => {
@@ -1896,65 +1936,75 @@ function App() {
                 color: "blue",
                 fontSize: 18,
               }}
-              title={`Other issues`}
+              title={`Other issues & information`}
             />
             <CardContent>
               {issues &&
-                Object.keys(issues).length > 0 &&
+                Object.keys(issues).length >= 3 &&
                 Object.keys(issues).map((k, id) => {
-                  const value = issues.noLead,
+                  const value = issues[k],
                     tip =
                       k === "noLead"
                         ? `${value} missing Lead programmers`
                         : k === "noLine"
                         ? `${value} missing Line Managers`
+                        : k === "noStat"
+                        ? `${value} missing Lead Statisticians`
                         : null,
                     message =
                       k === "noLead"
                         ? `Lead Programmers`
                         : k === "noLine"
                         ? `Line Managers`
+                        : k === "noStat"
+                        ? `Statisticians`
                         : null;
-                  console.log("k", k, value);
-                  return (
-                    <Tooltip key={"issues-" + id} title={`${tip}`}>
-                      <Badge
-                        badgeContent={value}
-                        overlap="circular"
-                        color={"error"}
-                      >
-                        <Chip
-                          sx={{
-                            mr: 1,
-                            mt: 0.5,
-                            mb: 1,
-                            backgroundColor: warningColor,
-                          }}
-                          label={`${message}`}
-                          // onClick={(e) => {
-                          //   console.log("e", e);
-                          //   if (e.ctrlKey) {
-                          //     window
-                          //       .open(
-                          //         dashStudyPrefix +
-                          //           k.reporting_event_path +
-                          //           "/documents/meta/dashstudy.json",
-                          //         "_blank"
-                          //       )
-                          //       .focus();
-                          //   } else {
-                          //     window
-                          //       .open(
-                          //         fileViewerPrefix + k.reporting_event_path,
-                          //         "_blank"
-                          //       )
-                          //       .focus();
-                          //   }
-                          // }}
-                        />
-                      </Badge>
-                    </Tooltip>
-                  );
+                  console.log("k", k, issues[k]);
+                  if (k === "profiles") {
+                    return issues[k].map((i, pid) => {
+                      console.log("i", i);
+                      return <Chip label={`${i.count} ${i.category}`} />;
+                    });
+                  } else
+                    return (
+                      <Tooltip key={"issues-" + id} title={`${tip}`}>
+                        <Badge
+                          badgeContent={value}
+                          overlap="circular"
+                          color={"error"}
+                        >
+                          <Chip
+                            sx={{
+                              mr: 1,
+                              mt: 0.5,
+                              mb: 1,
+                              backgroundColor: warningColor,
+                            }}
+                            label={`${message}`}
+                            // onClick={(e) => {
+                            //   console.log("e", e);
+                            //   if (e.ctrlKey) {
+                            //     window
+                            //       .open(
+                            //         dashStudyPrefix +
+                            //           k.reporting_event_path +
+                            //           "/documents/meta/dashstudy.json",
+                            //         "_blank"
+                            //       )
+                            //       .focus();
+                            //   } else {
+                            //     window
+                            //       .open(
+                            //         fileViewerPrefix + k.reporting_event_path,
+                            //         "_blank"
+                            //       )
+                            //       .focus();
+                            //   }
+                            // }}
+                          />
+                        </Badge>
+                      </Tooltip>
+                    );
                 })}
             </CardContent>
             <CardActions>
