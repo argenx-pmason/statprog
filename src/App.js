@@ -184,6 +184,7 @@ function App() {
     cardColor1 = "#ffffe6",
     cardColor2 = "#f0ffeb",
     cardColor3 = "#f0f5ff",
+    cardColor4 = "#F5F5F5",
     [anchorEl, setAnchorEl] = useState(null),
     handleClickMenu = (event) => {
       setAnchorEl(event.currentTarget);
@@ -2116,7 +2117,7 @@ function App() {
           </Card>
         </Paper>
         <Paper>
-          <Card sx={{ m: 3, backgroundColor: cardColor3 }}>
+          <Card sx={{ m: 3, backgroundColor: cardColor4 }}>
             <CardHeader
               sx={{
                 color: "blue",
