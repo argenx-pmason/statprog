@@ -20,6 +20,11 @@ import {
   CardActions,
   Button,
   TableContainer,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  Radio,
+  FormControlLabel,
   Table,
   TableRow,
   TableCell,
@@ -36,6 +41,8 @@ import {
   NavigateNext,
   NavigateBefore,
 } from "@mui/icons-material";
+// import { BarChartPro } from "@mui/x-charts";
+import { LicenseInfo } from "@mui/x-license";
 import { Masonry } from "@mui/lab";
 import MenuIcon from "@mui/icons-material/Menu";
 import alasql from "alasql";
@@ -64,7 +71,12 @@ import l_day7 from "./day7.csv";
 import useSound from "use-sound";
 import _up from "./_up.ogg";
 import _down from "./_down.ogg";
-
+// import Highcharts from "highcharts";
+// import HighchartsReact from "highcharts-react-official";
+import { ResponsiveSankey } from "@nivo/sankey";
+LicenseInfo.setLicenseKey(
+  "6b1cacb920025860cc06bcaf75ee7a66Tz05NDY2MixFPTE3NTMyNTMxMDQwMDAsUz1wcm8sTE09c3Vic2NyaXB0aW9uLEtWPTI="
+);
 function App() {
   const { href, host, origin } = window.location, // get the URL so we can work out where we are running
     mode = href.startsWith("http://localhost") ? "local" : "remote",
@@ -99,7 +111,9 @@ function App() {
     [allSumm, setAllSumm] = useState(null),
     [allSummTot, setAllSummTot] = useState(null),
     [fac, setFac] = useState(null),
+    [chart1, setChart1] = useState(null),
     [issues, setIssues] = useState(null),
+    [sankeyValue, setSankeyValue] = useState("sizemb"),
     r_gadam_jobs_info =
       "/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/output/gadam_jobs_info.json",
     r_lsaf_jobs_info =
@@ -396,13 +410,20 @@ function App() {
       console.log("processSdtmForStudies - data", data);
       if (!data) return;
       const subset = data.filter((d) => {
+          let datecopied = "01JAN2024:00:00:00",
+            copyattempted = "01JAN2024:00:00:00";
+          if (d.datecopied && d?.datecopied.length > 2) {
+            datecopied = d.datecopied;
+          }
+          if (d.copyattempted && d?.copyattempted.length > 2) {
+            copyattempted = d.copyattempted;
+          }
           // convert datecopied to a standard date text format
-
           return (
             (d.status === "ongoing" &&
-              ((new Date() - parseCustomDate(d.datecopied)) / 1000 / 60 / 60 <=
+              ((new Date() - parseCustomDate(datecopied)) / 1000 / 60 / 60 <=
                 hours ||
-                (new Date() - parseCustomDate(d.copyattempted)) /
+                (new Date() - parseCustomDate(copyattempted)) /
                   1000 /
                   60 /
                   60 <=
@@ -413,8 +434,13 @@ function App() {
         }),
         re = subset.map((d) => {
           const copyHours = Math.min(
-              (new Date() - parseCustomDate(d.datecopied)) / 1000 / 60 / 60,
-              (new Date() - parseCustomDate(d.copyattempted)) /
+              (new Date() -
+                parseCustomDate(d.datecopied || "01JAN2024:00:00:00")) /
+                1000 /
+                60 /
+                60,
+              (new Date() -
+                parseCustomDate(d.copyattempted || "01JAN2024:00:00:00")) /
                 1000 /
                 60 /
                 60 || 9999
@@ -799,6 +825,77 @@ function App() {
   }, [fac]);
 
   useEffect(() => {
+    if (!allSumm) return;
+    console.log("allSumm", allSumm);
+  }, [allSumm]);
+
+  useEffect(() => {
+    if (!allSummTot) return;
+    const _data = allSummTot
+        .map((r) => {
+          if (r.retype === "All") return null;
+          else if (r.status === "All")
+            return {
+              source: "Total",
+              target: r.retype,
+              sizemb: Math.round(Number(r.sizemb)),
+              summfiles: Math.round(Number(r.summfiles)),
+              nreevents: Math.round(Number(r.nreevents)),
+              value: Math.round(Number(r.sizemb)),
+            };
+          else if (r.compound === "All")
+            return {
+              source: r.retype,
+              target: r.status,
+              sizemb: Math.round(Number(r.sizemb)),
+              summfiles: Math.round(Number(r.summfiles)),
+              nreevents: Math.round(Number(r.nreevents)),
+              value: Math.round(Number(r.sizemb)),
+            };
+          else if (r.indication === "All")
+            return {
+              source: r.status,
+              target: r.compound,
+              sizemb: Math.round(Number(r.sizemb)),
+              summfiles: Math.round(Number(r.summfiles)),
+              nreevents: Math.round(Number(r.nreevents)),
+              value: Math.round(Number(r.sizemb)),
+            };
+          else if (r.study === "All")
+            return {
+              source: r.compound,
+              target: r.indication,
+              sizemb: Math.round(Number(r.sizemb)),
+              summfiles: Math.round(Number(r.summfiles)),
+              nreevents: Math.round(Number(r.nreevents)),
+              value: Math.round(Number(r.sizemb)),
+            };
+          else return null;
+        })
+        .filter((r) => r !== null),
+      _data1 = _data.map((r) => r.source),
+      _data2 = _data.map((r) => r.target),
+      _data3 = _data1.concat(_data2),
+      _nodes = _data3
+        .reduce((acc, item) => {
+          if (!acc.includes(item)) {
+            acc.push(item);
+          }
+          return acc;
+        }, [])
+        .filter((r) => r !== ""),
+      nodes = _nodes.map((r, id) => {
+        return { id: r, nodeColor: "hsl(" + (id + 1) * 10 + ", 70%, 50%)" };
+      }),
+      _chart1 = {
+        links: _data,
+        nodes: nodes,
+      };
+    console.log("allSummTot", allSummTot, "çhart1", _chart1);
+    setChart1(_chart1);
+  }, [allSummTot]);
+
+  useEffect(() => {
     if (!studyPeople) return;
     const missing_lead_statisticians = studyPeople.filter(
       (r) => r.status === "ongoing" && r.lead_statistician === ""
@@ -813,7 +910,7 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [days, gadamRefresh]);
 
-  console.log(issues);
+  // console.log(issues);
 
   // once we have all the days, then put them together and calculate the stats we want
   useEffect(() => {
@@ -1949,7 +2046,7 @@ function App() {
                         : k === "noLine"
                         ? `${value} missing Line Managers`
                         : k === "noStat"
-                        ? `${value} missing Lead Statisticians`
+                        ? `${value} missing Lead Statisticians in ongoing studies`
                         : null,
                     message =
                       k === "noLead"
@@ -1959,10 +2056,9 @@ function App() {
                         : k === "noStat"
                         ? `Statisticians`
                         : null;
-                  console.log("k", k, issues[k]);
+                  // console.log("k", k, issues[k]);
                   if (k === "profiles") {
                     return issues[k].map((i, pid) => {
-                      console.log("i", i);
                       return <Chip label={`${i.count} ${i.category}`} />;
                     });
                   } else
@@ -1981,26 +2077,6 @@ function App() {
                               backgroundColor: warningColor,
                             }}
                             label={`${message}`}
-                            // onClick={(e) => {
-                            //   console.log("e", e);
-                            //   if (e.ctrlKey) {
-                            //     window
-                            //       .open(
-                            //         dashStudyPrefix +
-                            //           k.reporting_event_path +
-                            //           "/documents/meta/dashstudy.json",
-                            //         "_blank"
-                            //       )
-                            //       .focus();
-                            //   } else {
-                            //     window
-                            //       .open(
-                            //         fileViewerPrefix + k.reporting_event_path,
-                            //         "_blank"
-                            //       )
-                            //       .focus();
-                            //   }
-                            // }}
                           />
                         </Badge>
                       </Tooltip>
@@ -2037,6 +2113,56 @@ function App() {
                 🧙 Study People
               </Button>
             </CardActions>
+          </Card>
+        </Paper>
+        <Paper>
+          <Card sx={{ m: 3, backgroundColor: cardColor3 }}>
+            <CardHeader
+              sx={{
+                color: "blue",
+                fontSize: 18,
+              }}
+              title={`Reporting Events`}
+            />{" "}
+            <CardContent>
+              <FormControl>
+                <RadioGroup
+                  row
+                  name="controlled-radio-buttons-group"
+                  value={sankeyValue}
+                  onChange={(event) => {
+                    setSankeyValue(event.target.value);
+                    setChart1((prev) => {
+                      const links = prev.links.map((r) => {
+                        return { ...r, value: r[event.target.value] };
+                      });
+                      return { ...prev, links: links };
+                    });
+                  }}
+                >
+                  <FormControlLabel
+                    value="sizemb"
+                    control={<Radio />}
+                    label="Size in MB"
+                  />
+                  <FormControlLabel
+                    value="summfiles"
+                    control={<Radio />}
+                    label="Number of files"
+                  />
+                  <FormControlLabel
+                    value="nreevents"
+                    control={<Radio />}
+                    label="Number of events"
+                  />
+                </RadioGroup>
+              </FormControl>{" "}
+              <Box sx={{ height: 300 }}>
+                {chart1 && (
+                  <ResponsiveSankey data={chart1} valueFormat=" >-,.0f" />
+                )}
+              </Box>
+            </CardContent>
           </Card>
         </Paper>
       </Masonry>
