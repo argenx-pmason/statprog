@@ -112,6 +112,7 @@ function App() {
     [allSummTot, setAllSummTot] = useState(null),
     [fac, setFac] = useState(null),
     [chart1, setChart1] = useState(null),
+    [chart2, setChart2] = useState(null),
     [issues, setIssues] = useState(null),
     [sankeyValue, setSankeyValue] = useState("sizemb"),
     r_gadam_jobs_info =
@@ -832,7 +833,7 @@ function App() {
 
   useEffect(() => {
     if (!allSummTot) return;
-    const _data = allSummTot
+    const _data1 = allSummTot
         .map((r) => {
           if (r.retype === "All") return null;
           else if (r.status === "All")
@@ -874,10 +875,10 @@ function App() {
           else return null;
         })
         .filter((r) => r !== null),
-      _data1 = _data.map((r) => r.source),
-      _data2 = _data.map((r) => r.target),
-      _data3 = _data1.concat(_data2),
-      _nodes = _data3
+      _data_1 = _data1.map((r) => r.source),
+      _data_2 = _data1.map((r) => r.target),
+      _data_3 = _data_1.concat(_data_2),
+      _nodes = _data_3
         .reduce((acc, item) => {
           if (!acc.includes(item)) {
             acc.push(item);
@@ -885,16 +886,90 @@ function App() {
           return acc;
         }, [])
         .filter((r) => r !== ""),
-      nodes = _nodes.map((r, id) => {
+      nodes1 = _nodes.map((r, id) => {
         return { id: r, nodeColor: "hsl(" + (id + 1) * 10 + ", 70%, 50%)" };
       }),
       _chart1 = {
-        links: _data,
-        nodes: nodes,
+        links: _data1,
+        nodes: nodes1,
       };
     console.log("allSummTot", allSummTot, "çhart1", _chart1);
     setChart1(_chart1);
   }, [allSummTot]);
+
+  useEffect(() => {
+    if (!allSumm) return;
+    const _data2 = allSumm
+        .map((r) => {
+          if (r.retype === "All") return null;
+          else if (r.status === "All") return null;
+          // {
+          //     source: "Total",
+          //     target: r.retype ? r.retype : "other",
+          //     sizemb: Math.round(Number(r.sizemb)),
+          //     summfiles: Math.round(Number(r.summfiles)),
+          //     nreevents: Math.round(Number(r.nreevents)),
+          //     value: Math.round(Number(r.sizemb)),
+          //   };
+          else if (r.compound === "All")
+            return {
+              source: r.retype ? r.retype : "other",
+              target: r.status ? r.status : "other",
+              sizemb: Math.round(Number(r.sizemb)),
+              summfiles: Math.round(Number(r.summfiles)),
+              nreevents: Math.round(Number(r.nreevents)),
+              value: Math.round(Number(r.sizemb)),
+            };
+          else if (r.indication === "All")
+            return {
+              source: r.status ? r.status : "other",
+              target: r.compound ? r.compound : "other",
+              sizemb: Math.round(Number(r.sizemb)),
+              summfiles: Math.round(Number(r.summfiles)),
+              nreevents: Math.round(Number(r.nreevents)),
+              value: Math.round(Number(r.sizemb)),
+            };
+          else if (r.study === "All")
+            return {
+              source: r.compound ? r.compound : "other",
+              target: r.indication ? r.indication : "other",
+              sizemb: Math.round(Number(r.sizemb)),
+              summfiles: Math.round(Number(r.summfiles)),
+              nreevents: Math.round(Number(r.nreevents)),
+              value: Math.round(Number(r.sizemb)),
+            };
+          else return null
+            // return {
+            //   source: r.indication ? r.indication : "other",
+            //   target: r.study ? r.study : "other",
+            //   sizemb: Math.round(Number(r.sizemb)),
+            //   summfiles: Math.round(Number(r.summfiles)),
+            //   nreevents: Math.round(Number(r.nreevents)),
+            //   value: Math.round(Number(r.sizemb)),
+            // }
+        })
+        .filter((r) => r !== null),
+      _data_1 = _data2.map((r) => r.source),
+      _data_2 = _data2.map((r) => r.target),
+      _data_3 = _data_1.concat(_data_2),
+      _nodes = _data_3
+        .reduce((acc, item) => {
+          if (!acc.includes(item)) {
+            acc.push(item);
+          }
+          return acc;
+        }, [])
+        .filter((r) => r !== ""),
+      nodes2 = _nodes.map((r, id) => {
+        return { id: r, nodeColor: "hsl(" + (id + 1) * 10 + ", 70%, 50%)" };
+      }),
+      _chart2 = {
+        links: _data2,
+        nodes: nodes2,
+      };
+    console.log("allSumm", allSumm, "çhart2", _chart2);
+    setChart2(_chart2);
+  }, [allSumm]);
 
   useEffect(() => {
     if (!studyPeople) return;
@@ -1216,8 +1291,10 @@ function App() {
                     key={"gac" + k}
                     onClick={() => {
                       let f = "";
-                      if (k === "WARNINGS") f = "&filter=WARNINGS";
-                      else if (k === "ERRORS") f = "&filter=ERRORS";
+                      if (k === "WARNINGS")
+                        f = "&initialfilter=detailStatus=is=WARNINGS";
+                      else if (k === "ERRORS")
+                        f = "&initialfilter=detailStatus=is=ERRORS";
                       window
                         .open(
                           `${origin}/lsaf/filedownload/sdd%3A///general/biostat/apps/view/index.html?lsaf=/general/biostat/gadam/documents/gadam_dshb/gadam_jobs/output/gadam_jobs_info.json&meta=/general/biostat/apps/gadam_jobs/gadam_jobs_info-metadata.json&key=data&title=%F0%9F%94%A8%20GADAM%20Jobs${f}`,
@@ -1319,8 +1396,10 @@ function App() {
                     key={"gac" + k}
                     onClick={() => {
                       let f = "";
-                      if (k === "WARNINGS") f = "&filter=WARNINGS";
-                      else if (k === "ERRORS") f = "&filter=ERRORS";
+                      if (k === "WARNINGS")
+                        f = "&initialfilter=detailStatus=is=WARNINGS";
+                      else if (k === "ERRORS")
+                        f = "&initialfilter=detailStatus=is=ERRORS";
                       window
                         .open(
                           `${origin}/lsaf/filedownload/sdd:///general/biostat/apps/view/index.html?lsaf=/general/biostat/tools/lsaf_jobs_monitor/output/lsaf_jobs_monitor.json&meta=/general/biostat/tools/lsaf_jobs_monitor/output/lsaf_jobs_output_metadata.json&key=data&title=%20%20%F0%9F%8F%83%E2%80%8D%E2%99%80%EF%B8%8F%20LSAF%20Jobs%20Table%20View${f}`,
@@ -2123,7 +2202,7 @@ function App() {
                 color: "blue",
                 fontSize: 18,
               }}
-              title={`Reporting Events`}
+              title={`Reporting Events Summary`}
             />{" "}
             <CardContent>
               <FormControl>
@@ -2161,6 +2240,56 @@ function App() {
               <Box sx={{ height: 300 }}>
                 {chart1 && (
                   <ResponsiveSankey data={chart1} valueFormat=" >-,.0f" />
+                )}
+              </Box>
+            </CardContent>
+          </Card>
+        </Paper>
+        <Paper>
+          <Card sx={{ m: 3, backgroundColor: cardColor4 }}>
+            <CardHeader
+              sx={{
+                color: "blue",
+                fontSize: 18,
+              }}
+              title={`Reporting Events Detail`}
+            />{" "}
+            <CardContent>
+              <FormControl>
+                <RadioGroup
+                  row
+                  name="controlled-radio-buttons-group"
+                  value={sankeyValue}
+                  onChange={(event) => {
+                    setSankeyValue(event.target.value);
+                    setChart2((prev) => {
+                      const links = prev.links.map((r) => {
+                        return { ...r, value: r[event.target.value] };
+                      });
+                      return { ...prev, links: links };
+                    });
+                  }}
+                >
+                  <FormControlLabel
+                    value="sizemb"
+                    control={<Radio />}
+                    label="Size in MB"
+                  />
+                  <FormControlLabel
+                    value="summfiles"
+                    control={<Radio />}
+                    label="Number of files"
+                  />
+                  <FormControlLabel
+                    value="nreevents"
+                    control={<Radio />}
+                    label="Number of events"
+                  />
+                </RadioGroup>
+              </FormControl>{" "}
+              <Box sx={{ height: 600 }}>
+                {chart2 && (
+                  <ResponsiveSankey data={chart2} valueFormat=" >-,.0f" />
                 )}
               </Box>
             </CardContent>
